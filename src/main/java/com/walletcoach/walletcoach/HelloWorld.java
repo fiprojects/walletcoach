@@ -9,5 +9,6 @@ public class HelloWorld {
         System.out.print("Welcome to WalletCoach!");
         System.out.print("Test: Michael Le");
         System.out.println("\nBitches want my c... : Martin Lofaj");
+        System.out.println("\nHello World : Samuel Adamik");
     }
 }
