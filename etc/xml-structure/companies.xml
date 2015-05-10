@@ -1,0 +1,13 @@
+<companies>
+  <company>
+    <id-number>36178429</id-number>
+    <name>Gazprom</name>
+    <address>
+      <street>Vasilevskaya ulica</street>
+      <number>1/A</number>
+      <city>Moskva</city>
+      <country>Ruská federácia</country>
+    </address>
+    <detail>Distribútor plynu</detail>
+  </company>
+</companies>
