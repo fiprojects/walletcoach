@@ -2,11 +2,19 @@ package com.walletcoach.walletcoach.entities;
 
 import java.awt.Color;
 
+/**
+ * The class Category is a base class for various categories
+ * of purchases that the user makes.
+ * 
+ * The class contains basic entities for storing information
+ * such as the name and color identification of the category.
+ * 
+ * @author fajlo
+ */
+
 public class Category {
     private Long ID;
-    
     private String name;
-    
     private Color color;
 
     public Long getID() {
