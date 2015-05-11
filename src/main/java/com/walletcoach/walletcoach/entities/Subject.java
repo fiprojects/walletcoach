@@ -1,14 +1,19 @@
 package com.walletcoach.walletcoach.entities;
 
+/**
+ * The class Subject is a base class for various companies
+ * where the user makes purchases.
+ * 
+ * The class contains basic entities for storing information
+ * such as the name, IC, the company address and a description.
+ * 
+ * @author fajlo
+ */
 public class Subject {
     private Long ID;
-    
     private String name;
-    
-    private String ico;
-    
+    private String ic;
     private String address;
-    
     private String description;
 
     public Long getID() {
@@ -27,12 +32,12 @@ public class Subject {
 	this.name = name;
     }
 
-    public String getIco() {
-	return ico;
+    public String getIc() {
+	return ic;
     }
 
-    public void setIco(String ico) {
-	this.ico = ico;
+    public void setIc(String ic) {
+	this.ic = ic;
     }
 
     public String getAddress() {
