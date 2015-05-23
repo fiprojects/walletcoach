@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<companies>
+  <company id="1">
+    <ic>36178429</ic>
+    <name>Gazprom</name>
+    <address>
+      <street>Vasilevskaya ulica</street>
+      <number>1/A</number>
+      <city>Moskva</city>
+      <country>Ruská federácia</country>
+    </address>
+    <description>Distribútor plynu</description>
+  </company>
+</companies>

@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <categories>
-  <category>
+  <category id="1">
     <name>Vklad</name>
     <color>green</color>
   </category>
-  <category>
+  <category id="2">
     <name>Výber</name>
     <color>red</color>
   </category>
