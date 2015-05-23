@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fluctuations>
-  <fluctuation id="1">
+<items>
+  <item id="1">
     <name>Kancelárske potreby</name>
     <description>Kancelárske potreby ČSOB (číslo účtu)</description>
     <price>1250.00</price>
     <datetime>1431290161</datetime>
     <category-id>2</category-id>
     <company-id>1</company-id>
-  </fluctuation>
-</fluctuations>
+  </item>
+</items>

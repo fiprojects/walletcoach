@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<companies>
-  <company id="1">
+<subjects>
+  <subject id="1">
     <ic>36178429</ic>
     <name>Gazprom</name>
     <address>
@@ -10,5 +10,5 @@
       <country>Ruská federácia</country>
     </address>
     <description>Distribútor plynu</description>
-  </company>
-</companies>
+  </subject>
+</subjects>
