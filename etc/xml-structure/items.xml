@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items>
+<items
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="items.xsd">
+    
   <item id="1">
     <name>Kancelárske potreby</name>
     <description>Kancelárske potreby ČSOB (číslo účtu)</description>
     <price>1250.00</price>
-    <datetime>1431290161</datetime>
+    <datetime>2015-05-24T21:25:00</datetime>
+    <category-id>2</category-id>
+    <company-id>1</company-id>
+  </item>
+  <item id="2">
+    <name>Sushi Pack</name>
+    <description>Kit na sushi večeru pre 2 ľudí</description>
+    <price>300.00</price>
+    <datetime>2015-05-24T21:25:00</datetime>
     <category-id>2</category-id>
     <company-id>1</company-id>
   </item>

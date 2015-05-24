@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <xs:element name="items">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="item" type="item-type" maxOccurs="unbounded" />
+            </xs:choice>
+        </xs:complexType>
+        <xs:unique name="UniqueId">
+            <xs:selector xpath="./item" />
+            <xs:field xpath="@id" />
+        </xs:unique>
+        
+    </xs:element>
+    
+    <xs:complexType name="item-type">
+        <xs:all>
+            <xs:element name="name" type="xs:string" minOccurs="1"/>
+            <xs:element name="description" type="xs:string" minOccurs="1"/>
+            <xs:element name="price" type="xs:decimal" minOccurs="1"/>
+            <xs:element name="datetime" type="xs:dateTime" minOccurs="1"/>
+            <xs:element name="category-id" type="xs:integer" minOccurs="1"/>
+            <xs:element name="company-id" type="xs:integer" minOccurs="1"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:integer" use="required"/>
+    </xs:complexType>
+</xs:schema>
