@@ -10,11 +10,19 @@ import java.util.ResourceBundle;
 public class I18n {
     private static ResourceBundle resourceBundle;
     
+    /**
+     * Loads resource bundle corresponding to system locale
+     */
     private static void loadResourceBundle() {
         if(resourceBundle != null) return;
         resourceBundle = ResourceBundle.getBundle("i18n", Locale.getDefault());
     }
     
+    /**
+     * Get localized phrase
+     * @param key Phrase to be localized
+     * @return Localized phrase
+     */
     public static String get(String key) {
         loadResourceBundle();
         return resourceBundle.getString(key);
