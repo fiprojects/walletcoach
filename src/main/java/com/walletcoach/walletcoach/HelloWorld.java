@@ -1,5 +1,7 @@
 package com.walletcoach.walletcoach;
 
+import com.walletcoach.walletcoach.tools.I18n;
+
 /**
  * GitHub integration demo
  * @author Michael Le
@@ -12,5 +14,7 @@ public class HelloWorld {
         System.out.println("\nHello World : Samuel Adamik");
         System.out.println("\nI am also cool! Maros Gasparik");
         System.out.println("\nBut does it work? Maros Gasparik");
+        
+        System.out.println(I18n.get("category"));
     }
 }
