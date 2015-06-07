@@ -1,0 +1,17 @@
+<fruits>
+  <fruit>
+    <name>Banana</name>
+  </fruit>
+  <fruit>
+    <name>Mango</name>
+  </fruit>
+  <fruit>
+    <name>Papaya</name>
+  </fruit>
+  <fruit>
+    <name>Orange</name>
+  </fruit>
+  <fruit>
+    <name>Watermelon</name>
+  </fruit>
+</fruits>
