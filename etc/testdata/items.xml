@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="items.xsd">
+    
+    <item id="1">
+        <name>Kancelárske potreby</name>
+        <description>Kancelárske potreby</description>
+        <price>1250.00</price>
+        <datetime>2015-01-24T21:25:00</datetime>
+        <category-id>4</category-id>
+        <company-id>1</company-id>
+    </item>
+    
+    <item id="2">
+        <name>Sushi Pack</name>
+        <description>Kit na sushi večeru pre 2 ľudí</description>
+        <price>300.00</price>
+        <datetime>2015-01-24T21:25:00</datetime>
+        <category-id>1</category-id>
+        <company-id>1</company-id>
+    </item>
+    
+    <item id="3">
+        <name>Pohonne hmoty</name>
+        <description>100 litru benzinu</description>
+        <price>3200.00</price>
+        <datetime>2015-02-24T21:25:00</datetime>
+        <category-id>2</category-id>
+        <company-id>4</company-id>
+    </item>
+    
+    <item id="4">
+        <name>Kolace</name>
+        <description>Zlate kolace od Andreje</description>
+        <price>1200.00</price>
+        <datetime>2015-02-24T21:25:00</datetime>
+        <category-id>1</category-id>
+        <company-id>3</company-id>
+    </item>
+    
+    <item id="5">
+        <name>Pletova maska</name>
+        <description>Pletova maska pro manzelku</description>
+        <price>120.00</price>
+        <datetime>2015-03-24T21:25:00</datetime>
+        <category-id>2</category-id>
+        <company-id>3</company-id>
+    </item>
+</items>
