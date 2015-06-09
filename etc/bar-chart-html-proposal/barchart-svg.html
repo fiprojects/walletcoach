@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Barchart</title>
+        <meta charset="UTF-8">
+        
+        <style>
+            .barchart {
+                border: 1px black solid;
+            }
+            
+            .caption {
+                font-size: 22px;
+                font-family: Arial, sans-serif;
+            }
+            
+            .axis {
+                stroke: black;
+                stroke-width: .8;
+            }
+
+            .separator {
+                stroke: black;
+                stroke-width: .8;
+                stroke-dasharray: 10,10;
+            }
+
+            .separator-caption {
+                font-size: 13px;
+                font-family: Arial, sans-serif;
+            }
+
+            .bar {
+                fill: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Barchart Demo</h1>
+        
+        <svg class="barchart" width="800" height="600">
+            <!-- Caption -->
+            <text class="caption" x="400" y="49" text-anchor="middle">Barchart</text>
+                
+            <!-- Axes -->
+            <line class="axis axis-x" x1="100" y1="120" x2="100" y2="530" />
+            <line class="axis axis-y" x1="50" y1="480" x2="700" y2="480" />
+
+            <!-- Separators -->
+            <line class="separator" x1="95" y1="192" x2="700" y2="192" />
+            <text class="separator-caption" x="90" y="192" text-anchor="end" alignment-baseline="central">400</text>
+
+            <line class="separator" x1="95" y1="264" x2="700" y2="264" />
+            <text class="separator-caption" x="90" y="264" text-anchor="end" alignment-baseline="central">300</text>
+
+            <line class="separator" x1="95" y1="336" x2="700" y2="336" />
+            <text class="separator-caption" x="90" y="336" text-anchor="end" alignment-baseline="central">200</text>
+
+            <line class="separator" x1="95" y1="408" x2="700" y2="408" />
+            <text class="separator-caption" x="90" y="408" text-anchor="end" alignment-baseline="central">100</text>
+
+            <!-- Bars -->
+            <rect class="bar" x="124" y="480" width="72" height="100" transform="translate(0, -100)" />
+            <rect class="bar" x="220" y="480" width="72" height="200" transform="translate(0, -200)" />
+            <rect class="bar" x="316" y="480" width="72" height="150" transform="translate(0, -150)" />
+            <rect class="bar" x="412" y="480" width="72" height="300" transform="translate(0, -300)" />
+            <rect class="bar" x="508" y="480" width="72" height="100" transform="translate(0, -100)" />
+            <rect class="bar" x="604" y="480" width="72" height="50" transform="translate(0, -50)" />
+
+            <!-- Legend -->
+
+            <text class="separator-caption" x="160" y="500" text-anchor="middle" alignment-baseline="central">Cukr</text>
+            <text class="separator-caption" x="256" y="500" text-anchor="middle" alignment-baseline="central">Káva</text>
+            <text class="separator-caption" x="352" y="500" text-anchor="middle" alignment-baseline="central">Čaj</text>
+            <text class="separator-caption" x="448" y="500" text-anchor="middle" alignment-baseline="central">Med</text>
+            <text class="separator-caption" x="544" y="500" text-anchor="middle" alignment-baseline="central">Citron</text>
+            <text class="separator-caption" x="640" y="500" text-anchor="middle" alignment-baseline="central">Pomeranč</text>
+        </svg>
+    </body>
+</html>
