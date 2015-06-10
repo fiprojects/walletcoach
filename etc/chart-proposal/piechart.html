@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Piechart</title>
+        <meta charset="UTF-8">
+        
+        <style>
+            .barchart {
+                border: 1px black solid;
+            }
+            
+            .caption {
+                font-size: 22px;
+                font-family: Arial, sans-serif;
+            }
+            
+            .axis {
+                stroke: black;
+                stroke-width: .8;
+            }
+
+            .separator {
+                stroke: black;
+                stroke-width: .8;
+                stroke-dasharray: 10,10;
+            }
+
+            .separator-caption {
+                font-size: 13px;
+                font-family: Arial, sans-serif;
+            }
+
+            .bar {
+                fill: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Piechart Demo</h1>
+        
+        <svg class="barchart" width="800" height="600">
+            <!-- Caption -->
+            <text class="caption" x="400" y="49" text-anchor="middle">Piechart</text>
+                
+            <!-- Legend -->
+            <rect x="533" y="140" width="10" height="10" style="fill: red" />
+            <text class="separator-caption" x="555" y="145" alignment-baseline="central">Cukr</text>
+
+            <rect x="533" y="160" width="10" height="10" style="fill: green" />
+            <text class="separator-caption" x="555" y="165" alignment-baseline="central">Káva</text>
+
+            <rect x="533" y="180" width="10" height="10" style="fill: blue" />
+            <text class="separator-caption" x="555" y="185" alignment-baseline="central">Mléko</text>
+
+            <!-- Pie -->
+            <path d="M0,0 l180,0 A180,180 0 1,0 -145.62,105.80 z"
+                  fill="red" stroke="white" stroke-width="1" transform="translate(266.66,300)" />
+
+            <path d="M0,0 l180,0 A180,180 0 0,0 0,-180 z"
+                  fill="green" stroke="white" stroke-width="1" transform="translate(266.66,300) rotate(-216)" />
+
+            <path d="M0,0 l180,0 A180,180 0 0,0 105.80,-145.62 z"
+                  fill="blue" stroke="white" stroke-width="1" transform="translate(266.66,300) rotate(-306)" />
+        </svg>
+    </body>
+</html>
