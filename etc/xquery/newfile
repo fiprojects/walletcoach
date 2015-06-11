@@ -19,3 +19,17 @@ where $month = 1
 where $item/price/text() != fn:abs($item/price/text()) 
 group by $day
 return <date day="{$day}" month="{distinct-values($month)}">{fn:sum($item/price)}</date>
+
+
+2. Vypis vsetkych poloziek v jednom mesiaci
+
+Za $month dame poradove cislo mesiaca
+Mozeme pridat podmienku where $item/price/text() != fn:abs($item/price/text()) pre obmedzenie na prijmy alebo vydaje
+
+for $item in doc('\\ad.fi.muni.cz\DFS\home\x390895\_profile\Documents\NetBeansProjects\walletcoach\etc\testdata\items.xml')/items/item
+let $date := $item/datetime/text()
+let $day := fn:day-from-dateTime($date)
+let $month := fn:month-from-dateTime($date)
+order by $date
+where $month = 1
+return $item
