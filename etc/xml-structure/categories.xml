@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<categories>
+<categories
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="categories.xsd">
+    
   <category id="1">
     <name>Vklad</name>
     <color>green</color>

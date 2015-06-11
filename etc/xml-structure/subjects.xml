@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<subjects>
+<subjects
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="subjects.xsd"
+>
   <subject id="1">
     <ic>36178429</ic>
     <name>Gazprom</name>

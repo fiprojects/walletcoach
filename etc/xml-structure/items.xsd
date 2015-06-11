@@ -23,7 +23,6 @@ and open the template in the editor.
     
     <xs:complexType name="item-type">
         <xs:all>
-            <xs:element name="name" type="xs:string" minOccurs="1"/>
             <xs:element name="description" type="xs:string" minOccurs="1"/>
             <xs:element name="price" type="xs:decimal" minOccurs="1"/>
             <xs:element name="datetime" type="xs:dateTime" minOccurs="1"/>
