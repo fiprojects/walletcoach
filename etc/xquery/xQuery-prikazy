@@ -79,8 +79,6 @@ where $year = 2015
 group by $month
 order by $month
 return <month number="{distinct-values($month)}" year="{distinct-values($year)}">{fn:sum($item/price)}</month>
-
-
 <items>
 {
 for $item in doc('\\ad.fi.muni.cz\DFS\home\x390895\_profile\Documents\NetBeansProjects\walletcoach\etc\testdata\items.xml')/items/item
