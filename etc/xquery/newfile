@@ -1,0 +1,21 @@
+1. Vypis sum vydajov/prijmov/vydajov+prijmov v kazdom dni/mesiaci/roku
+
+where $item/price/text() != fn:abs($item/price/text()) -> vydaje
+where $item/price/text() = fn:abs($item/price/text()) -> prijmy
+bez podmienky -> oboje
+
+where $month = 1
+where $year = 2015
+... -> podmienky
+
+group by $day / $month / $year -> sumy pre jednotlive dni/mesiace/roky
+
+for $item in doc('\\ad.fi.muni.cz\DFS\home\x390895\_profile\Documents\NetBeansProjects\walletcoach\etc\testdata\items.xml')/items/item
+let $date := $item/datetime/text()
+let $day := fn:day-from-dateTime($date)
+let $month := fn:month-from-dateTime($date)
+let $year := fn:year-from-dateTime($date)
+where $month = 1
+where $item/price/text() != fn:abs($item/price/text()) 
+group by $day
+return <date day="{$day}" month="{distinct-values($month)}">{fn:sum($item/price)}</date>
