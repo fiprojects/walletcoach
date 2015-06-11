@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<categories>
+    <category id="1">
+        <name>Jídlo a pití</name>
+        <color>orange</color>
+    </category>
+    
+    <category id="2">
+        <name>Doprava</name>
+        <color>red</color>
+    </category>
+    
+    <category id="3">
+        <name>Drogerie</name>
+        <color>blue</color>
+    </category>
+    
+    <category id="4">
+        <name>Kancelarske potreby</name>
+        <color>yellow</color>
+    </category>
+    
+    <category id="5">
+        <name>Prijmy</name>
+        <color>green</color>
+    </category>
+</categories>
