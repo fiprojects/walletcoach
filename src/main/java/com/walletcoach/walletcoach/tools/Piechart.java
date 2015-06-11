@@ -13,10 +13,16 @@ public class Piechart {
     
     private String category;
     private double percent;
+    private double degrees;
+    private Point point;
+    public static final double RADIUS = 180;
+    private double radians;
+    
 
     public Piechart(String category, double percent) {
         this.category = category;
         this.percent = percent;
+        this.degrees = percent * 360;
     }
 
     public String getCategory() {
@@ -35,13 +41,15 @@ public class Piechart {
         this.percent = percent;
     }
 
-    public double calculateX(double degrees){
-        
+    public Point calculateCoordinates(double degrees){
+        radians = Math.toRadians(degrees);
+        double x = RADIUS * Math.cos(radians);
+        double y = RADIUS * Math.sin(radians);
+        point = new Point(x,y);
+        return point;
     }
     
-    public double calculateY(double degrees){
-        
-    }
+    
     
     
     
