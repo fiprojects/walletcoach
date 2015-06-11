@@ -8,6 +8,7 @@ let $year := fn:year-from-dateTime($date)
 where $month = 1
 where $item/price/text() != fn:abs($item/price/text()) 
 group by $day
+order by $day
 return <date day="{$day}" month="{distinct-values($month)}">{fn:sum($item/price)}</date>
 
 1b. Vypis celkovych prijmov v kazdom dni jedneho mesiaca
@@ -20,6 +21,7 @@ let $year := fn:year-from-dateTime($date)
 where $month = 1
 where $item/price/text() != fn:abs($item/price/text()) 
 group by $day
+order by $day
 return <date day="{$day}" month="{distinct-values($month)}">{fn:sum($item/price)}</date>
 
 1c. Vypis sumy celkovych vydajov a prijmov v kazdom dni jedneho mesiaca
@@ -31,6 +33,7 @@ let $month := fn:month-from-dateTime($date)
 let $year := fn:year-from-dateTime($date)
 where $month = 1
 group by $day
+order by $day
 return <date day="{$day}" month="{distinct-values($month)}">{fn:sum($item/price)}</date>
 
 
@@ -45,6 +48,7 @@ let $year := fn:year-from-dateTime($date)
 where $year = 2015
 where $item/price/text() != fn:abs($item/price/text()) 
 group by $month
+order by $month
 return <month number="{distinct-values($month)}" year="{distinct-values($year)}">{fn:sum($item/price)}</month>
 
 2b. Vypis sumy celkovych prijmov v kazdom mesiaci jedneho roku
@@ -57,6 +61,7 @@ let $year := fn:year-from-dateTime($date)
 where $year = 2015
 where $item/price/text() = fn:abs($item/price/text()) 
 group by $month
+order by $month
 return <month number="{distinct-values($month)}" year="{distinct-values($year)}">{fn:sum($item/price)}</month>
 
 2c. Vypis sumy sumy celkovych vydajov a prijmov v kazdom mesiaci jedneho roku
@@ -68,4 +73,5 @@ let $month := fn:month-from-dateTime($date)
 let $year := fn:year-from-dateTime($date)
 where $year = 2015
 group by $month
+order by $month
 return <month number="{distinct-values($month)}" year="{distinct-values($year)}">{fn:sum($item/price)}</month>
