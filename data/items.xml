@@ -4,7 +4,6 @@
     xsi:noNamespaceSchemaLocation="items.xsd">
     
     <item id="1">
-        <name>Kancelárske potreby</name>
         <description>Kancelárske potreby</description>
         <price>-1250.00</price>
         <datetime>2015-01-24T21:25:00</datetime>
@@ -13,7 +12,6 @@
     </item>
     
     <item id="2">
-        <name>Sushi Pack</name>
         <description>Kit na sushi večeru pre 2 ľudí</description>
         <price>-300.00</price>
         <datetime>2015-01-24T21:25:00</datetime>
@@ -22,7 +20,6 @@
     </item>
     
     <item id="3">
-        <name>Pohonne hmoty</name>
         <description>100 litru benzinu</description>
         <price>-3200.00</price>
         <datetime>2015-02-23T21:25:00</datetime>
@@ -31,7 +28,6 @@
     </item>
     
     <item id="4">
-        <name>Kolace</name>
         <description>Zlate kolace od Andreje</description>
         <price>-1200.00</price>
         <datetime>2015-02-24T21:25:00</datetime>
@@ -40,7 +36,6 @@
     </item>
     
     <item id="5">
-        <name>Pletova maska</name>
         <description>Pletova maska pro manzelku</description>
         <price>-120.00</price>
         <datetime>2015-03-26T21:25:00</datetime>
@@ -49,7 +44,6 @@
     </item>
     
     <item id="6">
-        <name>Vyhra v sportke</name>
         <description>Winner Winner Chicken Dinner</description>
         <price>11220.00</price>
         <datetime>2015-02-16T21:25:00</datetime>
