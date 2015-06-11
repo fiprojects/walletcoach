@@ -3,6 +3,7 @@ package com.walletcoach.walletcoach;
 import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.controllers.ItemController;
 import com.walletcoach.walletcoach.entities.Category;
+import com.walletcoach.walletcoach.entities.Item;
 import com.walletcoach.walletcoach.tools.XMLConnection;
 import java.util.List;
 import javax.xml.xquery.XQConnection;
@@ -28,9 +29,9 @@ public class Application {
         ItemController itemController = new ItemController(xml);
         CategoryController categoryController = new CategoryController(xml);
         
-        List<Category> categories = categoryController.getAll();
-        for(Category category : categories) {
-            System.out.println(category);
+        List<Item> items = itemController.getAll();
+        for(Item item : items) {
+            System.out.println(item);
         }
         
         try {
