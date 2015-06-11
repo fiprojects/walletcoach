@@ -1,0 +1,71 @@
+1a. Vypis celkovych vydajov v kazdom dni jedneho mesiaca
+
+for $item in doc('\\ad.fi.muni.cz\DFS\home\x390895\_profile\Documents\NetBeansProjects\walletcoach\etc\testdata\items.xml')/items/item
+let $date := $item/datetime/text()
+let $day := fn:day-from-dateTime($date)
+let $month := fn:month-from-dateTime($date)
+let $year := fn:year-from-dateTime($date)
+where $month = 1
+where $item/price/text() != fn:abs($item/price/text()) 
+group by $day
+return <date day="{$day}" month="{distinct-values($month)}">{fn:sum($item/price)}</date>
+
+1b. Vypis celkovych prijmov v kazdom dni jedneho mesiaca
+
+for $item in doc('\\ad.fi.muni.cz\DFS\home\x390895\_profile\Documents\NetBeansProjects\walletcoach\etc\testdata\items.xml')/items/item
+let $date := $item/datetime/text()
+let $day := fn:day-from-dateTime($date)
+let $month := fn:month-from-dateTime($date)
+let $year := fn:year-from-dateTime($date)
+where $month = 1
+where $item/price/text() != fn:abs($item/price/text()) 
+group by $day
+return <date day="{$day}" month="{distinct-values($month)}">{fn:sum($item/price)}</date>
+
+1c. Vypis sumy celkovych vydajov a prijmov v kazdom dni jedneho mesiaca
+
+for $item in doc('\\ad.fi.muni.cz\DFS\home\x390895\_profile\Documents\NetBeansProjects\walletcoach\etc\testdata\items.xml')/items/item
+let $date := $item/datetime/text()
+let $day := fn:day-from-dateTime($date)
+let $month := fn:month-from-dateTime($date)
+let $year := fn:year-from-dateTime($date)
+where $month = 1
+group by $day
+return <date day="{$day}" month="{distinct-values($month)}">{fn:sum($item/price)}</date>
+
+
+
+2a. Vypis sumy celkovych vydajov v kazdom mesiaci jedneho roku
+
+for $item in doc('\\ad.fi.muni.cz\DFS\home\x390895\_profile\Documents\NetBeansProjects\walletcoach\etc\testdata\items.xml')/items/item
+let $date := $item/datetime/text()
+let $day := fn:day-from-dateTime($date)
+let $month := fn:month-from-dateTime($date)
+let $year := fn:year-from-dateTime($date)
+where $year = 2015
+where $item/price/text() != fn:abs($item/price/text()) 
+group by $month
+return <month number="{distinct-values($month)}" year="{distinct-values($year)}">{fn:sum($item/price)}</month>
+
+2b. Vypis sumy celkovych prijmov v kazdom mesiaci jedneho roku
+
+for $item in doc('\\ad.fi.muni.cz\DFS\home\x390895\_profile\Documents\NetBeansProjects\walletcoach\etc\testdata\items.xml')/items/item
+let $date := $item/datetime/text()
+let $day := fn:day-from-dateTime($date)
+let $month := fn:month-from-dateTime($date)
+let $year := fn:year-from-dateTime($date)
+where $year = 2015
+where $item/price/text() = fn:abs($item/price/text()) 
+group by $month
+return <month number="{distinct-values($month)}" year="{distinct-values($year)}">{fn:sum($item/price)}</month>
+
+2c. Vypis sumy sumy celkovych vydajov a prijmov v kazdom mesiaci jedneho roku
+
+for $item in doc('\\ad.fi.muni.cz\DFS\home\x390895\_profile\Documents\NetBeansProjects\walletcoach\etc\testdata\items.xml')/items/item
+let $date := $item/datetime/text()
+let $day := fn:day-from-dateTime($date)
+let $month := fn:month-from-dateTime($date)
+let $year := fn:year-from-dateTime($date)
+where $year = 2015
+group by $month
+return <month number="{distinct-values($month)}" year="{distinct-values($year)}">{fn:sum($item/price)}</month>
