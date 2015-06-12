@@ -1,10 +1,12 @@
 package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
+import com.walletcoach.walletcoach.controllers.ItemController;
 import com.walletcoach.walletcoach.models.CategoryTableModel;
 import com.walletcoach.walletcoach.tools.XMLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
@@ -14,19 +16,30 @@ import javax.xml.xquery.XQException;
  * @author Michael
  */
 public class CategoryForm extends javax.swing.JFrame {
-
+    private XQConnection xml;
+    private CategoryController categoryController;
+    
     /**
      * Creates new form CategoryForm
+     * @param categoryController
      */
     public CategoryForm() throws XQException {
+        // BaseX Connection
+        try {
+            xml = XMLConnection.getConnection();
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "XML connection failed.");
+            return;
+        }
+        
+        categoryController = new CategoryController(xml);
+        
         initComponents();
         initTable();
     }
     
     private void initTable() throws XQException {
-        XQConnection xml = XMLConnection.getConnection();
-        CategoryController controller = new CategoryController(xml);
-        CategoryTableModel model = new CategoryTableModel(controller);
+        CategoryTableModel model = new CategoryTableModel(categoryController);
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setModel(model);
@@ -130,10 +143,7 @@ public class CategoryForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void display() throws XQException {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
@@ -147,12 +157,14 @@ public class CategoryForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new CategoryForm().setVisible(true);
+                    CategoryForm categoryForm = new CategoryForm();
+                    categoryForm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    categoryForm.setVisible(true);
                 } catch (XQException ex) {
                     Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
                 }

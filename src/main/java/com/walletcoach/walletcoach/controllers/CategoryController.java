@@ -3,7 +3,6 @@ package com.walletcoach.walletcoach.controllers;
 import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.tools.DOMTools;
 import com.walletcoach.walletcoach.tools.XMLConnection;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.namespace.QName;
@@ -11,7 +10,6 @@ import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQPreparedExpression;
 import javax.xml.xquery.XQResultSequence;
-import javax.xml.xquery.XQSequence;
 import org.w3c.dom.Element;
 
 /**
