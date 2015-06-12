@@ -1,7 +1,7 @@
 package com.walletcoach.walletcoach.entities;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Objects;
 
 /**
@@ -19,7 +19,9 @@ public class Item {
     private String name;
     private String description;
     private BigDecimal price;
-    private Date datetime;
+    private Calendar datetime;
+    private Category category;
+    private Subject subject;
 
     /**
      * Returns the ID.
@@ -89,7 +91,7 @@ public class Item {
      * Returns the datetime.
      * @return
      */
-    public Date getDatetime() {
+    public Calendar getDatetime() {
 	return datetime;
     }
 
@@ -97,9 +99,25 @@ public class Item {
      * Sets the datetime to the parameter value.
      * @param datetime
      */
-    public void setDatetime(Date datetime) {
+    public void setDatetime(Calendar datetime) {
 	this.datetime = datetime;
     }  
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
 
     @Override
     public int hashCode() {

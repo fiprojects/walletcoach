@@ -2,18 +2,21 @@ package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.controllers.ItemController;
-import com.walletcoach.walletcoach.models.CategoryTableModel;
+import com.walletcoach.walletcoach.models.ItemTableModel;
 import com.walletcoach.walletcoach.tools.XMLConnection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.xml.xquery.XQConnection;
+import javax.xml.xquery.XQException;
 
 /**
  *
  * @author Michael
  */
 public class ReviewForm extends javax.swing.JFrame {
-    private XQConnection xml;
+    private XQConnection xml; //TODO: close connection
     
     private ItemController itemController;
     private CategoryController categoryController;
@@ -22,7 +25,7 @@ public class ReviewForm extends javax.swing.JFrame {
     /**
      * Creates new form ReviewForm
      */
-    public ReviewForm() {
+    public ReviewForm() throws XQException {
         // BaseX Connection
         try {
             xml = XMLConnection.getConnection();
@@ -36,27 +39,13 @@ public class ReviewForm extends javax.swing.JFrame {
         
         initComponents();
         initTable();
-
-        try {
-            xml.close();
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "XML connection failed.");
-        }
     }
 
-    private void initTable() {
-        XQConnection xml = XMLConnection.getConnection();
-        CategoryController controller = new CategoryController(xml);
-        CategoryTableModel model = new CategoryTableModel(controller);
-
+    private void initTable() throws XQException {
+        ItemTableModel model = new ItemTableModel(itemController);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setModel(model);
-
-        table.getColumnModel().getColumn(0).setPreferredWidth(30);
-        table.getColumnModel().getColumn(1).setPreferredWidth(200);
-        table.getColumnModel().getColumn(2).setPreferredWidth(200);
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,6 +75,11 @@ public class ReviewForm extends javax.swing.JFrame {
         jComboBox4 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 0));
 
@@ -266,6 +260,10 @@ public class ReviewForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -281,7 +279,11 @@ public class ReviewForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReviewForm().setVisible(true);
+                try {
+                    new ReviewForm().setVisible(true);
+                } catch (XQException ex) {
+                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

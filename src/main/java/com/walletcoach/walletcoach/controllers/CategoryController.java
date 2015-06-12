@@ -11,6 +11,7 @@ import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQPreparedExpression;
 import javax.xml.xquery.XQResultSequence;
+import javax.xml.xquery.XQSequence;
 import org.w3c.dom.Element;
 
 /**
@@ -52,11 +53,11 @@ public class CategoryController {
     
     private Category parseItem(Element element) {
         DOMTools domTools = new DOMTools(element);
-        Category category = new Category();
-        category.setID(domTools.getLong("id", true));
-        category.setName(domTools.getString("name"));
-        category.setColor(domTools.getColor("color"));
+        Category item = new Category();
+        item.setID(domTools.getLong("id", true));
+        item.setName(domTools.getString("name"));
+        item.setColor(domTools.getColor("color"));
         
-        return category;
+        return item;
     }
 }

@@ -7,7 +7,7 @@ import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQPreparedExpression;
 
-public class ItemsQueryBuilder {
+public class ItemsQueryBuilder implements QueryBuilder {
     private int month;
     private int year;
     private Long categoryId = null;
@@ -35,10 +35,11 @@ public class ItemsQueryBuilder {
         this.subjectId = subjectId;
     }
     
-    public void getQuery(XQConnection xml) throws XQException, IOException {
+    @Override
+    public XQPreparedExpression getQuery(XQConnection xml) throws XQException, IOException {
         XQPreparedExpression expression = xml.prepareExpression(getExpression());
         expression.bindInt(new QName("p_month"), month, null);
-        expression.bindInt(new QName("p_year"), month, null);
+        expression.bindInt(new QName("p_year"), year, null);
         
         if(categoryId != null) {
             expression.bindLong(new QName("p_category"), categoryId, null);
@@ -47,9 +48,11 @@ public class ItemsQueryBuilder {
         if(subjectId != null) {
             expression.bindLong(new QName("p_subject"), categoryId, null);
         }
+        
+        return expression;
     }
     
-    private String getExpression() throws IOException {
+    public String getExpression() throws IOException {
         String expression = XMLConnection.getQueryString("itemList");
         
         StringBuilder declarations = new StringBuilder();

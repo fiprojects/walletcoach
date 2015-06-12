@@ -1,6 +1,11 @@
 package com.walletcoach.walletcoach.tools;
 
 import java.awt.Color;
+import java.math.BigDecimal;
+import java.text.DecimalFormatSymbols;
+import java.util.Calendar;
+import java.util.Date;
+import javax.xml.bind.DatatypeConverter;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -42,6 +47,22 @@ public class DOMTools {
     
     public long getLong(String name, boolean isAttribute) {
         return Long.parseLong(getString(name, isAttribute));
+    }
+    
+    public BigDecimal getBigDecimal(String name) {
+        return getBigDecimal(name, false);
+    }
+    
+    public BigDecimal getBigDecimal(String name, boolean isAttribute) {      
+        return new BigDecimal(getString(name, isAttribute));
+    }
+    
+    public Calendar getDatetime(String name) {
+        return getDatetime(name, false);
+    }
+    
+    public Calendar getDatetime(String name, boolean isAttribute) {
+        return DatatypeConverter.parseDateTime(getString(name, isAttribute));
     }
     
     public Color getColor(String name) {

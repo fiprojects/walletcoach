@@ -4,8 +4,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.xquery.XQConnection;
+import javax.xml.xquery.XQConstants;
 import javax.xml.xquery.XQDataSource;
 import javax.xml.xquery.XQException;
+import javax.xml.xquery.XQStaticContext;
 import net.xqj.basex.local.BaseXXQDataSource;
 import org.apache.commons.io.IOUtils;
 
