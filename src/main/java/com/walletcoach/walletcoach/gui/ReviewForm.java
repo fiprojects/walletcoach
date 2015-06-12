@@ -1,23 +1,63 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.walletcoach.walletcoach.gui;
+
+import com.walletcoach.walletcoach.controllers.CategoryController;
+import com.walletcoach.walletcoach.controllers.ItemController;
+import com.walletcoach.walletcoach.models.CategoryTableModel;
+import com.walletcoach.walletcoach.tools.XMLConnection;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.xml.xquery.XQConnection;
 
 /**
  *
  * @author Michael
  */
 public class ReviewForm extends javax.swing.JFrame {
-
+    private XQConnection xml;
+    
+    private ItemController itemController;
+    private CategoryController categoryController;
+    
+    
     /**
      * Creates new form ReviewForm
      */
     public ReviewForm() {
+        // BaseX Connection
+        try {
+            xml = XMLConnection.getConnection();
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "XML connection failed.");
+            return;
+        }
+        
+        itemController = new ItemController(xml);
+        categoryController = new CategoryController(xml);
+        
         initComponents();
+        initTable();
+
+        try {
+            xml.close();
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "XML connection failed.");
+        }
     }
 
+    private void initTable() {
+        XQConnection xml = XMLConnection.getConnection();
+        CategoryController controller = new CategoryController(xml);
+        CategoryTableModel model = new CategoryTableModel(controller);
+
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setModel(model);
+
+        table.getColumnModel().getColumn(0).setPreferredWidth(30);
+        table.getColumnModel().getColumn(1).setPreferredWidth(200);
+        table.getColumnModel().getColumn(2).setPreferredWidth(200);
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,7 +77,7 @@ public class ReviewForm extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
@@ -70,7 +110,6 @@ public class ReviewForm extends javax.swing.JFrame {
         });
 
         jButton2.setText("New Income");
-        jButton2.setActionCommand("New Income");
 
         jButton3.setText("New Subject");
 
@@ -120,12 +159,12 @@ public class ReviewForm extends javax.swing.JFrame {
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -136,7 +175,7 @@ public class ReviewForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table);
 
         jPanel4.setBackground(new java.awt.Color(153, 255, 0));
 
@@ -231,26 +270,11 @@ public class ReviewForm extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReviewForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReviewForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReviewForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReviewForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -279,6 +303,6 @@ public class ReviewForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
