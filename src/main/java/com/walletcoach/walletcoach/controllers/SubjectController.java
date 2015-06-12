@@ -56,9 +56,9 @@ public class SubjectController {
         DOMTools domTools = new DOMTools(element);
         Subject subject = new Subject();
         subject.setID(domTools.getLong("id", true));
-        subject.setIC(domTools.getDatetime("ic"));
+        subject.setIc(domTools.getString("ic"));
         subject.setStreet(domTools.getString("street"));
-        subject.setNumber(domTools.getInt("number"));
+        subject.setNumber(domTools.getString("number"));
         subject.setCity(domTools.getString("city"));
         subject.setCountry(domTools.getString("country"));
         subject.setDescription(domTools.getString("description"));
