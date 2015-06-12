@@ -1,11 +1,13 @@
 package com.walletcoach.walletcoach.tools;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQDataSource;
 import javax.xml.xquery.XQException;
 import net.xqj.basex.local.BaseXXQDataSource;
+import org.apache.commons.io.IOUtils;
 
 /**
  * BaseX Connection
@@ -33,5 +35,19 @@ public class XMLConnection {
      */
     public static InputStream getQuery(String file) {
         return XMLConnection.class.getClassLoader().getResourceAsStream(file + ".xq");
+    }
+    
+    /**
+     * Get prepared query as string
+     * @param file Query file
+     * @return Query string
+     * @throws java.io.IOException if query file not found
+     */
+    public static String getQueryString(String file) throws IOException {
+        InputStream stream = getQuery(file);
+        String string = IOUtils.toString(stream);
+        IOUtils.closeQuietly(stream);
+        
+        return string;
     }
 }
