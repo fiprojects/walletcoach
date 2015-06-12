@@ -1,0 +1,60 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11.6.2015, 23:11:06
+    Author     : Samo
+*/
+
+body{
+    font-family: Calibri;
+}
+
+h1{
+    font-size: 1.75em;
+    font-weight: 700;
+}
+
+h2{
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+h3{
+    font-size: 0.90em;
+    font-weight: 300;
+}
+
+table{
+    border:1px solid #000;
+}
+
+table tr:nth-child(even){
+    background-color: #ccc;
+}
+
+table tr:nth-child(odd){
+    background-color: #fff;
+}
+
+#header{
+    border-bottom: 1px solid #000;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#header .text{
+    width: 75%;
+    display: inline-block;
+}
+
+#header .logo{
+    width: 10%;
+    display: inline-block;
+}
+
+#content{
+
+}
