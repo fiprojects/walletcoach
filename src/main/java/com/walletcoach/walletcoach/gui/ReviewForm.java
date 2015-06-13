@@ -37,13 +37,13 @@ public class ReviewForm extends javax.swing.JFrame {
             return;
         }
         
-        itemController = new ItemController(xml);
         categoryController = new CategoryController(xml);
+        itemController = new ItemController(xml, categoryController);
         
-        Category category = new Category();
-        category.setName("abc");
-        category.setColor(Color.yellow);
-        categoryController.add(category);
+        XMLConnection.createDb(xml, "items");
+        XMLConnection.createDb(xml, "categories");
+        XMLConnection.createDb(xml, "subjects");
+        XMLConnection.closeDb(xml);
         
         initComponents();
         initTable();
@@ -262,31 +262,7 @@ public class ReviewForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new SwingWorker<Void, Void>() {
-            @Override
-            protected Void doInBackground() throws Exception {
- 
-                CategoryController categoryController = null;
-                categoryController = new CategoryController(xml);
-                
-                
-                Category category = new Category();
-                category.setName("abc");
-                category.setColor(Color.yellow);
 
-                try {
-                    categoryController.add(category);
-                } catch (XQException ex) {
-                    System.out.println(ex);
-                }
-                return null;
-            }
-
-            @Override
-            protected void done() {
-                //fireTableDataChanged();
-            }
-        }.execute();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

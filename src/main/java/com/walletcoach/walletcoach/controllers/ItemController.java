@@ -19,14 +19,17 @@ import org.w3c.dom.Element;
  */
 public class ItemController {
     private XQConnection xml;
+    private final CategoryController categoryController;
     
-    public ItemController(XQConnection xml) {
+    public ItemController(XQConnection xml, CategoryController categoryController) {
         this.xml = xml;
+        this.categoryController = categoryController;
     }
     
     public List<Item> getAll() throws Exception {
         List<Item> items = new ArrayList<>();
-
+        
+        XMLConnection.openDb(xml, "items");
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("itemListAll"));
         XQResultSequence sequence = expression.executeQuery();
         XQSequence result = xml.createSequence(sequence);
@@ -34,6 +37,7 @@ public class ItemController {
             Element element = (Element)result.getObject();
             items.add(parseItem(element));
         }
+        XMLConnection.closeDb(xml);
         
         return items;
     }
@@ -41,12 +45,14 @@ public class ItemController {
     public List<Item> getFiltered(QueryBuilder query) throws Exception {
         List<Item> items = new ArrayList<>();
 
+        XMLConnection.openDb(xml, "items");
         XQResultSequence sequence = query.getQuery(xml).executeQuery();
         XQSequence result = xml.createSequence(sequence);
         while(result.next()) {
             Element element = (Element)result.getObject();
             items.add(parseItem(element));
         }
+        XMLConnection.closeDb(xml);
         
         return items;
     }
@@ -60,7 +66,6 @@ public class ItemController {
         item.setDescription(domTools.getString("description"));
         
         Long categoryId = domTools.getLong("category-id");
-        CategoryController categoryController = new CategoryController(xml);
         item.setCategory(categoryController.getItem(categoryId));
         
         Long subjectId = domTools.getLong("company-id");

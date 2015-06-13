@@ -1,5 +1,5 @@
 %declarations%
-for $item in doc('data/items.xml')/items/item
+for $item in /items/item
 let $date := $item/datetime/text()
 let $day := fn:day-from-dateTime($date)
 let $month := fn:month-from-dateTime($date)

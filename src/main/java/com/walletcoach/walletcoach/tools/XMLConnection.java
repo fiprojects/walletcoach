@@ -52,4 +52,20 @@ public class XMLConnection {
         
         return string;
     }
+    
+    public static void createDb(XQConnection xml, String name) throws XQException {
+        xml.createExpression().executeCommand("CREATE DB " +  name + " data/" + name + ".xml");
+    }
+    
+    public static void openDb(XQConnection xml, String name) throws XQException {
+        xml.createExpression().executeCommand("OPEN " +  name);
+    }
+    
+    public static void closeDb(XQConnection xml) throws XQException {
+        xml.createExpression().executeCommand("CLOSE");
+    }
+    
+    public static void save(XQConnection xml, String name) throws XQException {
+        xml.createExpression().executeCommand("EXPORT data/" + name + ".xml");
+    }
 }

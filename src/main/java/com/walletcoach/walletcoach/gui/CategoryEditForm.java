@@ -29,10 +29,8 @@ public class CategoryEditForm extends javax.swing.JFrame {
      * Creates new form CategoryEditForm
      */
     public CategoryEditForm(XQConnection xml) {
-        this.xml = xml;
-        
+        this.xml = xml;        
         categoryController = new CategoryController(xml);
-
         
         initComponents();
     }
@@ -162,14 +160,14 @@ public class CategoryEditForm extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         final Category category = new Category();
-        category.setName("abc");
-        category.setColor(Color.yellow);
+        category.setName(nameField.getText());
+        category.setColor(Color.decode("#" + colorField.getText()));
         
         new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws XQException {
 
-            categoryController.add(category);
+                categoryController.add(category);
                 return null;
             }
 

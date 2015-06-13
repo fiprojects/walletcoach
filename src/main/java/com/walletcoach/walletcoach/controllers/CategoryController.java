@@ -26,10 +26,9 @@ public class CategoryController {
     }
     
     public List<Category> getAll() throws XQException {
-        XQConnection xml = XMLConnection.getConnection();
-        
         List<Category> items = new ArrayList<>();
         
+        XMLConnection.openDb(xml, "categories");
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("categoryList"));
         XQResultSequence sequence = expression.executeQuery();
         XQSequence result = xml.createSequence(sequence);
@@ -37,34 +36,41 @@ public class CategoryController {
             Element element = (Element)result.getObject();            
             items.add(parseItem(element));
         }
-        
-        xml.close();
+        XMLConnection.closeDb(xml);
         
         return items;
     } 
     
     public Category getItem(Long id) throws XQException {
+        Category item = null;
+        
+        XMLConnection.openDb(xml, "categories");
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("category"));
         expression.bindLong(new QName("id"), id, null);
         
-        XQResultSequence result = expression.executeQuery();
+        XQResultSequence sequence = expression.executeQuery();
+        XQSequence result = xml.createSequence(sequence);
         if(result.next()) {
             Element element = (Element)result.getObject();
-            return parseItem(element);
+            item = parseItem(element);
         }
+        XMLConnection.closeDb(xml);   
         
-        return null;
+        return item;
     }
     
     public void add(Category category) throws XQException {
         Color color = category.getColor();
         String colorString = String.format("%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
         
+        XMLConnection.openDb(xml, "categories");
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("categoryInsert"));
         expression.bindString(new QName("name"), category.getName(), null);
         expression.bindString(new QName("color"), colorString, null);
         expression.executeQuery();
-        expression.close();
+        
+        XMLConnection.save(xml, "categories");
+        XMLConnection.closeDb(xml);
     }
     
     private Category parseItem(Element element) {
