@@ -1,12 +1,15 @@
 package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
+import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.models.CategoryTableModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingWorker;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
 
@@ -42,7 +45,6 @@ public class CategoryForm extends javax.swing.JFrame {
 
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
         table.getColumnModel().getColumn(1).setPreferredWidth(200);
-        table.getColumnModel().getColumn(2).setPreferredWidth(200);
     }
 
     /**
@@ -88,6 +90,11 @@ public class CategoryForm extends javax.swing.JFrame {
         });
 
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Edit");
 
@@ -152,6 +159,23 @@ public class CategoryForm extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        final Category item = (Category)tableModel.getSelectedObject(table);
+        if(item != null) {
+            new SwingWorker<Void, Void>() {
+                @Override
+                protected Void doInBackground() throws XQException {
+                    categoryController.delete(item);
+                    return null;
+                }
+
+                protected void done() {
+                    refresh();
+                }
+            }.execute();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void display(final CategoryController categoryController) throws XQException {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

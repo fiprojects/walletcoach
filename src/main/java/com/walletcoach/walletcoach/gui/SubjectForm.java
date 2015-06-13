@@ -6,12 +6,15 @@
 package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.SubjectController;
+import com.walletcoach.walletcoach.entities.Category;
+import com.walletcoach.walletcoach.entities.Subject;
 import com.walletcoach.walletcoach.models.SubjectTableModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingWorker;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.xml.xquery.XQException;
 
@@ -88,6 +91,11 @@ public class SubjectForm extends javax.swing.JFrame {
         });
 
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Edit");
 
@@ -109,9 +117,9 @@ public class SubjectForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -152,6 +160,23 @@ public class SubjectForm extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        final Subject item = (Subject)tableModel.getSelectedObject(table);
+        if(item != null) {
+            new SwingWorker<Void, Void>() {
+                @Override
+                protected Void doInBackground() throws XQException {
+                    subjectController.delete(item);
+                    return null;
+                }
+
+                protected void done() {
+                    refresh();
+                }
+            }.execute();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void display(final SubjectController subjectController) throws XQException {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

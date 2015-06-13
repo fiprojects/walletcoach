@@ -43,48 +43,4 @@
     </address>
     <description>Cerpaci stanice</description>
   </subject>
-  <subject id="5">
-    <ic>jTextField2</ic>
-    <name>jTextField1</name>
-    <address>
-      <street>jTextField4</street>
-      <number>jTextField5</number>
-      <city>jTextField6</city>
-      <country>jTextField7</country>
-    </address>
-    <description>jTextField3</description>
-  </subject>
-  <subject id="6">
-    <ic>jTextField2</ic>
-    <name>jTextField1</name>
-    <address>
-      <street>jTextField4</street>
-      <number>jTextField5</number>
-      <city>jTextField6</city>
-      <country>jTextField7</country>
-    </address>
-    <description>jTextField3</description>
-  </subject>
-  <subject id="7">
-    <ic>jTextField2</ic>
-    <name>jTextField1</name>
-    <address>
-      <street>jTextField4</street>
-      <number>jTextField5</number>
-      <city>jTextField6</city>
-      <country>jTextField7</country>
-    </address>
-    <description>jTextField3</description>
-  </subject>
-  <subject id="8">
-    <ic>jTextField2asd</ic>
-    <name>jTextField1</name>
-    <address>
-      <street>jTextField4</street>
-      <number>jTextField5</number>
-      <city>jTextField6</city>
-      <country>jTextField7</country>
-    </address>
-    <description>jTextField3</description>
-  </subject>
 </subjects>

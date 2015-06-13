@@ -73,6 +73,23 @@ public class CategoryController {
         xml.close();
     }
     
+    public void delete(Category category) throws XQException {
+        XQConnection xml = XMLConnection.getConnection();
+        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("categoryDelete"));
+        expression.bindLong(new QName("id"), category.getID(), null);
+        expression.executeQuery();
+        
+        XMLConnection.openDb(xml, "categories");
+        XMLConnection.save(xml, "categories");
+        XMLConnection.closeDb(xml);
+        
+        XMLConnection.openDb(xml, "items");
+        XMLConnection.save(xml, "items");
+        XMLConnection.closeDb(xml);
+        
+        xml.close();
+    }
+    
     public Category parseItem(Element element) {
         DOMTools domTools = new DOMTools(element);
         Category item = new Category();

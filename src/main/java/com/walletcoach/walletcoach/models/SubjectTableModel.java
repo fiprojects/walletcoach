@@ -8,7 +8,7 @@ import javax.swing.SwingWorker;
 import javax.swing.table.AbstractTableModel;
 import javax.xml.xquery.XQException;
 
-public class SubjectTableModel extends AbstractTableModel {
+public class SubjectTableModel extends ObjectTableModel {
     private SubjectController controller;
     protected List<Subject> items = new ArrayList<>();
 
@@ -40,6 +40,11 @@ public class SubjectTableModel extends AbstractTableModel {
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
+    }
+    
+    @Override
+    public Object getRowObject(int rowIndex) {
+        return items.get(rowIndex);
     }
 
     @Override

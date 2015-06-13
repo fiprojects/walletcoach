@@ -69,4 +69,11 @@
     <category-id>7</category-id>
     <company-id>2</company-id>
   </item>
+  <item id="11">
+    <description>jTextField2</description>
+    <price>120</price>
+    <datetime>2015-06-13T23:38:33</datetime>
+    <category-id>4</category-id>
+    <company-id>2</company-id>
+  </item>
 </items>

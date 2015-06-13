@@ -74,6 +74,23 @@ public class SubjectController {
         xml.close();
     }
     
+    public void delete(Subject subject) throws XQException {
+        XQConnection xml = XMLConnection.getConnection();
+        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("subjectDelete"));
+        expression.bindLong(new QName("id"), subject.getID(), null);
+        expression.executeQuery();
+        
+        XMLConnection.openDb(xml, "subjects");
+        XMLConnection.save(xml, "subjects");
+        XMLConnection.closeDb(xml);
+        
+        XMLConnection.openDb(xml, "items");
+        XMLConnection.save(xml, "items");
+        XMLConnection.closeDb(xml);
+        
+        xml.close();
+    }
+    
     public Subject parseItem(Element element) throws XQException {
         DOMTools domTools = new DOMTools(element);
         Subject subject = new Subject();

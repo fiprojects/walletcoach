@@ -5,10 +5,9 @@ import com.walletcoach.walletcoach.entities.Category;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.SwingWorker;
-import javax.swing.table.AbstractTableModel;
 import javax.xml.xquery.XQException;
 
-public class CategoryTableModel extends AbstractTableModel {    
+public class CategoryTableModel extends ObjectTableModel {    
     private CategoryController controller;
     protected List<Category> items = new ArrayList<>();
 
@@ -24,7 +23,7 @@ public class CategoryTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -32,10 +31,8 @@ public class CategoryTableModel extends AbstractTableModel {
         Category item = items.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return item.getID();
-            case 1:
                 return item.getName();
-            case 2:
+            case 1:
                 return item.getColor();
             default:
                 throw new IllegalArgumentException("columnIndex");
@@ -43,13 +40,16 @@ public class CategoryTableModel extends AbstractTableModel {
     }
 
     @Override
+    public Object getRowObject(int rowIndex) {
+        return items.get(rowIndex);
+    }
+
+    @Override
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return "id";
-            case 1:
                 return "nazev";
-            case 2:
+            case 1:
                 return "barva";
             default:
                 throw new IllegalArgumentException("columnIndex");
