@@ -2,12 +2,15 @@ package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.controllers.ItemController;
+import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.models.ItemTableModel;
 import com.walletcoach.walletcoach.tools.XMLConnection;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingWorker;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
 
@@ -36,6 +39,11 @@ public class ReviewForm extends javax.swing.JFrame {
         
         itemController = new ItemController(xml);
         categoryController = new CategoryController(xml);
+        
+        Category category = new Category();
+        category.setName("abc");
+        category.setColor(Color.yellow);
+        categoryController.add(category);
         
         initComponents();
         initTable();
@@ -107,7 +115,12 @@ public class ReviewForm extends javax.swing.JFrame {
 
         jButton3.setText("New Subject");
 
-        jButton4.setText("New Category");
+        jButton4.setText("Categories");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Expenses");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -147,15 +160,15 @@ public class ReviewForm extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addGap(33, 33, 33)
+                .addGap(62, 62, 62)
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jButton4)
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -249,7 +262,31 @@ public class ReviewForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+ 
+                CategoryController categoryController = null;
+                categoryController = new CategoryController(xml);
+                
+                
+                Category category = new Category();
+                category.setName("abc");
+                category.setColor(Color.yellow);
+
+                try {
+                    categoryController.add(category);
+                } catch (XQException ex) {
+                    System.out.println(ex);
+                }
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                //fireTableDataChanged();
+            }
+        }.execute();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -263,6 +300,14 @@ public class ReviewForm extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            CategoryForm.display();
+        } catch (XQException ex) {
+            Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

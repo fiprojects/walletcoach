@@ -5,18 +5,35 @@
  */
 package com.walletcoach.walletcoach.gui;
 
+import com.walletcoach.walletcoach.controllers.CategoryController;
+import com.walletcoach.walletcoach.entities.Category;
+import com.walletcoach.walletcoach.tools.XMLConnection;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.xml.xquery.XQConnection;
+import javax.xml.xquery.XQException;
 
 /**
  *
  * @author Michael
  */
 public class CategoryEditForm extends javax.swing.JFrame {
+    private XQConnection xml;
+    private final CategoryController categoryController;
 
     /**
      * Creates new form CategoryEditForm
      */
-    public CategoryEditForm() {
+    public CategoryEditForm(XQConnection xml) {
+        this.xml = xml;
+        
+        categoryController = new CategoryController(xml);
+
+        
         initComponents();
     }
 
@@ -144,13 +161,27 @@ public class CategoryEditForm extends javax.swing.JFrame {
     }//GEN-LAST:event_colorFieldKeyReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        final Category category = new Category();
+        category.setName("abc");
+        category.setColor(Color.yellow);
+        
+        new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws XQException {
+
+            categoryController.add(category);
+                return null;
+            }
+
+            protected void done() {
+                //fireTableDataChanged();
+            }
+        }.execute();
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void display(final XQConnection xml) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
@@ -168,7 +199,9 @@ public class CategoryEditForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {           
             public void run() {
-                new CategoryEditForm().setVisible(true);
+                CategoryEditForm form = new CategoryEditForm(xml);
+                form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                form.setVisible(true);
             }
         });
     }

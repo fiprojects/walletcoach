@@ -1,11 +1,16 @@
 package com.walletcoach.walletcoach;
 
-import com.walletcoach.walletcoach.controllers.ItemController;
-import com.walletcoach.walletcoach.entities.Item;
+import com.walletcoach.walletcoach.controllers.CategoryController;
+import com.walletcoach.walletcoach.entities.Category;
+import com.walletcoach.walletcoach.gui.ReviewForm;
 import com.walletcoach.walletcoach.tools.I18n;
-import com.walletcoach.walletcoach.tools.ItemsQueryBuilder;
 import com.walletcoach.walletcoach.tools.XMLConnection;
+import java.awt.Color;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.xquery.XQConnection;
+import javax.xml.xquery.XQException;
 
 /**
  * GitHub integration demo
@@ -21,10 +26,5 @@ public class HelloWorld {
         System.out.println("\nBut does it work? Maros Gasparik");
         
         System.out.println(I18n.get("category"));
-        
-        ItemController ctl = new ItemController(XMLConnection.getConnection());
-        for(Item i : ctl.getAll()) {
-            System.out.println(i);
-        }
     }
 }
