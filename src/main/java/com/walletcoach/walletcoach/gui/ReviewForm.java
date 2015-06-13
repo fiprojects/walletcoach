@@ -36,14 +36,16 @@ public class ReviewForm extends javax.swing.JFrame {
             return;
         }
         
-        categoryController = new CategoryController(xml);
-        subjectController = new SubjectController(xml);
-        itemController = new ItemController(xml, categoryController, subjectController);
-        
         XMLConnection.createDb(xml, "items");
         XMLConnection.createDb(xml, "categories");
         XMLConnection.createDb(xml, "subjects");
         XMLConnection.closeDb(xml);
+        
+        xml.close();
+        
+        categoryController = new CategoryController();
+        subjectController = new SubjectController();
+        itemController = new ItemController(categoryController, subjectController);
         
         initComponents();
         initTable();
@@ -284,7 +286,7 @@ public class ReviewForm extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
-            CategoryForm.display();
+            CategoryForm.display(categoryController);
         } catch (XQException ex) {
             Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
         }

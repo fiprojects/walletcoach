@@ -1,4 +1,4 @@
-<categories>
+﻿<categories>
   <category id="1">
     <name>Jídlo a pití</name>
     <color>orange</color>
@@ -29,14 +29,6 @@
   </category>
   <category id="8">
     <name>Škola</name>
-    <color>#ffffff</color>
-  </category>
-  <category id="9">
-    <name>Test</name>
-    <color>#ffffff</color>
-  </category>
-  <category id="10">
-    <name>Další</name>
     <color>#ffffff</color>
   </category>
 </categories>

@@ -1,7 +1,9 @@
 package com.walletcoach.walletcoach;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
+import com.walletcoach.walletcoach.controllers.SubjectController;
 import com.walletcoach.walletcoach.entities.Category;
+import com.walletcoach.walletcoach.entities.Subject;
 import com.walletcoach.walletcoach.gui.ReviewForm;
 import com.walletcoach.walletcoach.tools.I18n;
 import com.walletcoach.walletcoach.tools.XMLConnection;
@@ -26,5 +28,10 @@ public class HelloWorld {
         System.out.println("\nBut does it work? Maros Gasparik");
         
         System.out.println(I18n.get("category"));
+        
+        SubjectController sj = new SubjectController();
+        for(Subject s : sj.getAll()) {
+            System.out.println(s);
+        }
     }
 }

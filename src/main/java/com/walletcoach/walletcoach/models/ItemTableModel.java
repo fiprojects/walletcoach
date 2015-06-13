@@ -42,9 +42,9 @@ public class ItemTableModel extends AbstractTableModel {
             case 2:
                 return item.getDescription();
             case 3:
-                return item.getCategory().getName();
+                return item.getCategory();
             case 4:
-                return item.getSubject().getName();
+                return item.getSubject();
             default:
                 throw new IllegalArgumentException("columnIndex");
         }

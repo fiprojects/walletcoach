@@ -1,13 +1,10 @@
 package com.walletcoach.walletcoach.tools;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.xquery.XQConnection;
-import javax.xml.xquery.XQConstants;
 import javax.xml.xquery.XQDataSource;
 import javax.xml.xquery.XQException;
-import javax.xml.xquery.XQStaticContext;
 import net.xqj.basex.local.BaseXXQDataSource;
 import org.apache.commons.io.IOUtils;
 
@@ -16,17 +13,15 @@ import org.apache.commons.io.IOUtils;
  * @author Michael Le <lemichael@mail.muni.cz>
  */
 public class XMLConnection {
+    private static final XQDataSource dataSource = new BaseXXQDataSource();
+    
     /**
      * Get BaseX/XQJ connection
      * @return BaseX/XQJ connection
      * @throws XQException if error occurred
      */
     public static XQConnection getConnection() throws XQException {
-        XQDataSource dataSource = new BaseXXQDataSource();
-        XQConnection connection = dataSource.getConnection();
-        
-        connection.createExpression().executeCommand("SET writeback true");
-        
+        XQConnection connection = dataSource.getConnection();        
         return connection;
     }
     

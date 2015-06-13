@@ -7,9 +7,7 @@ package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.SubjectController;
 import com.walletcoach.walletcoach.entities.Subject;
-import com.walletcoach.walletcoach.tools.XMLConnection;
 import java.awt.event.WindowAdapter;
-import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
@@ -20,21 +18,13 @@ import javax.xml.xquery.XQException;
  */
 public class SubjectEditForm extends javax.swing.JDialog {
     private XQConnection xml;
-    private final SubjectController subjectController = null;
+    private final SubjectController subjectController;
 
     /**
      * Creates new form SubjectEditForm
      */
     public SubjectEditForm(SubjectController subjectController) {
-        // BaseX Connection
-        try {
-            xml = XMLConnection.getConnection();
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "XML connection failed.");
-        }
-        
-        subjectController = new SubjectController(xml);
-        
+        this.subjectController = subjectController;
         initComponents();
     }
 
@@ -47,63 +37,63 @@ public class SubjectEditForm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nameField = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        icField = new javax.swing.JLabel();
-        descriptionField = new javax.swing.JLabel();
-        streetField = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        numberField = new javax.swing.JLabel();
-        cityField = new javax.swing.JLabel();
-        countryField = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        nameField = new javax.swing.JTextField();
+        icField = new javax.swing.JTextField();
+        descriptionField = new javax.swing.JTextField();
+        icLabel = new javax.swing.JLabel();
+        descriptionLabel = new javax.swing.JLabel();
+        streetLabel = new javax.swing.JLabel();
+        streetField = new javax.swing.JTextField();
+        numberField = new javax.swing.JTextField();
+        cityField = new javax.swing.JTextField();
+        countryField = new javax.swing.JTextField();
+        numberLabel = new javax.swing.JLabel();
+        cityLabel = new javax.swing.JLabel();
+        countryLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        nameField.setLabelFor(jTextField1);
-        nameField.setText("Name");
-        nameField.setToolTipText("");
+        nameLabel.setLabelFor(nameField);
+        nameLabel.setText("Name");
+        nameLabel.setToolTipText("");
 
-        jTextField1.setText("jTextField1");
+        nameField.setText("jTextField1");
 
-        jTextField2.setText("jTextField2");
+        icField.setText("jTextField2");
 
-        jTextField3.setText("jTextField3");
+        descriptionField.setText("jTextField3");
 
-        icField.setLabelFor(jTextField2);
-        icField.setText("ICO");
+        icLabel.setLabelFor(icField);
+        icLabel.setText("ICO");
 
-        descriptionField.setLabelFor(jTextField3);
-        descriptionField.setText("Description");
+        descriptionLabel.setLabelFor(descriptionField);
+        descriptionLabel.setText("Description");
 
-        streetField.setText("Location");
-        streetField.setToolTipText("");
+        streetLabel.setText("Location");
+        streetLabel.setToolTipText("");
 
-        jTextField4.setText("jTextField4");
+        streetField.setText("jTextField4");
 
-        jTextField5.setText("jTextField5");
+        numberField.setText("jTextField5");
 
-        jTextField6.setText("jTextField6");
+        cityField.setText("jTextField6");
 
-        jTextField7.setText("jTextField7");
+        countryField.setText("jTextField7");
 
-        numberField.setLabelFor(jTextField4);
-        numberField.setText("Street");
+        numberLabel.setLabelFor(streetField);
+        numberLabel.setText("Street");
 
-        cityField.setLabelFor(jTextField5);
-        cityField.setText("Number");
+        cityLabel.setLabelFor(numberField);
+        cityLabel.setText("Number");
 
-        countryField.setLabelFor(jTextField6);
-        countryField.setText("City");
+        countryLabel.setLabelFor(cityField);
+        countryLabel.setText("City");
 
-        jLabel8.setLabelFor(jTextField7);
+        jLabel8.setLabelFor(countryField);
         jLabel8.setText("Country");
 
         jButton1.setText("Cancel");
@@ -124,32 +114,32 @@ public class SubjectEditForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(icField)
-                            .addComponent(descriptionField)
-                            .addComponent(numberField)
-                            .addComponent(cityField)
-                            .addComponent(countryField)
+                            .addComponent(icLabel)
+                            .addComponent(descriptionLabel)
+                            .addComponent(numberLabel)
+                            .addComponent(cityLabel)
+                            .addComponent(countryLabel)
                             .addComponent(jLabel8))
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField6)
-                            .addComponent(jTextField7)))
+                            .addComponent(icField, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                            .addComponent(descriptionField)
+                            .addComponent(streetField)
+                            .addComponent(numberField)
+                            .addComponent(cityField)
+                            .addComponent(countryField)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(streetField)
+                        .addComponent(streetLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(nameField)
+                        .addComponent(nameLabel)
                         .addGap(76, 76, 76)
-                        .addComponent(jTextField1)))
+                        .addComponent(nameField)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -157,33 +147,33 @@ public class SubjectEditForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(icField))
+                    .addComponent(icField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(icLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameField)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameLabel)
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(descriptionField))
+                    .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descriptionLabel))
                 .addGap(29, 29, 29)
-                .addComponent(streetField)
+                .addComponent(streetLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(numberField))
+                    .addComponent(streetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numberLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cityField))
+                    .addComponent(numberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cityLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(countryField))
+                    .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(countryLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -254,22 +244,22 @@ public class SubjectEditForm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cityField;
-    private javax.swing.JLabel countryField;
-    private javax.swing.JLabel descriptionField;
-    private javax.swing.JLabel icField;
+    private javax.swing.JTextField cityField;
+    private javax.swing.JLabel cityLabel;
+    private javax.swing.JTextField countryField;
+    private javax.swing.JLabel countryLabel;
+    private javax.swing.JTextField descriptionField;
+    private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JTextField icField;
+    private javax.swing.JLabel icLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JLabel nameField;
-    private javax.swing.JLabel numberField;
-    private javax.swing.JLabel streetField;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField numberField;
+    private javax.swing.JLabel numberLabel;
+    private javax.swing.JTextField streetField;
+    private javax.swing.JLabel streetLabel;
     // End of variables declaration//GEN-END:variables
 }

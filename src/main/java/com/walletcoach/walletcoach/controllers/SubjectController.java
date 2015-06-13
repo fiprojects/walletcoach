@@ -17,16 +17,11 @@ import org.w3c.dom.Element;
  *
  * @author fajlo
  */
-public class SubjectController {
-    private XQConnection xml;
-    
-    public SubjectController(XQConnection xml) {
-        this.xml = xml;
-    }
-    
+public class SubjectController {   
     public List<Subject> getAll() throws Exception {
         List<Subject> subjects = new ArrayList<>();
 
+        XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "subjects");
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("subjectList"));
         XQResultSequence sequence = expression.executeQuery();
@@ -36,6 +31,7 @@ public class SubjectController {
             subjects.add(parseItem(element));
         }
         XMLConnection.closeDb(xml);
+        xml.close();
         
         return subjects;
     }
@@ -43,6 +39,7 @@ public class SubjectController {
     public Subject getItem(Long id) throws XQException {
         Subject item = null;
         
+        XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "subjects");
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("subject"));
         expression.bindLong(new QName("id"), id, null);
@@ -53,12 +50,14 @@ public class SubjectController {
             Element element = (Element)result.getObject();
             item = parseItem(element);
         }
-        XMLConnection.closeDb(xml);   
+        XMLConnection.closeDb(xml);
+        xml.close();   
         
         return item;
     }
     
     public void add(Subject subject) throws XQException {
+        XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "subjects");
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("subjectInsert"));
         expression.bindString(new QName("ic"), subject.getIc(), null);
@@ -72,9 +71,10 @@ public class SubjectController {
         
         XMLConnection.save(xml, "subjects");
         XMLConnection.closeDb(xml);
+        xml.close();
     }
     
-    private Subject parseItem(Element element) throws XQException {
+    public Subject parseItem(Element element) throws XQException {
         DOMTools domTools = new DOMTools(element);
         Subject subject = new Subject();
         subject.setID(domTools.getLong("id", true));

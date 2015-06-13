@@ -9,9 +9,7 @@ import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.entities.Category;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.SwingWorker;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
 
@@ -25,8 +23,9 @@ public class CategoryEditForm extends javax.swing.JDialog {
 
     /**
      * Creates new form CategoryEditForm
+     * @param categoryController
      */
-    public CategoryEditForm(CategoryController categoryController) {
+    public CategoryEditForm(CategoryController categoryController) {       
         this.categoryController = categoryController;
         initComponents();
     }
@@ -203,7 +202,8 @@ public class CategoryEditForm extends javax.swing.JDialog {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {           
             public void run() {
-                CategoryEditForm form = new CategoryEditForm(categoryController);
+                CategoryEditForm form = null;
+                form = new CategoryEditForm(categoryController);
                 form.setModal(true);
                 
                 if(onClose != null) {

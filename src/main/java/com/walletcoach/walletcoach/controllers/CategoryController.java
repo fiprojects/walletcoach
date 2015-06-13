@@ -18,16 +18,11 @@ import org.w3c.dom.Element;
  *
  * @author xle
  */
-public class CategoryController {
-    private XQConnection xml;
-    
-    public CategoryController(XQConnection xml) {
-        this.xml = xml;
-    }
-    
+public class CategoryController {   
     public List<Category> getAll() throws XQException {
         List<Category> items = new ArrayList<>();
         
+        XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "categories");
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("categoryList"));
         XQResultSequence sequence = expression.executeQuery();
@@ -37,6 +32,7 @@ public class CategoryController {
             items.add(parseItem(element));
         }
         XMLConnection.closeDb(xml);
+        xml.close();
         
         return items;
     } 
@@ -44,6 +40,7 @@ public class CategoryController {
     public Category getItem(Long id) throws XQException {
         Category item = null;
         
+        XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "categories");
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("category"));
         expression.bindLong(new QName("id"), id, null);
@@ -54,7 +51,8 @@ public class CategoryController {
             Element element = (Element)result.getObject();
             item = parseItem(element);
         }
-        XMLConnection.closeDb(xml);   
+        XMLConnection.closeDb(xml);
+        xml.close();
         
         return item;
     }
@@ -63,6 +61,7 @@ public class CategoryController {
         Color color = category.getColor();
         String colorString = String.format("%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
         
+        XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "categories");
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("categoryInsert"));
         expression.bindString(new QName("name"), category.getName(), null);
@@ -71,9 +70,10 @@ public class CategoryController {
         
         XMLConnection.save(xml, "categories");
         XMLConnection.closeDb(xml);
+        xml.close();
     }
     
-    private Category parseItem(Element element) {
+    public Category parseItem(Element element) {
         DOMTools domTools = new DOMTools(element);
         Category item = new Category();
         item.setID(domTools.getLong("id", true));

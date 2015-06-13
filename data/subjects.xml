@@ -1,50 +1,90 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <subjects>
-    <subject id="1">
-        <ic>123456789</ic>
-        <name>Bylla</name>
-        <address>
-            <street>Novakova</street>
-            <number>10</number>
-            <city>Brno</city>
-            <country>CZ</country>
-        </address>
-        <description>Supermarket</description>
-    </subject>
-    
-    <subject id="2">
-        <ic>123456790</ic>
-        <name>Macecha Drogerie</name>
-        <address>
-            <street>Novakova</street>
-            <number>11</number>
-            <city>Brno</city>
-            <country>CZ</country>
-        </address>
-        <description>Drogerie</description>
-    </subject>
-    
-    <subject id="3">
-        <ic>123456791</ic>
-        <name>Babisovy dobroty</name>
-        <address>
-            <street>Novakova</street>
-            <number>12</number>
-            <city>Brno</city>
-            <country>CZ</country>
-        </address>
-        <description>Pekarstvi</description>
-    </subject>
-    
-    <subject id="4">
-        <ic>36178429</ic>
-        <name>Gazprom</name>
-        <address>
-            <street>Vasilevskaya ulica</street>
-            <number>1/A</number>
-            <city>Moskva</city>
-            <country>Ruská federácia</country>
-        </address>
-        <description>Cerpaci stanice</description>
-    </subject>
+  <subject id="1">
+    <ic>123456789</ic>
+    <name>Bylla</name>
+    <address>
+      <street>Novakova</street>
+      <number>10</number>
+      <city>Brno</city>
+      <country>CZ</country>
+    </address>
+    <description>Supermarket</description>
+  </subject>
+  <subject id="2">
+    <ic>123456790</ic>
+    <name>Macecha Drogerie</name>
+    <address>
+      <street>Novakova</street>
+      <number>11</number>
+      <city>Brno</city>
+      <country>CZ</country>
+    </address>
+    <description>Drogerie</description>
+  </subject>
+  <subject id="3">
+    <ic>123456791</ic>
+    <name>Babisovy dobroty</name>
+    <address>
+      <street>Novakova</street>
+      <number>12</number>
+      <city>Brno</city>
+      <country>CZ</country>
+    </address>
+    <description>Pekarstvi</description>
+  </subject>
+  <subject id="4">
+    <ic>36178429</ic>
+    <name>Gazprom</name>
+    <address>
+      <street>Vasilevskaya ulica</street>
+      <number>1/A</number>
+      <city>Moskva</city>
+      <country>Ruská federácia</country>
+    </address>
+    <description>Cerpaci stanice</description>
+  </subject>
+  <subject id="5">
+    <ic>jTextField2</ic>
+    <name>jTextField1</name>
+    <address>
+      <street>jTextField4</street>
+      <number>jTextField5</number>
+      <city>jTextField6</city>
+      <country>jTextField7</country>
+    </address>
+    <description>jTextField3</description>
+  </subject>
+  <subject id="6">
+    <ic>jTextField2</ic>
+    <name>jTextField1</name>
+    <address>
+      <street>jTextField4</street>
+      <number>jTextField5</number>
+      <city>jTextField6</city>
+      <country>jTextField7</country>
+    </address>
+    <description>jTextField3</description>
+  </subject>
+  <subject id="7">
+    <ic>jTextField2</ic>
+    <name>jTextField1</name>
+    <address>
+      <street>jTextField4</street>
+      <number>jTextField5</number>
+      <city>jTextField6</city>
+      <country>jTextField7</country>
+    </address>
+    <description>jTextField3</description>
+  </subject>
+  <subject id="8">
+    <ic>jTextField2asd</ic>
+    <name>jTextField1</name>
+    <address>
+      <street>jTextField4</street>
+      <number>jTextField5</number>
+      <city>jTextField6</city>
+      <country>jTextField7</country>
+    </address>
+    <description>jTextField3</description>
+  </subject>
 </subjects>

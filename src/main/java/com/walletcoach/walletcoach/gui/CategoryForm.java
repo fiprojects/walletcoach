@@ -25,15 +25,8 @@ public class CategoryForm extends javax.swing.JFrame {
      * Creates new form CategoryForm
      * @throws javax.xml.xquery.XQException
      */
-    public CategoryForm() throws XQException {
-        // BaseX Connection
-        try {
-            xml = XMLConnection.getConnection();
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "XML connection failed.");
-        }
-        
-        categoryController = new CategoryController(xml);
+    public CategoryForm(CategoryController categoryController) throws XQException {       
+        this.categoryController = categoryController;
         
         initComponents();
         initTable();
@@ -162,7 +155,7 @@ public class CategoryForm extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public static void display() throws XQException {
+    public static void display(final CategoryController categoryController) throws XQException {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
@@ -181,7 +174,7 @@ public class CategoryForm extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    CategoryForm form = new CategoryForm();
+                    CategoryForm form = new CategoryForm(categoryController);
                     form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                     form.setVisible(true);
                 } catch (XQException ex) {

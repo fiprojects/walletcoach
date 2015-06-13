@@ -8,7 +8,7 @@ import javax.swing.SwingWorker;
 import javax.swing.table.AbstractTableModel;
 import javax.xml.xquery.XQException;
 
-public class SubjectTableModel extends AbstractTableModel {    
+public class SubjectTableModel extends AbstractTableModel {
     private SubjectController controller;
     protected List<Subject> items = new ArrayList<>();
 

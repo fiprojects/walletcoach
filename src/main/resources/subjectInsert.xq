@@ -17,7 +17,7 @@ return (
         <city>{$city}</city>
         <country>{$country}</country>
       </address>
-      <description>#{$description}</description>
+      <description>{$description}</description>
     </subject>
-  ) into <subjects>
+  ) into /subjects
 )
