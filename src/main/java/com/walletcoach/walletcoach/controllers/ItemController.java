@@ -5,8 +5,12 @@ import com.walletcoach.walletcoach.entities.Item;
 import com.walletcoach.walletcoach.tools.DOMTools;
 import com.walletcoach.walletcoach.tools.QueryBuilder;
 import com.walletcoach.walletcoach.tools.XMLConnection;
+import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.xml.namespace.QName;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQPreparedExpression;
@@ -60,6 +64,25 @@ public class ItemController {
         xml.close();
         
         return items;
+    }
+    
+    public void add(Item item) throws XQException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        Date date = item.getDatetime().getTime();
+        
+        XQConnection xml = XMLConnection.getConnection();
+        XMLConnection.openDb(xml, "items");
+        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("itemInsert"));
+        expression.bindString(new QName("description"), item.getDescription(), null);
+        expression.bindObject(new QName("price"), item.getPrice(), null);
+        expression.bindString(new QName("datetime"), format.format(date), null);
+        expression.bindLong(new QName("categoryId"), item.getCategory().getID(), null);
+        expression.bindLong(new QName("subjectId"), item.getSubject().getID(), null);
+        expression.executeQuery();
+        
+        XMLConnection.save(xml, "items");
+        XMLConnection.closeDb(xml);
+        xml.close();
     }
     
     private Item parseItem(Element element) throws XQException {

@@ -42,7 +42,7 @@ public class ItemTableModel extends AbstractTableModel {
             case 2:
                 return item.getDescription();
             case 3:
-                return item.getCategory();
+                return item.getCategory().getName();
             case 4:
                 return item.getSubject();
             default:
