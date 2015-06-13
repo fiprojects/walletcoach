@@ -1,8 +1,8 @@
 declare variable $description as xs:string external;
-declare variable $price as xs:double external;
-declare variable $datetime as xs:datetime external;
-declare variable $categoryId as xs:string external;
-declare variable $subjectId as xs:string external;
+declare variable $price as xs:decimal external;
+declare variable $datetime as xs:string external;
+declare variable $categoryId as xs:long external;
+declare variable $subjectId as xs:long external;
 
 let $id := fn:max(//item/@id) + 1
 
@@ -14,6 +14,6 @@ return (
       <datetime>{$datetime}</datetime>
       <category-id>{$categoryId}</category-id>
       <company-id>{$subjectId}</company-id>
-    </category>
-  ) into /categories
+    </item>
+  ) into /items
 )

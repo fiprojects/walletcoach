@@ -2,12 +2,10 @@ package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.models.CategoryTableModel;
-import com.walletcoach.walletcoach.tools.XMLConnection;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;

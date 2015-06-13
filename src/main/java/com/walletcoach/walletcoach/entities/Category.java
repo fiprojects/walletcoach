@@ -96,6 +96,4 @@ public class Category {
     public String toString() {
         return "Category{" + "ID=" + ID + ", name=" + name + ", color=" + color + '}';
     }
-    
-    
 }
