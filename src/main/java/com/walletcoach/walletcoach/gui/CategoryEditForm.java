@@ -9,6 +9,7 @@ import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.entities.Category;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
@@ -20,14 +21,30 @@ import javax.xml.xquery.XQException;
 public class CategoryEditForm extends javax.swing.JDialog {
     private XQConnection xml;
     private final CategoryController categoryController;
+    
+    private Category item = null;
 
     /**
      * Creates new form CategoryEditForm
      * @param categoryController
      */
-    public CategoryEditForm(CategoryController categoryController) {       
+    public CategoryEditForm(CategoryController categoryController, Category item) { 
         this.categoryController = categoryController;
+        this.item = item;
+        
         initComponents();
+        
+        if(this.item != null) {
+            populateForm();
+        }
+    }
+    
+    public CategoryEditForm(CategoryController categoryController) {       
+        this(categoryController, null);
+    }
+    
+    private void populateForm() {
+        nameField.setText(item.getName());
     }
 
     /**
@@ -159,14 +176,20 @@ public class CategoryEditForm extends javax.swing.JDialog {
     }//GEN-LAST:event_colorFieldKeyReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        final Category category = new Category();
+        final Category category;
+        if(item == null) {
+            category = new Category();
+        } else {
+            category = item;
+        }
+        
         category.setName(nameField.getText());
         category.setColor(Color.decode("#" + colorField.getText()));
         
         new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws XQException {
-                categoryController.add(category);
+                categoryController.edit(category);
                 return null;
             }
 
@@ -182,7 +205,7 @@ public class CategoryEditForm extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public static void display(final CategoryController categoryController, final WindowAdapter onClose) {
+    public static void display(final CategoryController categoryController, final Category item, final WindowAdapter onClose) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
@@ -201,7 +224,7 @@ public class CategoryEditForm extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {           
             public void run() {
                 CategoryEditForm form = null;
-                form = new CategoryEditForm(categoryController);
+                form = new CategoryEditForm(categoryController, item);
                 form.setModal(true);
                 
                 if(onClose != null) {

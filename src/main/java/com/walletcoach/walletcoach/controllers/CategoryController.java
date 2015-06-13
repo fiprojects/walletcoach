@@ -57,13 +57,21 @@ public class CategoryController {
         return item;
     }
     
-    public void add(Category category) throws XQException {
+    public void edit(Category category) throws XQException {
         Color color = category.getColor();
         String colorString = String.format("%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
         
         XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "categories");
-        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("categoryInsert"));
+        
+        XQPreparedExpression expression;
+        if(category.getID() == null) {
+            expression = xml.prepareExpression(XMLConnection.getQuery("categoryInsert"));
+        } else {
+            expression = xml.prepareExpression(XMLConnection.getQuery("categoryUpdate"));
+            expression.bindLong(new QName("id"), category.getID(), null);
+        }
+        
         expression.bindString(new QName("name"), category.getName(), null);
         expression.bindString(new QName("color"), colorString, null);
         expression.executeQuery();
