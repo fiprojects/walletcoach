@@ -56,10 +56,18 @@ public class SubjectController {
         return item;
     }
     
-    public void add(Subject subject) throws XQException {
+    public void edit(Subject subject) throws XQException {
         XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "subjects");
-        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("subjectInsert"));
+        
+        XQPreparedExpression expression;
+        if(subject.getID() == null) {
+            expression = xml.prepareExpression(XMLConnection.getQuery("subjectInsert"));
+        } else {
+            expression = xml.prepareExpression(XMLConnection.getQuery("subjectUpdate"));
+            expression.bindLong(new QName("id"), subject.getID(), null);
+        }
+        
         expression.bindString(new QName("ic"), subject.getIc(), null);
         expression.bindString(new QName("name"), subject.getName(), null);
         expression.bindString(new QName("street"), subject.getStreet(), null);

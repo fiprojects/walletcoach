@@ -98,6 +98,11 @@ public class SubjectForm extends javax.swing.JFrame {
         });
 
         jButton3.setText("Edit");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,7 +158,7 @@ public class SubjectForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SubjectEditForm.display(subjectController, new WindowAdapter() {
+        SubjectEditForm.display(subjectController, null, new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
                 refresh();
@@ -177,6 +182,18 @@ public class SubjectForm extends javax.swing.JFrame {
             }.execute();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        final Subject item = (Subject)tableModel.getSelectedObject(table);
+        if(item != null) {
+            SubjectEditForm.display(subjectController, item, new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    refresh();
+                }
+            });
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void display(final SubjectController subjectController) throws XQException {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -6,6 +6,7 @@
 package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.SubjectController;
+import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.entities.Subject;
 import java.awt.event.WindowAdapter;
 import javax.swing.SwingWorker;
@@ -19,13 +20,31 @@ import javax.xml.xquery.XQException;
 public class SubjectEditForm extends javax.swing.JDialog {
     private XQConnection xml;
     private final SubjectController subjectController;
+    
+    private Subject item = null;
 
     /**
      * Creates new form SubjectEditForm
      */
-    public SubjectEditForm(SubjectController subjectController) {
+    public SubjectEditForm(SubjectController subjectController, Subject item) {
         this.subjectController = subjectController;
+        this.item = item;
+        
         initComponents();
+        
+        if(this.item != null) {
+            populateForm();
+        }
+    }
+    
+    private void populateForm() {
+        icField.setText(item.getIc());
+        nameField.setText(item.getName());
+        descriptionField.setText(item.getDescription());
+        streetField.setText(item.getStreet());
+        numberField.setText(item.getNumber());
+        cityField.setText(item.getCity());
+        countryField.setText(item.getCountry());
     }
 
     /**
@@ -61,12 +80,6 @@ public class SubjectEditForm extends javax.swing.JDialog {
         nameLabel.setText("Name");
         nameLabel.setToolTipText("");
 
-        nameField.setText("jTextField1");
-
-        icField.setText("jTextField2");
-
-        descriptionField.setText("jTextField3");
-
         icLabel.setLabelFor(icField);
         icLabel.setText("ICO");
 
@@ -75,14 +88,6 @@ public class SubjectEditForm extends javax.swing.JDialog {
 
         streetLabel.setText("Location");
         streetLabel.setToolTipText("");
-
-        streetField.setText("jTextField4");
-
-        numberField.setText("jTextField5");
-
-        cityField.setText("jTextField6");
-
-        countryField.setText("jTextField7");
 
         numberLabel.setLabelFor(streetField);
         numberLabel.setText("Street");
@@ -186,7 +191,13 @@ public class SubjectEditForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        final Subject item = new Subject();
+        final Subject item;
+        if(this.item == null) {
+            item = new Subject();
+        } else {
+            item = this.item;
+        }
+        
         item.setIc(icField.getText());
         item.setName(nameField.getText());
         item.setDescription(descriptionField.getText());
@@ -198,7 +209,7 @@ public class SubjectEditForm extends javax.swing.JDialog {
         new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws XQException {
-                subjectController.add(item);
+                subjectController.edit(item);
                 return null;
             }
 
@@ -213,7 +224,7 @@ public class SubjectEditForm extends javax.swing.JDialog {
      * @param subjectController
      * @param onClose
      */
-    public static void display(final SubjectController subjectController, final WindowAdapter onClose) {
+    public static void display(final SubjectController subjectController, final Subject item, final WindowAdapter onClose) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
@@ -231,7 +242,7 @@ public class SubjectEditForm extends javax.swing.JDialog {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {           
             public void run() {
-                SubjectEditForm form = new SubjectEditForm(subjectController);
+                SubjectEditForm form = new SubjectEditForm(subjectController, item);
                 form.setModal(true);
                 
                 if(onClose != null) {

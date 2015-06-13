@@ -43,4 +43,15 @@
     </address>
     <description>Cerpaci stanice</description>
   </subject>
+  <subject id="5">
+    <ic>12345678</ic>
+    <name>BuFet</name>
+    <address>
+      <street>Uličná 12</street>
+      <number>11000</number>
+      <city>Praha</city>
+      <country>CZ</country>
+    </address>
+    <description>Tam si můžu nacpat bříško</description>
+  </subject>
 </subjects>
