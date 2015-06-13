@@ -36,7 +36,7 @@
                 
                 <div id="content">
                     <h2>Report for <xsl:value-of select="/report/@year"/></h2>                
-                    <table cellspacing="0" cellpadding="0">
+                    <table cellspacing="0" cellpadding="10">
                         <tr>
                             <td><b>Summary</b></td>
                         </tr>
@@ -75,7 +75,7 @@
                         </tr>
                     </table>
                     <br />
-                    <table cellspacing="0" cellpadding="0">
+                    <table cellspacing="0" cellpadding="10">
                         <tr>
                             <td colspan="4">
                                 <b>Report by Category</b>
@@ -91,7 +91,7 @@
                     </table>
                     <br/>
 
-                    <table cellspacing="0" cellpadding="0">
+                    <table cellspacing="0" cellpadding="10">
                         <tr>
                             <td colspan="4">
                                 <b>Report by Subjects</b>
