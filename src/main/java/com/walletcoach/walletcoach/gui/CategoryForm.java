@@ -1,7 +1,6 @@
 package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
-import com.walletcoach.walletcoach.controllers.ItemController;
 import com.walletcoach.walletcoach.models.CategoryTableModel;
 import com.walletcoach.walletcoach.tools.XMLConnection;
 import java.util.logging.Level;
@@ -17,11 +16,11 @@ import javax.xml.xquery.XQException;
  */
 public class CategoryForm extends javax.swing.JFrame {
     private XQConnection xml;
-    private CategoryController categoryController;
+    private final CategoryController categoryController;
     
     /**
      * Creates new form CategoryForm
-     * @param categoryController
+     * @throws javax.xml.xquery.XQException
      */
     public CategoryForm() throws XQException {
         // BaseX Connection
@@ -29,7 +28,6 @@ public class CategoryForm extends javax.swing.JFrame {
             xml = XMLConnection.getConnection();
         } catch(Exception e) {
             JOptionPane.showMessageDialog(this, "XML connection failed.");
-            return;
         }
         
         categoryController = new CategoryController(xml);
@@ -85,6 +83,11 @@ public class CategoryForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(table);
 
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Delete");
 
@@ -143,6 +146,10 @@ public class CategoryForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CategoryEditForm.display(xml);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public static void display() throws XQException {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
@@ -162,9 +169,9 @@ public class CategoryForm extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    CategoryForm categoryForm = new CategoryForm();
-                    categoryForm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                    categoryForm.setVisible(true);
+                    CategoryForm form = new CategoryForm();
+                    form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    form.setVisible(true);
                 } catch (XQException ex) {
                     Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
                 }

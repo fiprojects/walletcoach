@@ -3,6 +3,7 @@ package com.walletcoach.walletcoach.controllers;
 import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.tools.DOMTools;
 import com.walletcoach.walletcoach.tools.XMLConnection;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.namespace.QName;
@@ -10,6 +11,7 @@ import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQPreparedExpression;
 import javax.xml.xquery.XQResultSequence;
+import javax.xml.xquery.XQSequence;
 import org.w3c.dom.Element;
 
 /**
@@ -24,14 +26,19 @@ public class CategoryController {
     }
     
     public List<Category> getAll() throws XQException {
+        XQConnection xml = XMLConnection.getConnection();
+        
         List<Category> items = new ArrayList<>();
         
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("categoryList"));
-        XQResultSequence result = expression.executeQuery();
+        XQResultSequence sequence = expression.executeQuery();
+        XQSequence result = xml.createSequence(sequence);
         while(result.next()) {
             Element element = (Element)result.getObject();            
             items.add(parseItem(element));
         }
+        
+        xml.close();
         
         return items;
     } 
@@ -47,6 +54,17 @@ public class CategoryController {
         }
         
         return null;
+    }
+    
+    public void add(Category category) throws XQException {
+        Color color = category.getColor();
+        String colorString = String.format("%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
+        
+        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("categoryInsert"));
+        expression.bindString(new QName("name"), category.getName(), null);
+        expression.bindString(new QName("color"), colorString, null);
+        expression.executeQuery();
+        expression.close();
     }
     
     private Category parseItem(Element element) {
