@@ -1,1 +1,1 @@
-doc('data/categories.xml')//category
+//category

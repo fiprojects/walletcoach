@@ -1,1 +1,1 @@
-doc('data/subjects.xml')//subjects
+//subject

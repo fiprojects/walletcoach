@@ -1,20 +1,18 @@
 package com.walletcoach.walletcoach.models;
 
-import com.walletcoach.walletcoach.controllers.ItemController;
-import com.walletcoach.walletcoach.entities.Item;
-import com.walletcoach.walletcoach.tools.ItemsQueryBuilder;
-import java.text.SimpleDateFormat;
+import com.walletcoach.walletcoach.controllers.SubjectController;
+import com.walletcoach.walletcoach.entities.Subject;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.SwingWorker;
 import javax.swing.table.AbstractTableModel;
+import javax.xml.xquery.XQException;
 
-public class ItemTableModel extends AbstractTableModel {    
-    private final ItemController controller;
-    protected List<Item> items = new ArrayList<>();
+public class SubjectTableModel extends AbstractTableModel {    
+    private SubjectController controller;
+    protected List<Subject> items = new ArrayList<>();
 
-    public ItemTableModel(ItemController controller) {
+    public SubjectTableModel(SubjectController controller) {
         this.controller = controller;
         loadData();
     }
@@ -26,25 +24,19 @@ public class ItemTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 3;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Item item = items.get(rowIndex);
+        Subject item = items.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-                Date date = item.getDatetime().getTime();
-                return format.format(date);
+                return item.getIc();
             case 1:
-                return item.getPrice();
+                return item.getName();
             case 2:
                 return item.getDescription();
-            case 3:
-                return item.getCategory().getName();
-            case 4:
-                return item.getSubject().getName();
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
@@ -54,15 +46,11 @@ public class ItemTableModel extends AbstractTableModel {
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return "Date";
+                return "IC";
             case 1:
-                return "Price";
+                return "Name";
             case 2:
                 return "Description";
-            case 3:
-                return "Category";
-            case 4:
-                return "Subject";
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
@@ -74,16 +62,13 @@ public class ItemTableModel extends AbstractTableModel {
     }
 
     public void loadData() {
-        final ItemsQueryBuilder query = new ItemsQueryBuilder();
-        query.filterPeriod(2, 2015);
         new SwingWorker<Void, Void>() {
             @Override
-            protected Void doInBackground() throws Exception {
-                items = controller.getFiltered(query);
+            protected Void doInBackground() throws XQException, Exception {
+		items = controller.getAll();
                 return null;
             }
 
-            @Override
             protected void done() {
                 fireTableDataChanged();
             }

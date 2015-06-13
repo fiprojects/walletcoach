@@ -5,17 +5,44 @@
  */
 package com.walletcoach.walletcoach.gui;
 
+import com.walletcoach.walletcoach.controllers.SubjectController;
+import com.walletcoach.walletcoach.models.SubjectTableModel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ListSelectionModel;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.xml.xquery.XQException;
+
 /**
  *
  * @author Michael
  */
 public class SubjectForm extends javax.swing.JFrame {
+    private final SubjectController subjectController;
+    private SubjectTableModel tableModel;
 
     /**
      * Creates new form SubjectForm
+     * @param subjectController
      */
-    public SubjectForm() {
+    public SubjectForm(SubjectController subjectController) throws XQException {
+        this.subjectController = subjectController;
+        
         initComponents();
+        initTable();
+    }
+    
+    public void refresh() {
+        tableModel.loadData();
+    }
+    
+    private void initTable() throws XQException {
+        tableModel = new SubjectTableModel(subjectController);
+
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setModel(tableModel);
     }
 
     /**
@@ -29,7 +56,7 @@ public class SubjectForm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -38,9 +65,9 @@ public class SubjectForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("List of subjects");
+        jLabel1.setText("Subjects");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -51,9 +78,14 @@ public class SubjectForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table);
 
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Delete");
 
@@ -112,37 +144,41 @@ public class SubjectForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        SubjectEditForm.display(subjectController, new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                refresh();
             }
+        });
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public static void display(final SubjectController subjectController) throws XQException {
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        try {
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SubjectForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SubjectForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SubjectForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SubjectForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SubjectForm().setVisible(true);
+                SubjectForm form = null;
+                try {
+                    form = new SubjectForm(subjectController);
+                } catch (XQException ex) {
+                    Logger.getLogger(SubjectForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                form.setVisible(true);
             }
         });
     }
@@ -154,6 +190,6 @@ public class SubjectForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

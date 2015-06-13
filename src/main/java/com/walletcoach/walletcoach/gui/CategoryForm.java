@@ -3,6 +3,8 @@ package com.walletcoach.walletcoach.gui;
 import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.models.CategoryTableModel;
 import com.walletcoach.walletcoach.tools.XMLConnection;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,6 +19,7 @@ import javax.xml.xquery.XQException;
 public class CategoryForm extends javax.swing.JFrame {
     private XQConnection xml;
     private final CategoryController categoryController;
+    private CategoryTableModel tableModel;
     
     /**
      * Creates new form CategoryForm
@@ -36,11 +39,15 @@ public class CategoryForm extends javax.swing.JFrame {
         initTable();
     }
     
+    public void refresh() {
+        tableModel.loadData();
+    }
+    
     private void initTable() throws XQException {
-        CategoryTableModel model = new CategoryTableModel(categoryController);
+        tableModel = new CategoryTableModel(categoryController);
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        table.setModel(model);
+        table.setModel(tableModel);
 
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
         table.getColumnModel().getColumn(1).setPreferredWidth(200);
@@ -147,7 +154,12 @@ public class CategoryForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CategoryEditForm.display(xml);
+        CategoryEditForm.display(categoryController, new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                refresh();
+            }
+        });
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void display() throws XQException {

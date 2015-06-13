@@ -7,11 +7,9 @@ package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.entities.Category;
-import com.walletcoach.walletcoach.tools.XMLConnection;
 import java.awt.Color;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.SwingWorker;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.xml.xquery.XQConnection;
@@ -21,17 +19,15 @@ import javax.xml.xquery.XQException;
  *
  * @author Michael
  */
-public class CategoryEditForm extends javax.swing.JFrame {
+public class CategoryEditForm extends javax.swing.JDialog {
     private XQConnection xml;
     private final CategoryController categoryController;
 
     /**
      * Creates new form CategoryEditForm
      */
-    public CategoryEditForm(XQConnection xml) {
-        this.xml = xml;        
-        categoryController = new CategoryController(xml);
-        
+    public CategoryEditForm(CategoryController categoryController) {
+        this.categoryController = categoryController;
         initComponents();
     }
 
@@ -54,11 +50,11 @@ public class CategoryEditForm extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Název");
+        jLabel1.setText("Name");
 
-        jLabel2.setText("Barva");
+        jLabel2.setText("Color");
 
         colorField.setText("FFFFFF");
         colorField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -86,6 +82,11 @@ public class CategoryEditForm extends javax.swing.JFrame {
         );
 
         jButton2.setText("Storno");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Uložit");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +104,7 @@ public class CategoryEditForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(jLabel3))
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -166,20 +167,25 @@ public class CategoryEditForm extends javax.swing.JFrame {
         new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws XQException {
-
                 categoryController.add(category);
                 return null;
             }
 
             protected void done() {
-                //fireTableDataChanged();
+                setVisible(false);
+                dispose();
             }
         }.execute();
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    public static void display(final XQConnection xml) {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public static void display(final CategoryController categoryController, final WindowAdapter onClose) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
@@ -197,8 +203,13 @@ public class CategoryEditForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {           
             public void run() {
-                CategoryEditForm form = new CategoryEditForm(xml);
-                form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                CategoryEditForm form = new CategoryEditForm(categoryController);
+                form.setModal(true);
+                
+                if(onClose != null) {
+                    form.addWindowListener(onClose);
+                }
+                
                 form.setVisible(true);
             }
         });

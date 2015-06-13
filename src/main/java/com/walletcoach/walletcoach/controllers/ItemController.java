@@ -20,10 +20,12 @@ import org.w3c.dom.Element;
 public class ItemController {
     private XQConnection xml;
     private final CategoryController categoryController;
+    private final SubjectController subjectController;
     
-    public ItemController(XQConnection xml, CategoryController categoryController) {
+    public ItemController(XQConnection xml, CategoryController categoryController, SubjectController subjectController) {
         this.xml = xml;
         this.categoryController = categoryController;
+        this.subjectController = subjectController;
     }
     
     public List<Item> getAll() throws Exception {
@@ -69,7 +71,7 @@ public class ItemController {
         item.setCategory(categoryController.getItem(categoryId));
         
         Long subjectId = domTools.getLong("company-id");
-        item.setSubject(null);
+        item.setSubject(subjectController.getItem(subjectId));
         
         return item;
     }

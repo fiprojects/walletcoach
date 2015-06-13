@@ -23,4 +23,20 @@
     <name>Sport</name>
     <color>#ff0000</color>
   </category>
+  <category id="7">
+    <name>Zábava</name>
+    <color>#ffffff</color>
+  </category>
+  <category id="8">
+    <name>Škola</name>
+    <color>#ffffff</color>
+  </category>
+  <category id="9">
+    <name>Test</name>
+    <color>#ffffff</color>
+  </category>
+  <category id="10">
+    <name>Další</name>
+    <color>#ffffff</color>
+  </category>
 </categories>

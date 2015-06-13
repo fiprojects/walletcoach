@@ -5,16 +5,36 @@
  */
 package com.walletcoach.walletcoach.gui;
 
+import com.walletcoach.walletcoach.controllers.SubjectController;
+import com.walletcoach.walletcoach.entities.Subject;
+import com.walletcoach.walletcoach.tools.XMLConnection;
+import java.awt.event.WindowAdapter;
+import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
+import javax.xml.xquery.XQConnection;
+import javax.xml.xquery.XQException;
+
 /**
  *
  * @author Michael
  */
-public class SubjectEditForm extends javax.swing.JFrame {
+public class SubjectEditForm extends javax.swing.JDialog {
+    private XQConnection xml;
+    private final SubjectController subjectController = null;
 
     /**
      * Creates new form SubjectEditForm
      */
-    public SubjectEditForm() {
+    public SubjectEditForm(SubjectController subjectController) {
+        // BaseX Connection
+        try {
+            xml = XMLConnection.getConnection();
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "XML connection failed.");
+        }
+        
+        subjectController = new SubjectController(xml);
+        
         initComponents();
     }
 
@@ -27,29 +47,29 @@ public class SubjectEditForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        nameField = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        icField = new javax.swing.JLabel();
+        descriptionField = new javax.swing.JLabel();
+        streetField = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        numberField = new javax.swing.JLabel();
+        cityField = new javax.swing.JLabel();
+        countryField = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setLabelFor(jTextField1);
-        jLabel1.setText("Name");
-        jLabel1.setToolTipText("");
+        nameField.setLabelFor(jTextField1);
+        nameField.setText("Name");
+        nameField.setToolTipText("");
 
         jTextField1.setText("jTextField1");
 
@@ -57,14 +77,14 @@ public class SubjectEditForm extends javax.swing.JFrame {
 
         jTextField3.setText("jTextField3");
 
-        jLabel2.setLabelFor(jTextField2);
-        jLabel2.setText("ICO");
+        icField.setLabelFor(jTextField2);
+        icField.setText("ICO");
 
-        jLabel3.setLabelFor(jTextField3);
-        jLabel3.setText("Description");
+        descriptionField.setLabelFor(jTextField3);
+        descriptionField.setText("Description");
 
-        jLabel4.setText("Location");
-        jLabel4.setToolTipText("");
+        streetField.setText("Location");
+        streetField.setToolTipText("");
 
         jTextField4.setText("jTextField4");
 
@@ -74,22 +94,26 @@ public class SubjectEditForm extends javax.swing.JFrame {
 
         jTextField7.setText("jTextField7");
 
-        jLabel5.setLabelFor(jTextField4);
-        jLabel5.setText("Street");
+        numberField.setLabelFor(jTextField4);
+        numberField.setText("Street");
 
-        jLabel6.setLabelFor(jTextField5);
-        jLabel6.setText("Number");
+        cityField.setLabelFor(jTextField5);
+        cityField.setText("Number");
 
-        jLabel7.setLabelFor(jTextField6);
-        jLabel7.setText("City");
+        countryField.setLabelFor(jTextField6);
+        countryField.setText("City");
 
         jLabel8.setLabelFor(jTextField7);
         jLabel8.setText("Country");
 
         jButton1.setText("Cancel");
-        jButton1.setActionCommand("Cancel");
 
         jButton2.setText("Save");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,11 +124,11 @@ public class SubjectEditForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
+                            .addComponent(icField)
+                            .addComponent(descriptionField)
+                            .addComponent(numberField)
+                            .addComponent(cityField)
+                            .addComponent(countryField)
                             .addComponent(jLabel8))
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,10 +144,10 @@ public class SubjectEditForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(streetField)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(nameField)
                         .addGap(76, 76, 76)
                         .addComponent(jTextField1)))
                 .addContainerGap())
@@ -134,29 +158,29 @@ public class SubjectEditForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(icField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(nameField)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(descriptionField))
                 .addGap(29, 29, 29)
-                .addComponent(jLabel4)
+                .addComponent(streetField)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(numberField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(cityField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(countryField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,51 +195,71 @@ public class SubjectEditForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        final Subject item = new Subject();
+        item.setIc(icField.getText());
+        item.setName(nameField.getText());
+        item.setDescription(descriptionField.getText());
+        item.setStreet(streetField.getText());
+        item.setNumber(numberField.getText());
+        item.setCity(cityField.getText());
+        item.setCountry(countryField.getText());
+        
+        new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws XQException {
+                subjectController.add(item);
+                return null;
             }
+
+            protected void done() {
+                setVisible(false);
+                dispose();
+            }
+        }.execute();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    /**
+     * @param subjectController
+     * @param onClose
+     */
+    public static void display(final SubjectController subjectController, final WindowAdapter onClose) {
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        try {
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SubjectEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SubjectEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SubjectEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SubjectEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {           
             public void run() {
-                new SubjectEditForm().setVisible(true);
+                SubjectEditForm form = new SubjectEditForm(subjectController);
+                form.setModal(true);
+                
+                if(onClose != null) {
+                    form.addWindowListener(onClose);
+                }
+                
+                form.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cityField;
+    private javax.swing.JLabel countryField;
+    private javax.swing.JLabel descriptionField;
+    private javax.swing.JLabel icField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -224,5 +268,8 @@ public class SubjectEditForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JLabel nameField;
+    private javax.swing.JLabel numberField;
+    private javax.swing.JLabel streetField;
     // End of variables declaration//GEN-END:variables
 }

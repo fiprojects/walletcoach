@@ -2,15 +2,13 @@ package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.controllers.ItemController;
-import com.walletcoach.walletcoach.entities.Category;
+import com.walletcoach.walletcoach.controllers.SubjectController;
 import com.walletcoach.walletcoach.models.ItemTableModel;
 import com.walletcoach.walletcoach.tools.XMLConnection;
-import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingWorker;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
 
@@ -22,6 +20,7 @@ public class ReviewForm extends javax.swing.JFrame {
     private XQConnection xml; //TODO: close connection
     
     private ItemController itemController;
+    private SubjectController subjectController;
     private CategoryController categoryController;
     
     
@@ -38,7 +37,8 @@ public class ReviewForm extends javax.swing.JFrame {
         }
         
         categoryController = new CategoryController(xml);
-        itemController = new ItemController(xml, categoryController);
+        subjectController = new SubjectController(xml);
+        itemController = new ItemController(xml, categoryController, subjectController);
         
         XMLConnection.createDb(xml, "items");
         XMLConnection.createDb(xml, "categories");
@@ -113,7 +113,12 @@ public class ReviewForm extends javax.swing.JFrame {
 
         jButton2.setText("New Income");
 
-        jButton3.setText("New Subject");
+        jButton3.setText("Subjects");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Categories");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -158,17 +163,17 @@ public class ReviewForm extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addGap(62, 62, 62)
+                .addGap(18, 18, 18)
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addContainerGap(248, Short.MAX_VALUE))
         );
 
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -284,6 +289,14 @@ public class ReviewForm extends javax.swing.JFrame {
             Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            SubjectForm.display(subjectController);
+        } catch (XQException ex) {
+            Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
