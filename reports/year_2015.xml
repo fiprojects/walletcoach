@@ -1,0 +1,27 @@
+<report year="2015">
+  <summary>
+    <income>122110.2</income>
+    <expense>-6070</expense>
+    <total>116040.2</total>
+  </summary>
+  <categories>
+    <category name="Jídlo a pití" income="108290" expense="-1500" total="106790"/>
+    <category name="Doprava" income="2400.2" expense="-3320" total="-919.8"/>
+    <category name="Drogerie" income="0" expense="0" total="0"/>
+    <category name="Kancelarske potreby" income="0" expense="-1250" total="-1250"/>
+    <category name="Prijmy" income="11220" expense="0" total="11220"/>
+    <category name="Sport" income="0" expense="0" total="0"/>
+    <category name="Zábava" income="200" expense="0" total="200"/>
+    <category name="Škola" income="0" expense="0" total="0"/>
+  </categories>
+  <subjects>
+    <subject name="Bylla" income="119510" expense="-1550" total="117960"/>
+    <subject name="Macecha Drogerie" income="200" expense="0" total="200"/>
+    <subject name="Babisovy dobroty" income="0" expense="-1320" total="-1320"/>
+    <subject name="Gazprom" income="2400.2" expense="-3200" total="-799.8"/>
+    <subject name="jTextField1" income="0" expense="0" total="0"/>
+    <subject name="jTextField1" income="0" expense="0" total="0"/>
+    <subject name="jTextField1" income="0" expense="0" total="0"/>
+    <subject name="jTextField1" income="0" expense="0" total="0"/>
+  </subjects>
+</report>

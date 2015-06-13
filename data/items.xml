@@ -62,4 +62,11 @@
     <category-id>2</category-id>
     <company-id>4</company-id>
   </item>
+  <item id="10">
+    <description>Sandál</description>
+    <price>200</price>
+    <datetime>2015-06-13T16:37:29</datetime>
+    <category-id>7</category-id>
+    <company-id>2</company-id>
+  </item>
 </items>

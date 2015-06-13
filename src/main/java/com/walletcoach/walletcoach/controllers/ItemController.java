@@ -1,11 +1,9 @@
 package com.walletcoach.walletcoach.controllers;
 
-import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.entities.Item;
 import com.walletcoach.walletcoach.tools.DOMTools;
 import com.walletcoach.walletcoach.tools.QueryBuilder;
 import com.walletcoach.walletcoach.tools.XMLConnection;
-import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

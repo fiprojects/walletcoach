@@ -75,7 +75,6 @@ public class ItemTableModel extends AbstractTableModel {
 
     public void loadData() {
         final ItemsQueryBuilder query = new ItemsQueryBuilder();
-        query.filterPeriod(2, 2015);
         new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws Exception {
