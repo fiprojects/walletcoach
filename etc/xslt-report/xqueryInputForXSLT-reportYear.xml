@@ -1,0 +1,20 @@
+<report year="2015">
+  <summary>
+    <income>11220</income>
+    <expense>-7440</expense>
+    <total>3780</total>
+  </summary>
+  <categories>
+    <category name="Jídlo a pití" income="0" expense="-1500" total="-1500"/>
+    <category name="Doprava" income="0" expense="-3440" total="-3440"/>
+    <category name="Drogerie" income="0" expense="0" total="0"/>
+    <category name="Kancelarske potreby" income="0" expense="-2500" total="-2500"/>
+    <category name="Prijmy" income="11220" expense="0" total="11220"/>
+  </categories>
+  <subjects>
+    <subject name="Bylla" income="11220" expense="-2800" total="8420"/>
+    <subject name="Macecha Drogerie" income="0" expense="0" total="0"/>
+    <subject name="Babisovy dobroty" income="0" expense="-1440" total="-1440"/>
+    <subject name="Gazprom" income="0" expense="-3200" total="-3200"/>
+  </subjects>
+</report>
