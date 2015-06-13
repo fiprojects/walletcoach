@@ -1,13 +1,9 @@
 package com.walletcoach.walletcoach.controllers;
 
 import com.walletcoach.walletcoach.tools.XMLConnection;
-import java.awt.Desktop;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.Properties;
 import javax.xml.namespace.QName;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
@@ -67,16 +63,5 @@ public class ReportsController {
             new FileOutputStream(output), null);
         
         xml.close();
-    }
-    
-    private void navigate(URI uri) {
-        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
-            try {
-                desktop.browse(uri);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 }
