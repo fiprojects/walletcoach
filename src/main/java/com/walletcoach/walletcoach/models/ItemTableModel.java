@@ -5,6 +5,7 @@ import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.entities.Item;
 import com.walletcoach.walletcoach.entities.Subject;
 import com.walletcoach.walletcoach.tools.ItemsQueryBuilder;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,9 +16,9 @@ public class ItemTableModel extends ObjectTableModel {
     private final ItemController controller;
     protected List<Item> items = new ArrayList<>();
 
-    public ItemTableModel(ItemController controller, boolean displayIncome, Category category, Subject subject) {
+    public ItemTableModel(ItemController controller, boolean displayIncome, int month, int year, Category category, Subject subject) {
         this.controller = controller;
-        loadData(displayIncome, category, subject);
+        loadData(displayIncome, month, year, category, subject);
     }
 
     @Override
@@ -41,7 +42,12 @@ public class ItemTableModel extends ObjectTableModel {
                 Date date = item.getDatetime().getTime();
                 return format.format(date);
             case 2:
-                return item.getPrice() + " CZK";
+                DecimalFormat df = new DecimalFormat();
+                df.setMaximumFractionDigits(2);
+                df.setMinimumFractionDigits(2);
+                df.setGroupingUsed(true);
+                
+                return df.format(item.getPrice()) + " CZK";
             case 3:
                 return item.getDescription();
             case 4:
@@ -83,12 +89,15 @@ public class ItemTableModel extends ObjectTableModel {
         return false;
     }
 
-    public void loadData(boolean displayIncome, Category category, Subject subject) {
+    public void loadData(boolean displayIncome, int month, int year, Category category, Subject subject) {
         final ItemsQueryBuilder query = new ItemsQueryBuilder();
         
         // Expenses/Incomes
         if(displayIncome) query.displayIncome();
         else query.displayExpenses();
+        
+        // Period
+        query.filterPeriod(month, year);
         
         // Category
         if(category != null) {

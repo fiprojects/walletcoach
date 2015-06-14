@@ -14,6 +14,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
+import sun.security.jca.GetInstance;
 
 /**
  *
@@ -34,6 +36,8 @@ public class ReviewForm extends javax.swing.JFrame {
     private XQConnection xml; //TODO: close connection
     
     private boolean displayIncome = false;
+    private int displayMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
+    private int displayYear = Calendar.getInstance().get(Calendar.YEAR);
     private Category displayCategory = null;
     private Subject displaySubject = null;
     
@@ -73,7 +77,8 @@ public class ReviewForm extends javax.swing.JFrame {
         new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws Exception {
-                
+                loadMonths();
+                loadYears();
                 loadCategories();
                 loadSubjects();
                 return null;
@@ -91,11 +96,11 @@ public class ReviewForm extends javax.swing.JFrame {
     }
 
     public void refresh() {
-        tableModel.loadData(displayIncome, displayCategory, displaySubject);
+        tableModel.loadData(displayIncome, displayMonth, displayYear, displayCategory, displaySubject);
     }
     
     private void initTable() throws XQException {
-        tableModel = new ItemTableModel(itemController, displayIncome, null, null);
+        tableModel = new ItemTableModel(itemController, displayIncome, displayMonth, displayYear, null, null);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setModel(tableModel);
         
@@ -116,6 +121,40 @@ public class ReviewForm extends javax.swing.JFrame {
         table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
         
         tableListeners();
+    }
+    
+    private void loadMonths() throws XQException {
+        String[] months = {
+            "January", "February", "March", "April",
+            "May", "June", "July", "August",
+            "September", "October", "November", "December"
+        };
+        
+        monthField.removeAllItems();
+        
+        int index = 1;
+        for(String month : months) {
+            JComboBoxItem comboBoxItem = new JComboBoxItem(month, index);
+            monthField.addItem(comboBoxItem);
+            
+            index++;
+        }
+        
+        monthField.setSelectedIndex(displayMonth);
+    }
+    
+    private void loadYears() throws XQException {        
+        yearField.removeAllItems();
+        
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        
+        JComboBoxItem comboBoxItem = null;
+        for(int year = 2010; year < currentYear + 1; year++) {
+            comboBoxItem = new JComboBoxItem(Integer.toString(year), year);
+            yearField.addItem(comboBoxItem);
+        }
+        
+        yearField.setSelectedItem(comboBoxItem);
     }
     
     private void loadCategories() throws XQException {
@@ -172,8 +211,8 @@ public class ReviewForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         subjectField = new javax.swing.JComboBox();
         categoryField = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
-        jComboBox1 = new javax.swing.JComboBox();
+        yearField = new javax.swing.JComboBox();
+        monthField = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -362,14 +401,19 @@ public class ReviewForm extends javax.swing.JFrame {
             }
         });
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        yearField.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        yearField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        yearField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                yearFieldActionPerformed(evt);
+            }
+        });
+
+        monthField.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        monthField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+        monthField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthFieldActionPerformed(evt);
             }
         });
 
@@ -386,12 +430,12 @@ public class ReviewForm extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(monthField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(yearField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(categoryField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,8 +459,8 @@ public class ReviewForm extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(subjectField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(categoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(yearField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(monthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -724,9 +768,12 @@ public class ReviewForm extends javax.swing.JFrame {
         });
     }
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void monthFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthFieldActionPerformed
+        if(tableModel != null) {
+            displayMonth = (int) ((JComboBoxItem) monthField.getSelectedItem()).getItem();
+            refresh();
+        }
+    }//GEN-LAST:event_monthFieldActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         try {
@@ -786,6 +833,13 @@ public class ReviewForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_categoryFieldActionPerformed
 
+    private void yearFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearFieldActionPerformed
+        if(tableModel != null) {
+            displayYear = (int) ((JComboBoxItem) yearField.getSelectedItem()).getItem();
+            refresh();
+        }
+    }//GEN-LAST:event_yearFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -831,8 +885,6 @@ public class ReviewForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -859,8 +911,10 @@ public class ReviewForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JComboBox monthField;
     private javax.swing.JComboBox subjectField;
     private javax.swing.JTable table;
+    private javax.swing.JComboBox yearField;
     // End of variables declaration//GEN-END:variables
 
     private void tableListeners() {
