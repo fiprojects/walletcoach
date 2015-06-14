@@ -62,32 +62,11 @@
     <category-id>2</category-id>
     <company-id>4</company-id>
   </item>
-  <item id="10">
-    <description>Sandál</description>
-    <price>200</price>
-    <datetime>2015-06-13T16:37:29</datetime>
-    <category-id>7</category-id>
-    <company-id>2</company-id>
-  </item>
-  <item id="11">
-    <description>jTextField2</description>
-    <price>120</price>
-    <datetime>2015-06-13T23:38:33</datetime>
-    <category-id>4</category-id>
-    <company-id>2</company-id>
-  </item>
   <item id="12">
     <description>Kornoutek do první třídy</description>
     <price>220</price>
     <datetime>2015-06-14T02:08:36</datetime>
     <category-id>8</category-id>
-    <company-id>1</company-id>
-  </item>
-  <item id="13">
-    <description>Test</description>
-    <price>-12</price>
-    <datetime>2015-06-14T02:43:46</datetime>
-    <category-id>1</category-id>
     <company-id>1</company-id>
   </item>
   <item id="14">
@@ -110,12 +89,5 @@
     <datetime>2015-06-14T02:41:48</datetime>
     <category-id>3</category-id>
     <company-id>2</company-id>
-  </item>
-  <item id="17">
-    <description>Test</description>
-    <price>-12</price>
-    <datetime>2015-06-14T02:42:01</datetime>
-    <category-id>1</category-id>
-    <company-id>1</company-id>
   </item>
 </items>

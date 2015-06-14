@@ -247,7 +247,12 @@ public class ItemEditForm extends javax.swing.JDialog {
         
         CategoryController categoryController = new CategoryController();
         for(Category item : categoryController.getAll()) {
-            categoryField.addItem(new JComboBoxItem(item.getName(), item));
+            JComboBoxItem comboBoxItem = new JComboBoxItem(item.getName(), item);
+            categoryField.addItem(comboBoxItem);
+            
+            if(this.item != null && this.item.getCategory().getID().equals(item.getID())) {
+                categoryField.setSelectedItem(comboBoxItem);
+            }
         }
     }
     
@@ -256,7 +261,12 @@ public class ItemEditForm extends javax.swing.JDialog {
         
         SubjectController subjectController = new SubjectController();
         for(Subject item : subjectController.getAll()) {
-            subjectField.addItem(new JComboBoxItem(item.getName(), item));
+            JComboBoxItem comboBoxItem = new JComboBoxItem(item.getName(), item);
+            subjectField.addItem(comboBoxItem);
+            
+            if(this.item != null && this.item.getSubject().getID().equals(item.getID())) {
+                subjectField.setSelectedItem(comboBoxItem);
+            }
         }
     }
 }

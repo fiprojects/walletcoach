@@ -99,6 +99,7 @@ public class ItemController {
         expression.bindLong(new QName("id"), item.getID(), null);
         expression.executeQuery();
         
+        XMLConnection.save(xml, "items");
         XMLConnection.closeDb(xml);        
         xml.close();
     }

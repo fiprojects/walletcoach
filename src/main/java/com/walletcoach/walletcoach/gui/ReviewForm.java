@@ -4,7 +4,6 @@ import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.controllers.ItemController;
 import com.walletcoach.walletcoach.controllers.ReportsController;
 import com.walletcoach.walletcoach.controllers.SubjectController;
-import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.entities.Item;
 import com.walletcoach.walletcoach.models.ItemTableModel;
 import com.walletcoach.walletcoach.tools.XMLConnection;
