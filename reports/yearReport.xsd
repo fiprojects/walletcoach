@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <xs:element name="report">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="summary" type="valueType" />
+                
+                <xs:element name="categories">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="category">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                    </xs:sequence>
+
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="subjects">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="subject" type="valueType" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+            </xs:sequence>
+            <xs:attribute name="year" type="xs:integer" />
+            <xs:attribute name="month" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="valueType">
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="income" type="xs:positivedecimal" />
+        <xs:attribute name="expense" type="xs:negativedecimal" />
+        <xs:attribute name="total" type="xs:decimal" />
+    </xs:complexType>
+</xs:schema>
