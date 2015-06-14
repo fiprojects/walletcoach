@@ -31,7 +31,7 @@
         \fancyfoot[LE,RO]{\thepage}
 
         \begin{document}
-        \section*{Annual Report for <xsl:value-of select="/report/@year"/>
+        \section*{Annual Report for <xsl:value-of select="/report/@year"/>}
 
         \subsection*{Summary}
         \begin{center}
