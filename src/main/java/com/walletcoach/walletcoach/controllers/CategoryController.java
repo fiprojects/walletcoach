@@ -58,8 +58,7 @@ public class CategoryController {
     }
     
     public void edit(Category category) throws XQException {
-        Color color = category.getColor();
-        String colorString = String.format("%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
+        String colorString = colorToHex(category.getColor());
         
         XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "categories");
@@ -106,5 +105,13 @@ public class CategoryController {
         item.setColor(domTools.getColor("color"));
         
         return item;
+    }
+    
+    public String colorToHex(Color color) {
+        if(color == null) {
+            return "ffffff";
+        }
+        
+        return String.format("%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
 }
