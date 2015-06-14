@@ -5,7 +5,6 @@ import com.walletcoach.walletcoach.entities.Subject;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.SwingWorker;
-import javax.swing.table.AbstractTableModel;
 import javax.xml.xquery.XQException;
 
 public class SubjectTableModel extends ObjectTableModel {

@@ -8,9 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.SwingWorker;
-import javax.swing.table.AbstractTableModel;
 
-public class ItemTableModel extends AbstractTableModel {    
+public class ItemTableModel extends ObjectTableModel {    
     private final ItemController controller;
     protected List<Item> items = new ArrayList<>();
 
@@ -48,6 +47,11 @@ public class ItemTableModel extends AbstractTableModel {
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
+    }
+    
+    @Override
+    public Object getRowObject(int rowIndex) {
+        return items.get(rowIndex);
     }
 
     @Override

@@ -64,13 +64,21 @@ public class ItemController {
         return items;
     }
     
-    public void add(Item item) throws XQException {
+    public void edit(Item item) throws XQException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         Date date = item.getDatetime().getTime();
         
         XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "items");
-        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("itemInsert"));
+        
+        XQPreparedExpression expression;
+        if(item.getID() == null) {
+            expression = xml.prepareExpression(XMLConnection.getQuery("itemInsert"));
+        } else {
+            expression = xml.prepareExpression(XMLConnection.getQuery("itemUpdate"));
+            expression.bindLong(new QName("id"), item.getID(), null);
+        }
+        
         expression.bindString(new QName("description"), item.getDescription(), null);
         expression.bindObject(new QName("price"), item.getPrice(), null);
         expression.bindString(new QName("datetime"), format.format(date), null);
@@ -80,6 +88,18 @@ public class ItemController {
         
         XMLConnection.save(xml, "items");
         XMLConnection.closeDb(xml);
+        xml.close();
+    }
+    
+    public void delete(Item item) throws XQException {
+        XQConnection xml = XMLConnection.getConnection();
+        XMLConnection.openDb(xml, "items");
+        
+        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("itemDelete"));
+        expression.bindLong(new QName("id"), item.getID(), null);
+        expression.executeQuery();
+        
+        XMLConnection.closeDb(xml);        
         xml.close();
     }
     

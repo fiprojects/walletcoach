@@ -86,7 +86,7 @@
   <item id="13">
     <description>Test</description>
     <price>-12</price>
-    <datetime>2015-06-14T02:14:42</datetime>
+    <datetime>2015-06-14T02:43:46</datetime>
     <category-id>1</category-id>
     <company-id>1</company-id>
   </item>
@@ -96,5 +96,26 @@
     <datetime>2015-06-14T02:22:53</datetime>
     <category-id>7</category-id>
     <company-id>3</company-id>
+  </item>
+  <item id="15">
+    <description>Zmrzlina</description>
+    <price>-100</price>
+    <datetime>2015-06-14T02:39:57</datetime>
+    <category-id>1</category-id>
+    <company-id>1</company-id>
+  </item>
+  <item id="16">
+    <description>Sandál</description>
+    <price>-200</price>
+    <datetime>2015-06-14T02:41:48</datetime>
+    <category-id>3</category-id>
+    <company-id>2</company-id>
+  </item>
+  <item id="17">
+    <description>Test</description>
+    <price>-12</price>
+    <datetime>2015-06-14T02:42:01</datetime>
+    <category-id>1</category-id>
+    <company-id>1</company-id>
   </item>
 </items>
