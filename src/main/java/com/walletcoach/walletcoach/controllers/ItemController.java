@@ -96,7 +96,7 @@ public class ItemController {
         item.setDescription(domTools.getString("description"));
         
         item.setCategory(categoryController.parseItem(category));
-        //if(subject != null) subjectController.parseItem((Element)subject);
+        item.setSubject(subjectController.parseItem((Element)subject));
         
         return item;
     }

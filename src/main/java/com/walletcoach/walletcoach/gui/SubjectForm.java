@@ -6,7 +6,6 @@
 package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.SubjectController;
-import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.entities.Subject;
 import com.walletcoach.walletcoach.models.SubjectTableModel;
 import java.awt.event.WindowAdapter;

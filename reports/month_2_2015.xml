@@ -12,16 +12,13 @@
     <category name="Prijmy" income="11220" expense="0" total="11220"/>
     <category name="Sport" income="0" expense="0" total="0"/>
     <category name="Zábava" income="0" expense="0" total="0"/>
-    <category name="Škola" income="0" expense="0" total="0"/>
+    <category name="Škola a školka" income="0" expense="0" total="0"/>
   </categories>
   <subjects>
     <subject name="Bylla" income="119510" expense="0" total="119510"/>
     <subject name="Macecha Drogerie" income="0" expense="0" total="0"/>
     <subject name="Babisovy dobroty" income="0" expense="-1200" total="-1200"/>
     <subject name="Gazprom" income="0" expense="-3200" total="-3200"/>
-    <subject name="jTextField1" income="0" expense="0" total="0"/>
-    <subject name="jTextField1" income="0" expense="0" total="0"/>
-    <subject name="jTextField1" income="0" expense="0" total="0"/>
-    <subject name="jTextField1" income="0" expense="0" total="0"/>
+    <subject name="BuFet" income="0" expense="0" total="0"/>
   </subjects>
 </report>

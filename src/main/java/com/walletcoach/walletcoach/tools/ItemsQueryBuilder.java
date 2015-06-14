@@ -8,6 +8,7 @@ import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQPreparedExpression;
 
 public class ItemsQueryBuilder implements QueryBuilder {
+    private boolean displayIncome = false;
     private int month;
     private int year;
     private Long categoryId = null;
@@ -16,6 +17,14 @@ public class ItemsQueryBuilder implements QueryBuilder {
     public ItemsQueryBuilder() {
         Calendar calendar = Calendar.getInstance();
         filterPeriod(calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
+    }
+    
+    public void displayExpenses() {
+        displayIncome = false;
+    }
+    
+    public void displayIncome() {
+        displayIncome = true;
     }
     
     public void filterPeriod(int month, int year) {
@@ -61,6 +70,12 @@ public class ItemsQueryBuilder implements QueryBuilder {
         declarations.append(external("p_month"));
         declarations.append(external("p_year"));
         where.append("where $month = $p_month and $year = $p_year");        
+        
+        if(displayIncome) {
+            where.append(" and $item/price >= 0");
+        } else {
+            where.append(" and $item/price <= 0");
+        }
         
         if(categoryId != null) {
             declarations.append(external("p_category"));

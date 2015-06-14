@@ -14,9 +14,9 @@ public class ItemTableModel extends AbstractTableModel {
     private final ItemController controller;
     protected List<Item> items = new ArrayList<>();
 
-    public ItemTableModel(ItemController controller) {
+    public ItemTableModel(ItemController controller, boolean displayIncome) {
         this.controller = controller;
-        loadData();
+        loadData(displayIncome);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ItemTableModel extends AbstractTableModel {
             case 3:
                 return item.getCategory().getName();
             case 4:
-                return item.getSubject();
+                return item.getSubject().getName();
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
@@ -73,8 +73,11 @@ public class ItemTableModel extends AbstractTableModel {
         return false;
     }
 
-    public void loadData() {
+    public void loadData(boolean displayIncome) {
         final ItemsQueryBuilder query = new ItemsQueryBuilder();
+        if(displayIncome) query.displayIncome();
+        else query.displayExpenses();
+        
         new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws Exception {

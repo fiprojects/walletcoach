@@ -4,7 +4,7 @@ let $date := $item/datetime/text()
 let $day := fn:day-from-dateTime($date)
 let $month := fn:month-from-dateTime($date)
 let $year := fn:year-from-dateTime($date)
-order by $date
+order by $date descending
 %where%
 return (
     <item>

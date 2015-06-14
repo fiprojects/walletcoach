@@ -76,4 +76,25 @@
     <category-id>4</category-id>
     <company-id>2</company-id>
   </item>
+  <item id="12">
+    <description>Kornoutek do první třídy</description>
+    <price>220</price>
+    <datetime>2015-06-14T02:08:36</datetime>
+    <category-id>8</category-id>
+    <company-id>1</company-id>
+  </item>
+  <item id="13">
+    <description>Test</description>
+    <price>-12</price>
+    <datetime>2015-06-14T02:14:42</datetime>
+    <category-id>1</category-id>
+    <company-id>1</company-id>
+  </item>
+  <item id="14">
+    <description>Skandál</description>
+    <price>-20000</price>
+    <datetime>2015-06-14T02:22:53</datetime>
+    <category-id>7</category-id>
+    <company-id>3</company-id>
+  </item>
 </items>
