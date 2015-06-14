@@ -64,8 +64,8 @@
   </item>
   <item id="12">
     <description>Kornoutek do první třídy</description>
-    <price>220</price>
-    <datetime>2015-06-14T02:08:36</datetime>
+    <price>-220</price>
+    <datetime>2015-06-14T18:46:55</datetime>
     <category-id>8</category-id>
     <company-id>1</company-id>
   </item>
@@ -79,21 +79,21 @@
   <item id="15">
     <description>Zmrzlina</description>
     <price>-100</price>
-    <datetime>2015-06-14T02:39:57</datetime>
+    <datetime>2015-06-14T18:40:38</datetime>
     <category-id>1</category-id>
     <company-id>1</company-id>
   </item>
   <item id="16">
     <description>Sandál</description>
     <price>-200</price>
-    <datetime>2015-06-14T02:41:48</datetime>
+    <datetime>2015-06-14T18:34:17</datetime>
     <category-id>3</category-id>
     <company-id>2</company-id>
   </item>
   <item id="17">
     <description>Moc jídla</description>
     <price>-1232.23</price>
-    <datetime>2015-06-14T03:06:26</datetime>
+    <datetime>2015-06-14T18:23:51</datetime>
     <category-id>1</category-id>
     <company-id>1</company-id>
   </item>
@@ -107,15 +107,22 @@
   <item id="19">
     <description>Benzín</description>
     <price>-1200</price>
-    <datetime>2015-06-14T14:18:51</datetime>
+    <datetime>2015-06-14T18:33:38</datetime>
     <category-id>2</category-id>
     <company-id>4</company-id>
   </item>
   <item id="20">
     <description>Bageta</description>
     <price>-100</price>
-    <datetime>2015-06-14T15:15:01</datetime>
+    <datetime>2015-06-14T18:24:21</datetime>
     <category-id>1</category-id>
     <company-id>5</company-id>
+  </item>
+  <item id="21">
+    <description>Olej</description>
+    <price>-20</price>
+    <datetime>2015-06-14T18:40:02</datetime>
+    <category-id>1</category-id>
+    <company-id>6</company-id>
   </item>
 </items>

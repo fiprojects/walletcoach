@@ -1,7 +1,7 @@
 <categories>
   <category id="1">
     <name>Jídlo a pití</name>
-    <color>orange</color>
+    <color>#6666ff</color>
   </category>
   <category id="2">
     <name>Doprava</name>
@@ -9,23 +9,23 @@
   </category>
   <category id="3">
     <name>Drogerie</name>
-    <color>blue</color>
+    <color>#339900</color>
   </category>
   <category id="4">
     <name>Kancelarske potreby</name>
-    <color>yellow</color>
+    <color>#ff3366</color>
   </category>
   <category id="5">
     <name>Prijmy</name>
-    <color>green</color>
+    <color>#cc0066</color>
   </category>
   <category id="6">
     <name>Sport</name>
-    <color>#ff0000</color>
+    <color>#ffff33</color>
   </category>
   <category id="7">
     <name>Zábava</name>
-    <color>#ff0000</color>
+    <color>#00cccc</color>
   </category>
   <category id="8">
     <name>Škola a školka</name>

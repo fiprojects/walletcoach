@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
 
@@ -17,7 +19,7 @@ import javax.xml.xquery.XQException;
  *
  * @author Michael
  */
-public class CategoryForm extends javax.swing.JFrame {
+public class CategoryForm extends javax.swing.JDialog {
     private XQConnection xml;
     private final CategoryController categoryController;
     private CategoryTableModel tableModel;
@@ -31,6 +33,7 @@ public class CategoryForm extends javax.swing.JFrame {
         
         initComponents();
         initTable();
+        tableListeners();
     }
     
     public void refresh() {
@@ -42,9 +45,28 @@ public class CategoryForm extends javax.swing.JFrame {
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setModel(tableModel);
-
-        table.getColumnModel().getColumn(0).setPreferredWidth(30);
-        table.getColumnModel().getColumn(1).setPreferredWidth(200);
+        
+        table.getColumnModel().getColumn(0).setPreferredWidth(100);
+        table.getColumnModel().getColumn(1).setPreferredWidth(30);
+        table.getColumnModel().getColumn(1).setMaxWidth(30);
+        
+        // Category color
+        table.getColumnModel().getColumn(1).setCellRenderer(new ColorTableCellRenderer());
+    }
+    
+    private void tableListeners() {
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (table.getSelectedRow() < 0) {
+                    editButton.setEnabled(false);
+                    deleteButton.setEnabled(false);
+                } else {
+                    editButton.setEnabled(true);
+                    deleteButton.setEnabled(true);
+                }
+            }
+        });
     }
 
     /**
@@ -61,14 +83,16 @@ public class CategoryForm extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Categories");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Categories");
 
+        table.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -80,6 +104,7 @@ public class CategoryForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        table.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(table);
 
         jButton1.setText("Add");
@@ -89,17 +114,19 @@ public class CategoryForm extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Delete");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        deleteButton.setText("Delete");
+        deleteButton.setEnabled(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                deleteButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Edit");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        editButton.setText("Edit");
+        editButton.setEnabled(false);
+        editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                editButtonActionPerformed(evt);
             }
         });
 
@@ -110,8 +137,8 @@ public class CategoryForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -121,9 +148,9 @@ public class CategoryForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(editButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(deleteButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -165,7 +192,7 @@ public class CategoryForm extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         final Category item = (Category)tableModel.getSelectedObject(table);
         if(item != null) {
             new SwingWorker<Void, Void>() {
@@ -180,9 +207,9 @@ public class CategoryForm extends javax.swing.JFrame {
                 }
             }.execute();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         final Category item = (Category)tableModel.getSelectedObject(table);
         if(item != null) {
             CategoryEditForm.display(categoryController, item, new WindowAdapter() {
@@ -192,7 +219,7 @@ public class CategoryForm extends javax.swing.JFrame {
                 }
             });
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_editButtonActionPerformed
 
     public static void display(final CategoryController categoryController) throws XQException {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -215,6 +242,8 @@ public class CategoryForm extends javax.swing.JFrame {
                 try {
                     CategoryForm form = new CategoryForm(categoryController);
                     form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    form.setLocationRelativeTo(null);
+                    form.setModal(true);
                     form.setVisible(true);
                 } catch (XQException ex) {
                     Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -224,9 +253,9 @@ public class CategoryForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

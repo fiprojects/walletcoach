@@ -54,4 +54,15 @@
     </address>
     <description>Tam si můžu nacpat bříško</description>
   </subject>
+  <subject id="6">
+    <ic>123467890</ic>
+    <name>Mínus</name>
+    <address>
+      <street/>
+      <number/>
+      <city/>
+      <country/>
+    </address>
+    <description>Diskont</description>
+  </subject>
 </subjects>

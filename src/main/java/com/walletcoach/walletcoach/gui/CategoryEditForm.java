@@ -9,7 +9,6 @@ import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.entities.Category;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
-import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
@@ -43,8 +42,14 @@ public class CategoryEditForm extends javax.swing.JDialog {
         this(categoryController, null);
     }
     
+    public void setColor(Color color) {
+        colorField.setText(categoryController.colorToHex(color));
+        displayColor();
+    }
+    
     private void populateForm() {
         nameField.setText(item.getName());
+        setColor(item.getColor());
     }
 
     /**
@@ -72,7 +77,8 @@ public class CategoryEditForm extends javax.swing.JDialog {
 
         jLabel2.setText("Color");
 
-        colorField.setText("FFFFFF");
+        colorField.setText("ffffff");
+        colorField.setToolTipText("");
         colorField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 colorFieldKeyReleased(evt);
@@ -81,7 +87,12 @@ public class CategoryEditForm extends javax.swing.JDialog {
 
         jLabel3.setText("#");
 
-        jButton1.setText("Vybrat...");
+        jButton1.setText("Select...");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         colorDisplay.setBackground(new java.awt.Color(255, 255, 255));
         colorDisplay.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -97,14 +108,14 @@ public class CategoryEditForm extends javax.swing.JDialog {
             .addGap(0, 21, Short.MAX_VALUE)
         );
 
-        jButton2.setText("Storno");
+        jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Uložit");
+        jButton3.setText("Save");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -156,7 +167,7 @@ public class CategoryEditForm extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addComponent(jButton1))
                     .addComponent(colorDisplay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
@@ -167,13 +178,17 @@ public class CategoryEditForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void colorFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_colorFieldKeyReleased
+        displayColor();
+    }//GEN-LAST:event_colorFieldKeyReleased
+
+    private void displayColor() {
         Color color = new Color(0xFFFFFF);
         try {
             color = Color.decode("#" + colorField.getText());
         } catch(Exception e) {}
         
         colorDisplay.setBackground(color);
-    }//GEN-LAST:event_colorFieldKeyReleased
+    }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         final Category category;
@@ -205,6 +220,10 @@ public class CategoryEditForm extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ColorPicker.display(this);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public static void display(final CategoryController categoryController, final Category item, final WindowAdapter onClose) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
@@ -225,6 +244,7 @@ public class CategoryEditForm extends javax.swing.JDialog {
             public void run() {
                 CategoryEditForm form = null;
                 form = new CategoryEditForm(categoryController, item);
+                form.setLocationRelativeTo(null);
                 form.setModal(true);
                 
                 if(onClose != null) {

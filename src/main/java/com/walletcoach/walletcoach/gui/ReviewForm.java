@@ -140,7 +140,7 @@ public class ReviewForm extends javax.swing.JFrame {
             index++;
         }
         
-        monthField.setSelectedIndex(displayMonth);
+        monthField.setSelectedIndex(displayMonth - 1);
     }
     
     private void loadYears() throws XQException {        
@@ -777,7 +777,7 @@ public class ReviewForm extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         try {
-            reportsController.yearReport(2015);
+            reportsController.yearReport(displayYear);
         } catch (XQException ex) {
             Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
@@ -789,7 +789,7 @@ public class ReviewForm extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         try {
-            reportsController.monthReport(2, 2015);
+            reportsController.monthReport(displayMonth, displayYear);
         } catch (XQException ex) {
             Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {

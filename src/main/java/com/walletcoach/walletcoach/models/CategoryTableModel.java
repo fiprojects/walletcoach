@@ -48,9 +48,9 @@ public class CategoryTableModel extends ObjectTableModel {
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return "nazev";
+                return "Name";
             case 1:
-                return "barva";
+                return "Color";
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
