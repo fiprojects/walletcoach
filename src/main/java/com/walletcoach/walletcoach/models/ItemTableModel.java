@@ -4,6 +4,7 @@ import com.walletcoach.walletcoach.controllers.ItemController;
 import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.entities.Item;
 import com.walletcoach.walletcoach.entities.Subject;
+import com.walletcoach.walletcoach.tools.I18n;
 import com.walletcoach.walletcoach.tools.ItemsQueryBuilder;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -70,15 +71,15 @@ public class ItemTableModel extends ObjectTableModel {
             case 0:
                 return "";
             case 1:
-                return "Date";
+                return I18n.get("date");
             case 2:
-                return "Price";
+                return I18n.get("price");
             case 3:
-                return "Description";
+                return I18n.get("description");
             case 4:
-                return "Category";
+                return I18n.get("category");
             case 5:
-                return "Subject";
+                return I18n.get("subject");
             default:
                 throw new IllegalArgumentException("columnIndex");
         }

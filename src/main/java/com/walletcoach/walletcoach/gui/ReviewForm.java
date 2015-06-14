@@ -8,6 +8,7 @@ import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.entities.Item;
 import com.walletcoach.walletcoach.entities.Subject;
 import com.walletcoach.walletcoach.models.ItemTableModel;
+import com.walletcoach.walletcoach.tools.I18n;
 import com.walletcoach.walletcoach.tools.JComboBoxItem;
 import com.walletcoach.walletcoach.tools.XMLConnection;
 import java.awt.Desktop;
@@ -128,16 +129,16 @@ public class ReviewForm extends javax.swing.JFrame {
     
     private void loadMonths() throws XQException {
         String[] months = {
-            "January", "February", "March", "April",
-            "May", "June", "July", "August",
-            "September", "October", "November", "December"
+            "january", "february", "march", "april",
+            "may", "june", "july", "august",
+            "september", "october", "november", "december"
         };
         
         monthField.removeAllItems();
         
         int index = 1;
         for(String month : months) {
-            JComboBoxItem comboBoxItem = new JComboBoxItem(month, index);
+            JComboBoxItem comboBoxItem = new JComboBoxItem(I18n.get(month), index);
             monthField.addItem(comboBoxItem);
             
             index++;
@@ -164,7 +165,7 @@ public class ReviewForm extends javax.swing.JFrame {
         categoryField.removeAllItems();
         
         // Filter none
-        categoryField.addItem(new JComboBoxItem("All Categories", null));
+        categoryField.addItem(new JComboBoxItem(I18n.get("allCategories"), null));
         
         for(Category item : categoryController.getAll()) {
             JComboBoxItem comboBoxItem = new JComboBoxItem(item.getName(), item);
@@ -176,7 +177,7 @@ public class ReviewForm extends javax.swing.JFrame {
         subjectField.removeAllItems();
         
         // Filter none
-        subjectField.addItem(new JComboBoxItem("All Subjects", null));
+        subjectField.addItem(new JComboBoxItem(I18n.get("allSubjects"), null));
         
         for(Subject item : subjectController.getAll()) {
             JComboBoxItem comboBoxItem = new JComboBoxItem(item.getName(), item);
@@ -199,6 +200,7 @@ public class ReviewForm extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -259,6 +261,8 @@ public class ReviewForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("WalletCoach");
 
+        jLabel8.setIcon(new javax.swing.ImageIcon("D:\\projects\\walletcoach\\walletcoach\\src\\main\\resources\\icons\\logo.png")); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -266,20 +270,23 @@ public class ReviewForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addContainerGap(644, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addComponent(jLabel3)
-                .addGap(30, 30, 30))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(244, 244, 244));
@@ -566,7 +573,7 @@ public class ReviewForm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(deleteButton))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 19, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -669,7 +676,7 @@ public class ReviewForm extends javax.swing.JFrame {
 
     private void switchToExpenses() {
         displayIncome = false;
-        displayLabel.setText("Expenses");
+        displayLabel.setText(I18n.get("expenses"));
         
         expensesMenuItem.setSelected(true);
         incomesMenuItem.setSelected(false);
@@ -699,7 +706,7 @@ public class ReviewForm extends javax.swing.JFrame {
 
     private void switchToIncomes() {
         displayIncome = true;
-        displayLabel.setText("Incomes");
+        displayLabel.setText(I18n.get("incomes"));
         
         expensesMenuItem.setSelected(false);
         incomesMenuItem.setSelected(true);
@@ -900,6 +907,7 @@ public class ReviewForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

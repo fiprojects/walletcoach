@@ -2,6 +2,7 @@ package com.walletcoach.walletcoach.models;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.entities.Category;
+import com.walletcoach.walletcoach.tools.I18n;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.SwingWorker;
@@ -48,9 +49,9 @@ public class CategoryTableModel extends ObjectTableModel {
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return "Name";
+                return I18n.get("name");
             case 1:
-                return "Color";
+                return I18n.get("color");
             default:
                 throw new IllegalArgumentException("columnIndex");
         }

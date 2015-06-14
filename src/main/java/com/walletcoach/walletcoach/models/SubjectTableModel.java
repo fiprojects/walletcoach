@@ -2,6 +2,7 @@ package com.walletcoach.walletcoach.models;
 
 import com.walletcoach.walletcoach.controllers.SubjectController;
 import com.walletcoach.walletcoach.entities.Subject;
+import com.walletcoach.walletcoach.tools.I18n;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.SwingWorker;
@@ -50,11 +51,11 @@ public class SubjectTableModel extends ObjectTableModel {
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return "IC";
+                return I18n.get("ic");
             case 1:
-                return "Name";
+                return I18n.get("name");
             case 2:
-                return "Description";
+                return I18n.get("description");
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
