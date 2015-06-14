@@ -1,24 +1,25 @@
 <report year="2015">
   <summary>
-    <income>122450.2</income>
-    <expense>-26082</expense>
-    <total>96368.2</total>
+    <income>421910.2</income>
+    <expense>-29142.23</expense>
+    <total>392767.97</total>
   </summary>
   <categories>
-    <category name="Jídlo a pití" income="108290" expense="-1512" total="106778"/>
-    <category name="Doprava" income="2400.2" expense="-3320" total="-919.8"/>
-    <category name="Drogerie" income="0" expense="0" total="0"/>
-    <category name="Kancelarske potreby" income="120" expense="-1250" total="-1130"/>
-    <category name="Prijmy" income="11220" expense="0" total="11220"/>
+    <category name="Jídlo a pití" income="108290" expense="-2952.23" total="105337.77"/>
+    <category name="Doprava" income="2400.2" expense="-4520" total="-2119.8"/>
+    <category name="Drogerie" income="0" expense="-200" total="-200"/>
+    <category name="Kancelarske potreby" income="0" expense="-1250" total="-1250"/>
+    <category name="Prijmy" income="311220" expense="0" total="311220"/>
     <category name="Sport" income="0" expense="0" total="0"/>
-    <category name="Zábava" income="200" expense="-20000" total="-19800"/>
-    <category name="Škola a školka" income="220" expense="0" total="220"/>
+    <category name="Zábava" income="0" expense="-20000" total="-20000"/>
+    <category name="Škola a školka" income="0" expense="-220" total="-220"/>
   </categories>
   <subjects>
-    <subject name="Bylla" income="119730" expense="-1562" total="118168"/>
-    <subject name="Macecha Drogerie" income="320" expense="0" total="320"/>
+    <subject name="Bylla" income="119510" expense="-3102.23" total="116407.77"/>
+    <subject name="Macecha Drogerie" income="0" expense="-200" total="-200"/>
     <subject name="Babisovy dobroty" income="0" expense="-21320" total="-21320"/>
-    <subject name="Gazprom" income="2400.2" expense="-3200" total="-799.8"/>
-    <subject name="BuFet" income="0" expense="0" total="0"/>
+    <subject name="Gazprom" income="302400.2" expense="-4400" total="298000.2"/>
+    <subject name="BuFet" income="0" expense="-100" total="-100"/>
+    <subject name="Mínus" income="0" expense="-20" total="-20"/>
   </subjects>
 </report>

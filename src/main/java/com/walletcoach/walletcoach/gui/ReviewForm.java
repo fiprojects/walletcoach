@@ -10,9 +10,12 @@ import com.walletcoach.walletcoach.entities.Subject;
 import com.walletcoach.walletcoach.models.ItemTableModel;
 import com.walletcoach.walletcoach.tools.JComboBoxItem;
 import com.walletcoach.walletcoach.tools.XMLConnection;
+import java.awt.Desktop;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -795,6 +798,12 @@ public class ReviewForm extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {
+            Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            Desktop.getDesktop().open(new File("reports"));
+        } catch (IOException ex) {
             Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton8ActionPerformed

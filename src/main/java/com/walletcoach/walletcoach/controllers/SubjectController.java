@@ -99,6 +99,29 @@ public class SubjectController {
         xml.close();
     }
     
+    public Subject getFromAres(String ic) throws XQException {
+        XQConnection xml = XMLConnection.getConnection();
+        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("ares"));
+        expression.bindString(new QName("ic"), "http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_bas.cgi?ico=" + ic, null);
+        XQResultSequence result = expression.executeQuery();
+        
+        Subject subject = null;
+        if(result.next()) {
+            Element element = (Element)result.getObject();
+            DOMTools domTools = new DOMTools(element);
+            
+            subject = new Subject();
+            subject.setName(domTools.getString("name"));
+            subject.setStreet(domTools.getString("street"));
+            subject.setNumber(domTools.getString("number"));
+            subject.setCity(domTools.getString("city"));
+        }
+        
+        xml.close();
+        
+        return subject;
+    }
+    
     public Subject parseItem(Element element) throws XQException {
         DOMTools domTools = new DOMTools(element);
         Subject subject = new Subject();

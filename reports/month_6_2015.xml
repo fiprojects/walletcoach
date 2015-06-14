@@ -1,8 +1,8 @@
 <report year="2015" month="6">
   <summary>
-    <income>302620.2</income>
-    <expense>-22852.23</expense>
-    <total>279767.97</total>
+    <income>302400.2</income>
+    <expense>-23072.23</expense>
+    <total>279327.97</total>
   </summary>
   <categories>
     <category name="Jídlo a pití" income="0" expense="-1452.23" total="-1452.23"/>
@@ -12,10 +12,10 @@
     <category name="Prijmy" income="300000" expense="0" total="300000"/>
     <category name="Sport" income="0" expense="0" total="0"/>
     <category name="Zábava" income="0" expense="-20000" total="-20000"/>
-    <category name="Škola a školka" income="220" expense="0" total="220"/>
+    <category name="Škola a školka" income="0" expense="-220" total="-220"/>
   </categories>
   <subjects>
-    <subject name="Bylla" income="220" expense="-1332.23" total="-1112.23"/>
+    <subject name="Bylla" income="0" expense="-1552.23" total="-1552.23"/>
     <subject name="Macecha Drogerie" income="0" expense="-200" total="-200"/>
     <subject name="Babisovy dobroty" income="0" expense="-20000" total="-20000"/>
     <subject name="Gazprom" income="302400.2" expense="-1200" total="301200.2"/>

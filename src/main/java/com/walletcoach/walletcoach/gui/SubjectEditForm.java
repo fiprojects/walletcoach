@@ -9,6 +9,10 @@ import com.walletcoach.walletcoach.controllers.SubjectController;
 import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.entities.Subject;
 import java.awt.event.WindowAdapter;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
@@ -64,7 +68,7 @@ public class SubjectEditForm extends javax.swing.JDialog {
         descriptionLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        retrieveButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         numberLabel = new javax.swing.JLabel();
         countryLabel = new javax.swing.JLabel();
@@ -101,7 +105,12 @@ public class SubjectEditForm extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setText("Retrieve from ARES");
+        retrieveButton.setText("Retrieve from ARES");
+        retrieveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retrieveButtonActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Location", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -181,7 +190,7 @@ public class SubjectEditForm extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(icField)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3))
+                                .addComponent(retrieveButton))
                             .addComponent(descriptionField)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -197,7 +206,7 @@ public class SubjectEditForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(icField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(icLabel)
-                    .addComponent(jButton3))
+                    .addComponent(retrieveButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
@@ -253,6 +262,49 @@ public class SubjectEditForm extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void retrieveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retrieveButtonActionPerformed
+        final String ic = icField.getText();
+        if(ic.equals("")) return;
+        
+        retrieveButton.setEnabled(false);
+        new SwingWorker<Subject, Void>() {
+            private SubjectEditForm parent;
+            
+            @Override
+            protected Subject doInBackground() throws XQException {
+                return subjectController.getFromAres(ic);
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    if(get() == null) {
+                        nameField.setText("N/A");
+                        return;
+                    }
+                    
+                    Subject subject = get();
+                    if(subject.getName().length() == 0) {
+                        nameField.setText("N/A");
+                        return;
+                    }
+                    
+                    nameField.setText(subject.getName());
+                    streetField.setText(subject.getStreet().trim());
+                    cityField.setText(subject.getCity());
+                    numberField.setText(subject.getNumber());
+                    countryField.setText("Česká republika");
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SubjectEditForm.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ExecutionException ex) {
+                    Logger.getLogger(SubjectEditForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                retrieveButton.setEnabled(true);
+            }
+        }.execute();
+    }//GEN-LAST:event_retrieveButtonActionPerformed
+
     /**
      * @param subjectController
      * @param onClose
@@ -298,13 +350,13 @@ public class SubjectEditForm extends javax.swing.JDialog {
     private javax.swing.JLabel icLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField numberField;
     private javax.swing.JLabel numberLabel;
+    private javax.swing.JButton retrieveButton;
     private javax.swing.JTextField streetField;
     // End of variables declaration//GEN-END:variables
 }
