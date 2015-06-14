@@ -55,7 +55,7 @@ public class ItemsQueryBuilder implements QueryBuilder {
         }
         
         if(subjectId != null) {
-            expression.bindLong(new QName("p_subject"), categoryId, null);
+            expression.bindLong(new QName("p_subject"), subjectId, null);
         }
         
         return expression;

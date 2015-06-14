@@ -104,4 +104,18 @@
     <category-id>5</category-id>
     <company-id>4</company-id>
   </item>
+  <item id="19">
+    <description>Benzín</description>
+    <price>-1200</price>
+    <datetime>2015-06-14T14:18:51</datetime>
+    <category-id>2</category-id>
+    <company-id>4</company-id>
+  </item>
+  <item id="20">
+    <description>Bageta</description>
+    <price>-100</price>
+    <datetime>2015-06-14T15:15:01</datetime>
+    <category-id>1</category-id>
+    <company-id>5</company-id>
+  </item>
 </items>

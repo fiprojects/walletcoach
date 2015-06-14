@@ -5,7 +5,7 @@
   </category>
   <category id="2">
     <name>Doprava</name>
-    <color>red</color>
+    <color>#0abefa</color>
   </category>
   <category id="3">
     <name>Drogerie</name>
@@ -25,7 +25,7 @@
   </category>
   <category id="7">
     <name>Zábava</name>
-    <color>#ffffff</color>
+    <color>#ff0000</color>
   </category>
   <category id="8">
     <name>Škola a školka</name>

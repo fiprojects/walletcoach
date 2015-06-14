@@ -48,8 +48,13 @@ public class ItemEditForm extends javax.swing.JDialog {
     }
 
     private void populateForm() {
+        BigDecimal price = item.getPrice();
+        if(!isIncome) {
+            price = new BigDecimal(0).subtract(price);
+        }
+        
         descriptionField.setText(item.getDescription());
-        priceField.setText(item.getPrice().toString());
+        priceField.setText(price.toString());
     }
     
     /**

@@ -1,7 +1,9 @@
 package com.walletcoach.walletcoach.models;
 
 import com.walletcoach.walletcoach.controllers.ItemController;
+import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.entities.Item;
+import com.walletcoach.walletcoach.entities.Subject;
 import com.walletcoach.walletcoach.tools.ItemsQueryBuilder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,9 +15,9 @@ public class ItemTableModel extends ObjectTableModel {
     private final ItemController controller;
     protected List<Item> items = new ArrayList<>();
 
-    public ItemTableModel(ItemController controller, boolean displayIncome) {
+    public ItemTableModel(ItemController controller, boolean displayIncome, Category category, Subject subject) {
         this.controller = controller;
-        loadData(displayIncome);
+        loadData(displayIncome, category, subject);
     }
 
     @Override
@@ -25,7 +27,7 @@ public class ItemTableModel extends ObjectTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 6;
     }
 
     @Override
@@ -33,16 +35,18 @@ public class ItemTableModel extends ObjectTableModel {
         Item item = items.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                return item.getCategory().getColor();
+            case 1:
+                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
                 Date date = item.getDatetime().getTime();
                 return format.format(date);
-            case 1:
-                return item.getPrice();
             case 2:
-                return item.getDescription();
+                return item.getPrice() + " CZK";
             case 3:
-                return item.getCategory().getName();
+                return item.getDescription();
             case 4:
+                return item.getCategory().getName();
+            case 5:
                 return item.getSubject().getName();
             default:
                 throw new IllegalArgumentException("columnIndex");
@@ -58,14 +62,16 @@ public class ItemTableModel extends ObjectTableModel {
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return "Date";
+                return "";
             case 1:
-                return "Price";
+                return "Date";
             case 2:
-                return "Description";
+                return "Price";
             case 3:
-                return "Category";
+                return "Description";
             case 4:
+                return "Category";
+            case 5:
                 return "Subject";
             default:
                 throw new IllegalArgumentException("columnIndex");
@@ -77,10 +83,22 @@ public class ItemTableModel extends ObjectTableModel {
         return false;
     }
 
-    public void loadData(boolean displayIncome) {
+    public void loadData(boolean displayIncome, Category category, Subject subject) {
         final ItemsQueryBuilder query = new ItemsQueryBuilder();
+        
+        // Expenses/Incomes
         if(displayIncome) query.displayIncome();
         else query.displayExpenses();
+        
+        // Category
+        if(category != null) {
+            query.filterCategory(category.getID());
+        }
+        
+        // Subject
+        if(subject != null) {
+            query.filterSubject(subject.getID());
+        }
         
         new SwingWorker<Void, Void>() {
             @Override
