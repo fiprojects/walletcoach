@@ -90,4 +90,18 @@
     <category-id>3</category-id>
     <company-id>2</company-id>
   </item>
+  <item id="17">
+    <description>Moc jídla</description>
+    <price>-1232.23</price>
+    <datetime>2015-06-14T03:06:26</datetime>
+    <category-id>1</category-id>
+    <company-id>1</company-id>
+  </item>
+  <item id="18">
+    <description>Výplata</description>
+    <price>300000</price>
+    <datetime>2015-06-14T03:06:51</datetime>
+    <category-id>5</category-id>
+    <company-id>4</company-id>
+  </item>
 </items>

@@ -12,7 +12,6 @@ import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.entities.Item;
 import com.walletcoach.walletcoach.entities.Subject;
 import com.walletcoach.walletcoach.tools.JComboBoxItem;
-import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -27,15 +26,17 @@ import javax.xml.xquery.XQException;
  */
 public class ItemEditForm extends javax.swing.JDialog {
     private final ItemController itemController;
+    private boolean isIncome = false;
 
     private Item item = null;
     
     /**
      * Creates new form ItemEditForm
      */
-    public ItemEditForm(ItemController itemController, Item item) throws XQException, Exception {
+    public ItemEditForm(ItemController itemController, Item item, boolean isIncome) throws XQException, Exception {
         this.itemController = itemController;
         this.item = item;
+        this.isIncome = isIncome;
         
         initComponents();
         
@@ -172,9 +173,14 @@ public class ItemEditForm extends javax.swing.JDialog {
             item = this.item;
         }
         
+        BigDecimal price = new BigDecimal(priceField.getText());
+        if(!isIncome) {
+            price = new BigDecimal(0).subtract(price);
+        }
+        
         item.setDescription(descriptionField.getText());
         item.setDatetime(Calendar.getInstance());
-        item.setPrice(new BigDecimal(priceField.getText()));
+        item.setPrice(price);
         item.setCategory((Category) ((JComboBoxItem) categoryField.getSelectedItem()).getItem());
         item.setSubject((Subject) ((JComboBoxItem) subjectField.getSelectedItem()).getItem());
         
@@ -192,7 +198,7 @@ public class ItemEditForm extends javax.swing.JDialog {
         }.execute();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public static void display(final ItemController itemController, final Item item, final WindowAdapter onClose) {
+    public static void display(final ItemController itemController, final Item item, final boolean isIncome, final WindowAdapter onClose) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
@@ -212,7 +218,7 @@ public class ItemEditForm extends javax.swing.JDialog {
             public void run() {
                 ItemEditForm form = null;
                 try {
-                    form = new ItemEditForm(itemController, item);
+                    form = new ItemEditForm(itemController, item, isIncome);
                 } catch (XQException ex) {
                     Logger.getLogger(ItemEditForm.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (Exception ex) {

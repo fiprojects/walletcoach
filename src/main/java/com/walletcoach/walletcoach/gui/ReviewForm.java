@@ -341,7 +341,7 @@ public class ReviewForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ItemEditForm.display(itemController, null, new WindowAdapter() {
+        ItemEditForm.display(itemController, null, displayIncome, new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
                 refresh();
@@ -412,7 +412,7 @@ public class ReviewForm extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         final Item item = (Item)tableModel.getSelectedObject(table);
         if(item != null) {
-            ItemEditForm.display(itemController, item, new WindowAdapter() {
+            ItemEditForm.display(itemController, item, displayIncome, new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
                     refresh();
