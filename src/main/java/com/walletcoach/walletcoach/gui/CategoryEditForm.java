@@ -73,9 +73,10 @@ public class CategoryEditForm extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Name");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("i18n"); // NOI18N
+        jLabel1.setText(bundle.getString("name")); // NOI18N
 
-        jLabel2.setText("Color");
+        jLabel2.setText(bundle.getString("color")); // NOI18N
 
         colorField.setText("ffffff");
         colorField.setToolTipText("");
@@ -87,7 +88,7 @@ public class CategoryEditForm extends javax.swing.JDialog {
 
         jLabel3.setText("#");
 
-        jButton1.setText("Select...");
+        jButton1.setText(bundle.getString("select")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -108,14 +109,14 @@ public class CategoryEditForm extends javax.swing.JDialog {
             .addGap(0, 21, Short.MAX_VALUE)
         );
 
-        jButton2.setText("Cancel");
+        jButton2.setText(bundle.getString("cancel")); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Save");
+        jButton3.setText(bundle.getString("save")); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);

@@ -89,7 +89,8 @@ public class SubjectForm extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Subjects");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("i18n"); // NOI18N
+        jLabel1.setText(bundle.getString("subjects")); // NOI18N
 
         table.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -106,14 +107,14 @@ public class SubjectForm extends javax.swing.JDialog {
         table.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(table);
 
-        jButton1.setText("Add");
+        jButton1.setText(bundle.getString("add")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        deleteButton.setText("Delete");
+        deleteButton.setText(bundle.getString("delete")); // NOI18N
         deleteButton.setEnabled(false);
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +122,7 @@ public class SubjectForm extends javax.swing.JDialog {
             }
         });
 
-        editButton.setText("Edit");
+        editButton.setText(bundle.getString("edit")); // NOI18N
         editButton.setEnabled(false);
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

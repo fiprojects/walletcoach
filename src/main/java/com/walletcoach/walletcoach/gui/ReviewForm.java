@@ -259,8 +259,6 @@ public class ReviewForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("WalletCoach");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\projects\\walletcoach\\walletcoach\\src\\main\\resources\\icons\\logo.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -288,7 +286,8 @@ public class ReviewForm extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton3.setText("Subjects");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("i18n"); // NOI18N
+        jButton3.setText(bundle.getString("subjects")); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -296,7 +295,7 @@ public class ReviewForm extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton4.setText("Categories");
+        jButton4.setText(bundle.getString("categories")); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -304,7 +303,7 @@ public class ReviewForm extends javax.swing.JFrame {
         });
 
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton5.setText("Expenses");
+        jButton5.setText(bundle.getString("expenses")); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -312,7 +311,7 @@ public class ReviewForm extends javax.swing.JFrame {
         });
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton6.setText("Incomes");
+        jButton6.setText(bundle.getString("incomes")); // NOI18N
         jButton6.setActionCommand("iNCOMES");
         jButton6.setFocusPainted(false);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -322,10 +321,10 @@ public class ReviewForm extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Reports");
+        jLabel2.setText(bundle.getString("reports")); // NOI18N
 
         jButton8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton8.setText("Report for this month");
+        jButton8.setText(bundle.getString("reportforthismonth")); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -333,7 +332,7 @@ public class ReviewForm extends javax.swing.JFrame {
         });
 
         jButton9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton9.setText("Report for this year");
+        jButton9.setText(bundle.getString("reportforthisyear")); // NOI18N
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -384,9 +383,9 @@ public class ReviewForm extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         displayLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        displayLabel.setText("Expenses");
+        displayLabel.setText(bundle.getString("expenses")); // NOI18N
 
-        jLabel1.setText("Subject");
+        jLabel1.setText(bundle.getString("subject")); // NOI18N
 
         subjectField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         subjectField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -420,11 +419,11 @@ public class ReviewForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Category");
+        jLabel5.setText(bundle.getString("category")); // NOI18N
 
-        jLabel6.setText("Month");
+        jLabel6.setText(bundle.getString("month")); // NOI18N
 
-        jLabel7.setText("Year");
+        jLabel7.setText(bundle.getString("year")); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -488,14 +487,14 @@ public class ReviewForm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton1.setText("New Item");
+        jButton1.setText(bundle.getString("newitem")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        editButton.setText("Edit");
+        editButton.setText(bundle.getString("edit")); // NOI18N
         editButton.setEnabled(false);
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -503,7 +502,7 @@ public class ReviewForm extends javax.swing.JFrame {
             }
         });
 
-        deleteButton.setText("Delete");
+        deleteButton.setText(bundle.getString("delete")); // NOI18N
         deleteButton.setEnabled(false);
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -574,10 +573,10 @@ public class ReviewForm extends javax.swing.JFrame {
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenu1.setText("File");
+        jMenu1.setText(bundle.getString("file")); // NOI18N
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem1.setText("Exit");
+        jMenuItem1.setText(bundle.getString("exit")); // NOI18N
         jMenuItem1.setToolTipText("");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -588,10 +587,10 @@ public class ReviewForm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText(bundle.getString("edit")); // NOI18N
 
         jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem6.setText("New Item");
+        jMenuItem6.setText(bundle.getString("newitem")); // NOI18N
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -599,21 +598,21 @@ public class ReviewForm extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem6);
 
-        editMenuItem.setText("Edit");
+        editMenuItem.setText(bundle.getString("edit")); // NOI18N
         editMenuItem.setEnabled(false);
         jMenu2.add(editMenuItem);
 
-        deleteMenuItem.setText("Delete");
+        deleteMenuItem.setText(bundle.getString("delete")); // NOI18N
         deleteMenuItem.setEnabled(false);
         jMenu2.add(deleteMenuItem);
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("View");
+        jMenu3.setText(bundle.getString("view")); // NOI18N
 
         expensesMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         expensesMenuItem.setSelected(true);
-        expensesMenuItem.setText("Expenses");
+        expensesMenuItem.setText(bundle.getString("expenses")); // NOI18N
         expensesMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 expensesMenuItemActionPerformed(evt);
@@ -622,7 +621,7 @@ public class ReviewForm extends javax.swing.JFrame {
         jMenu3.add(expensesMenuItem);
 
         incomesMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
-        incomesMenuItem.setText("Incomes");
+        incomesMenuItem.setText(bundle.getString("incomes")); // NOI18N
         incomesMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 incomesMenuItemActionPerformed(evt);
@@ -631,7 +630,7 @@ public class ReviewForm extends javax.swing.JFrame {
         jMenu3.add(incomesMenuItem);
         jMenu3.add(jSeparator1);
 
-        jMenuItem4.setText("Categories");
+        jMenuItem4.setText(bundle.getString("categories")); // NOI18N
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -639,7 +638,7 @@ public class ReviewForm extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem4);
 
-        jMenuItem5.setText("Subjects");
+        jMenuItem5.setText(bundle.getString("subjects")); // NOI18N
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -649,7 +648,7 @@ public class ReviewForm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Reports");
+        jMenu4.setText(bundle.getString("reports")); // NOI18N
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);

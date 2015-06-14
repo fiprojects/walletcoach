@@ -82,30 +82,31 @@ public class SubjectEditForm extends javax.swing.JDialog {
         setTitle("Subjects");
 
         nameLabel.setLabelFor(nameField);
-        nameLabel.setText("Name");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("i18n"); // NOI18N
+        nameLabel.setText(bundle.getString("name")); // NOI18N
         nameLabel.setToolTipText("");
 
         icLabel.setLabelFor(icField);
-        icLabel.setText("IC");
+        icLabel.setText(bundle.getString("ic")); // NOI18N
 
         descriptionLabel.setLabelFor(descriptionField);
-        descriptionLabel.setText("Description");
+        descriptionLabel.setText(bundle.getString("description")); // NOI18N
 
-        jButton1.setText("Cancel");
+        jButton1.setText(bundle.getString("cancel")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Save");
+        jButton2.setText(bundle.getString("save")); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        retrieveButton.setText("Retrieve from ARES");
+        retrieveButton.setText(bundle.getString("retrievefromares")); // NOI18N
         retrieveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 retrieveButtonActionPerformed(evt);
@@ -116,13 +117,13 @@ public class SubjectEditForm extends javax.swing.JDialog {
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         numberLabel.setLabelFor(streetField);
-        numberLabel.setText("Street");
+        numberLabel.setText(bundle.getString("street")); // NOI18N
 
         countryLabel.setLabelFor(cityField);
-        countryLabel.setText("Postal Code, City");
+        countryLabel.setText(bundle.getString("postalcodecity")); // NOI18N
 
         jLabel8.setLabelFor(countryField);
-        jLabel8.setText("Country");
+        jLabel8.setText(bundle.getString("country")); // NOI18N
 
         numberField.setToolTipText("");
 
@@ -138,7 +139,7 @@ public class SubjectEditForm extends javax.swing.JDialog {
                     .addComponent(countryLabel))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addComponent(streetField, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -223,6 +224,8 @@ public class SubjectEditForm extends javax.swing.JDialog {
                     .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1.getAccessibleContext().setAccessibleName(bundle.getString("location")); // NOI18N
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

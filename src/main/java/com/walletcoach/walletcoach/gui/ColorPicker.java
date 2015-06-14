@@ -40,14 +40,15 @@ public class ColorPicker extends javax.swing.JDialog {
 
         colorPicker.setName("colorPicker"); // NOI18N
 
-        jButton2.setText("Apply");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("i18n"); // NOI18N
+        jButton2.setText(bundle.getString("apply")); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Cancel");
+        jButton1.setText(bundle.getString("cancel")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

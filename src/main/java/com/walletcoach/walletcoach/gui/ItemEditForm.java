@@ -82,7 +82,8 @@ public class ItemEditForm extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel2.setText("Description");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("i18n"); // NOI18N
+        jLabel2.setText(bundle.getString("description")); // NOI18N
 
         descriptionField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         descriptionField.addActionListener(new java.awt.event.ActionListener() {
@@ -91,15 +92,15 @@ public class ItemEditForm extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("Category");
+        jLabel4.setText(bundle.getString("category")); // NOI18N
 
         categoryField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel5.setText("Subject");
+        jLabel5.setText(bundle.getString("subject")); // NOI18N
 
         subjectField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        saveButton.setText("Save");
+        saveButton.setText(bundle.getString("save")); // NOI18N
         saveButton.setSelected(true);
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,7 +108,7 @@ public class ItemEditForm extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Cancel");
+        jButton2.setText(bundle.getString("cancel")); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -117,14 +118,14 @@ public class ItemEditForm extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel3.setText("Price");
+        jLabel3.setText(bundle.getString("price")); // NOI18N
 
         priceField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         priceField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         priceField.setText("0.0");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("CZK");
+        jLabel6.setText(bundle.getString("currencyvalue")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,7 +164,6 @@ public class ItemEditForm extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(saveButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2))
