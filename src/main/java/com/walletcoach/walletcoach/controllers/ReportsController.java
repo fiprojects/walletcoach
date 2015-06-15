@@ -14,28 +14,32 @@ import javax.xml.xquery.XQPreparedExpression;
  * @author Michael
  */
 public class ReportsController {
-    public void monthReport(int month, int year) throws XQException, FileNotFoundException, URISyntaxException {
+    public String monthReport(int month, int year) throws XQException, FileNotFoundException, URISyntaxException {
+        String output = "reports/xml/month_" + month + "_" + year + ".xml";
+        
         XQConnection xml = XMLConnection.getConnection();
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("monthReport"));
         expression.bindInt(new QName("globalMonth"), month, null);
         expression.bindObject(new QName("globalYear"), year, null);
         expression.executeQuery().writeSequence(
-            new FileOutputStream("reports/month_" + month + "_" + year + ".xml"), null);
+            new FileOutputStream(output), null);
         
         xml.close();
-        monthReportHtml(month, year);
+        
+        return output;
     }
     
-    public void monthReportHtml(int month, int year) throws XQException, FileNotFoundException, URISyntaxException {
+    public String monthReportHtml(int month, int year) throws XQException, FileNotFoundException, URISyntaxException {       
         String template = "reports/xsl/monthReport.xsl";
-        String input = "reports/month_" + month + "_" + year + ".xml";
-        String output = "reports/month_" + month + "_" + year + ".html";
+        String input = monthReport(month, year);
+        String output = "reports/html/month_" + month + "_" + year + ".html";
         
         transform(input, output, template);
+        return output;
     }
     
-    public void yearReport(int year) throws XQException, FileNotFoundException, URISyntaxException {
-        String path = "reports/year_" + year + ".xml";
+    public String yearReport(int year) throws XQException, FileNotFoundException, URISyntaxException {
+        String path = "reports/xml/year_" + year + ".xml";
         
         XQConnection xml = XMLConnection.getConnection();
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("yearReport"));
@@ -44,15 +48,25 @@ public class ReportsController {
             new FileOutputStream(path), null);
         
         xml.close();
-        yearReportHtml(year);
+        return path;
     }
     
-    public void yearReportHtml(int year) throws XQException, FileNotFoundException, URISyntaxException {
+    public String yearReportHtml(int year) throws XQException, FileNotFoundException, URISyntaxException {
         String template = "reports/xsl/yearReport.xsl";
-        String input = "reports/year_" + year + ".xml";
-        String output = "reports/year_" + year + ".html";
+        String input = yearReport(year);;
+        String output = "reports/html/year_" + year + ".html";
         
         transform(input, output, template);
+        return output;
+    }
+    
+    public String yearReportLatex(int year) throws XQException, FileNotFoundException, URISyntaxException {
+        String template = "reports/xsl/yearReportLatex.xsl";
+        String input = yearReport(year);;
+        String output = "reports/latex/year_" + year + ".tex";
+        
+        transform(input, output, template);
+        return output;
     }
     
     private void transform(String input, String output, String template) throws XQException, FileNotFoundException {
