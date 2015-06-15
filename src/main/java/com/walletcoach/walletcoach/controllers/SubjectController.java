@@ -14,10 +14,18 @@ import javax.xml.xquery.XQSequence;
 import org.w3c.dom.Element;
 
 /**
- *
+ * This class represents a controller for Subjects.
+ * 
  * @author fajlo
  */
-public class SubjectController {   
+public class SubjectController {
+    
+    /**
+     * Returns the list of all Subjects recorded in the application.
+     * 
+     * @return List<Subjects>
+     * @throws Exception 
+     */
     public List<Subject> getAll() throws Exception {
         List<Subject> subjects = new ArrayList<>();
 
@@ -36,6 +44,13 @@ public class SubjectController {
         return subjects;
     }
     
+    /**
+     * Returns the Subject of a given Item defined by its id.
+     * 
+     * @param id
+     * @return Subject
+     * @throws XQException 
+     */
     public Subject getItem(Long id) throws XQException {
         Subject item = null;
         
@@ -55,7 +70,13 @@ public class SubjectController {
         
         return item;
     }
-    
+    /**
+     * Adds the Subject if not existent.
+     * Edits a specific Subject if existing.
+     * 
+     * @param subject
+     * @throws XQException 
+     */
     public void edit(Subject subject) throws XQException {
         XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "subjects");
@@ -81,7 +102,12 @@ public class SubjectController {
         XMLConnection.closeDb(xml);
         xml.close();
     }
-    
+    /**
+     * Deletes a specific Subject.
+     * 
+     * @param subject
+     * @throws XQException 
+     */
     public void delete(Subject subject) throws XQException {
         XQConnection xml = XMLConnection.getConnection();
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("subjectDelete"));
@@ -99,6 +125,16 @@ public class SubjectController {
         xml.close();
     }
     
+    /**
+     * Gets a Subject from Ares.
+     * Takes the IC and executes a query using it as parameter.
+     * Takes the object from the result 
+     * and parses the information into a subject.
+     * 
+     * @param ic
+     * @return Subject
+     * @throws XQException 
+     */
     public Subject getFromAres(String ic) throws XQException {
         XQConnection xml = XMLConnection.getConnection();
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("ares"));
@@ -121,7 +157,14 @@ public class SubjectController {
         
         return subject;
     }
-    
+    /**
+     * Item parser, 
+     * takes an element and returns a Subject containing parsed information.
+     * 
+     * @param element
+     * @return
+     * @throws XQException 
+     */
     public Subject parseItem(Element element) throws XQException {
         DOMTools domTools = new DOMTools(element);
         Subject subject = new Subject();

@@ -10,10 +10,23 @@ import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQPreparedExpression;
 
 /**
- *
+ * This class represents a controller for reports.
+ * 
  * @author Michael
  */
 public class ReportsController {
+    
+    /**
+     * Returns a String path for output of a monthly report
+     * based on the choden month of a year.
+     * 
+     * @param month
+     * @param year
+     * @return String
+     * @throws XQException
+     * @throws FileNotFoundException
+     * @throws URISyntaxException 
+     */
     public String monthReport(int month, int year) throws XQException, FileNotFoundException, URISyntaxException {
         String output = "reports/xml/month_" + month + "_" + year + ".xml";
         
@@ -29,6 +42,18 @@ public class ReportsController {
         return output;
     }
     
+    /**
+     * Returns a String containing the path for a monthly report 
+     * based on the chosen month of a year.
+     * Transforms the input based on the template to output.
+     * 
+     * @param month
+     * @param year
+     * @return String
+     * @throws XQException
+     * @throws FileNotFoundException
+     * @throws URISyntaxException 
+     */
     public String monthReportHtml(int month, int year) throws XQException, FileNotFoundException, URISyntaxException {       
         String template = "reports/xsl/monthReport.xsl";
         String input = monthReport(month, year);
@@ -38,6 +63,15 @@ public class ReportsController {
         return output;
     }
     
+    /**
+     * Returns the path for a yearly report based on the specified year.
+     * 
+     * @param year
+     * @return String
+     * @throws XQException
+     * @throws FileNotFoundException
+     * @throws URISyntaxException 
+     */
     public String yearReport(int year) throws XQException, FileNotFoundException, URISyntaxException {
         String path = "reports/xml/year_" + year + ".xml";
         
@@ -51,6 +85,16 @@ public class ReportsController {
         return path;
     }
     
+    /**
+     * Returns the path for a yearly report based on the specified year.
+     * Transform the input based on the template to output.
+     * 
+     * @param year
+     * @return String
+     * @throws XQException
+     * @throws FileNotFoundException
+     * @throws URISyntaxException 
+     */
     public String yearReportHtml(int year) throws XQException, FileNotFoundException, URISyntaxException {
         String template = "reports/xsl/yearReport.xsl";
         String input = yearReport(year);;
@@ -60,6 +104,16 @@ public class ReportsController {
         return output;
     }
     
+    /**
+     * Returns the path for a yearly report in Latex based on the specified year.
+     * Transform the input based on the template to output.     * 
+     * 
+     * @param year
+     * @return
+     * @throws XQException
+     * @throws FileNotFoundException
+     * @throws URISyntaxException 
+     */
     public String yearReportLatex(int year) throws XQException, FileNotFoundException, URISyntaxException {
         String template = "reports/xsl/yearReportLatex.xsl";
         String input = yearReport(year);;
@@ -69,6 +123,15 @@ public class ReportsController {
         return output;
     }
     
+    /**
+     * Transforms input based on the template to output.
+     * 
+     * @param input
+     * @param output
+     * @param template
+     * @throws XQException
+     * @throws FileNotFoundException 
+     */
     private void transform(String input, String output, String template) throws XQException, FileNotFoundException {
         XQConnection xml = XMLConnection.getConnection();
         XQPreparedExpression expression = xml.prepareExpression(

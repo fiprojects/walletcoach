@@ -19,14 +19,26 @@ public class ItemsQueryBuilder implements QueryBuilder {
         filterPeriod(calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
     }
     
+    /**
+     * Displays expenses.
+     */
     public void displayExpenses() {
         displayIncome = false;
     }
     
+    /**
+     * Displays income.
+     */
     public void displayIncome() {
         displayIncome = true;
     }
     
+    /**
+     * Filters the results based on the given month and year.
+     * 
+     * @param month
+     * @param year 
+     */
     public void filterPeriod(int month, int year) {
         if(month < 1 || month > 12) {
             throw new IllegalArgumentException("Invalid month.");
@@ -36,14 +48,32 @@ public class ItemsQueryBuilder implements QueryBuilder {
         this.year = year;
     }
     
+    /**
+     * Filters the results based on the given Category.
+     * 
+     * @param categoryId 
+     */
     public void filterCategory(long categoryId) {
         this.categoryId = categoryId;
     }
     
+    /**
+     * Filters the results based on the given Subject.
+     * 
+     * @param subjectId 
+     */
     public void filterSubject(long subjectId) {
         this.subjectId = subjectId;
     }
     
+    /**
+     * Prepares an XQuery expression based on the class variables values.
+     * 
+     * @param xml
+     * @return XQPreparedExpression
+     * @throws XQException
+     * @throws IOException 
+     */
     @Override
     public XQPreparedExpression getQuery(XQConnection xml) throws XQException, IOException {
         XQPreparedExpression expression = xml.prepareExpression(getExpression());
@@ -61,6 +91,12 @@ public class ItemsQueryBuilder implements QueryBuilder {
         return expression;
     }
     
+    /**
+     * Returns a prepared expression based on the values of class variables.
+     * 
+     * @return String 
+     * @throws IOException 
+     */
     public String getExpression() throws IOException {
         String expression = XMLConnection.getQueryString("itemList");
         
@@ -93,6 +129,13 @@ public class ItemsQueryBuilder implements QueryBuilder {
         return expression;
     }
     
+    /**
+     * Helping method that creates a String 
+     * declaring the name as an external integer.
+     * 
+     * @param name
+     * @return String
+     */
     private String external(String name) {
         return "declare variable $" + name + " as xs:integer external;" + System.lineSeparator();
     }
