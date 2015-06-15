@@ -37,6 +37,7 @@ and open the template in the editor.
                 
             </xs:sequence>
             <xs:attribute name="year" type="xs:integer" />
+            <xs:attribute name="month" type="xs:integer" />
         </xs:complexType>
     </xs:element>
     
