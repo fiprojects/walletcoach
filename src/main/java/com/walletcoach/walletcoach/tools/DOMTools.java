@@ -2,9 +2,7 @@ package com.walletcoach.walletcoach.tools;
 
 import java.awt.Color;
 import java.math.BigDecimal;
-import java.text.DecimalFormatSymbols;
 import java.util.Calendar;
-import java.util.Date;
 import javax.xml.bind.DatatypeConverter;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,7 +14,7 @@ import org.w3c.dom.NodeList;
  * @author xle
  */
 public class DOMTools {
-    private Element element;    
+    private final Element element;    
     
     public DOMTools(Element element) {
         this.element = element;

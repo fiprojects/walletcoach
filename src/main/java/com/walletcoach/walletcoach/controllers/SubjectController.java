@@ -27,6 +27,8 @@ public class SubjectController {
      * @throws Exception 
      */
     public List<Subject> getAll() throws Exception {
+public class SubjectController {   
+    public List<Subject> getAll() throws XQException {
         List<Subject> subjects = new ArrayList<>();
 
         XQConnection xml = XMLConnection.getConnection();

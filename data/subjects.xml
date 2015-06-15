@@ -1,68 +1,13 @@
-<subjects>
+<subjects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xsd/subjects.xsd">
   <subject id="1">
-    <ic>123456789</ic>
-    <name>Bylla</name>
-    <address>
-      <street>Novakova</street>
-      <number>10</number>
-      <city>Brno</city>
-      <country>CZ</country>
-    </address>
-    <description>Supermarket</description>
-  </subject>
-  <subject id="2">
-    <ic>123456790</ic>
-    <name>Macecha Drogerie</name>
-    <address>
-      <street>Novakova</street>
-      <number>11</number>
-      <city>Brno</city>
-      <country>CZ</country>
-    </address>
-    <description>Drogerie</description>
-  </subject>
-  <subject id="3">
-    <ic>123456791</ic>
-    <name>Babisovy dobroty</name>
-    <address>
-      <street>Novakova</street>
-      <number>12</number>
-      <city>Brno</city>
-      <country>CZ</country>
-    </address>
-    <description>Pekarstvi</description>
-  </subject>
-  <subject id="4">
-    <ic>36178429</ic>
-    <name>Gazprom</name>
-    <address>
-      <street>Vasilevskaya ulica</street>
-      <number>1/A</number>
-      <city>Moskva</city>
-      <country>Ruská federácia</country>
-    </address>
-    <description>Cerpaci stanice</description>
-  </subject>
-  <subject id="5">
-    <ic>12345678</ic>
-    <name>BuFet</name>
-    <address>
-      <street>Uličná 12</street>
-      <number>11000</number>
-      <city>Praha</city>
-      <country>CZ</country>
-    </address>
-    <description>Tam si můžu nacpat bříško</description>
-  </subject>
-  <subject id="6">
-    <ic>123467890</ic>
-    <name>Mínus</name>
+    <ic/>
+    <name>Nezařazené</name>
     <address>
       <street/>
       <number/>
       <city/>
       <country/>
     </address>
-    <description>Diskont</description>
+    <description/>
   </subject>
 </subjects>

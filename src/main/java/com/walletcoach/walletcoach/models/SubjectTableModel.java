@@ -9,7 +9,7 @@ import javax.swing.SwingWorker;
 import javax.xml.xquery.XQException;
 
 public class SubjectTableModel extends ObjectTableModel {
-    private SubjectController controller;
+    private final SubjectController controller;
     protected List<Subject> items = new ArrayList<>();
 
     public SubjectTableModel(SubjectController controller) {
