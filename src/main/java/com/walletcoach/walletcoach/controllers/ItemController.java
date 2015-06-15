@@ -17,7 +17,8 @@ import javax.xml.xquery.XQSequence;
 import org.w3c.dom.Element;
 
 /**
- *
+ * This class represents a controller for Items.
+ * 
  * @author xle
  */
 public class ItemController {
@@ -29,6 +30,12 @@ public class ItemController {
         this.subjectController = subjectController;
     }
     
+    /**
+     * Returns a list of all Items recorded in the application.
+     * 
+     * @return List<Item>
+     * @throws Exception 
+     */
     public List<Item> getAll() throws Exception {
         List<Item> items = new ArrayList<>();
         
@@ -47,6 +54,13 @@ public class ItemController {
         return items;
     }
     
+    /**
+     * Takes a query and executes on Items.
+     * 
+     * @param query
+     * @return List<Item>
+     * @throws Exception 
+     */
     public List<Item> getFiltered(QueryBuilder query) throws Exception {
         List<Item> items = new ArrayList<>();
 
@@ -64,6 +78,13 @@ public class ItemController {
         return items;
     }
     
+    /**
+     * Adds the Item if not existent.
+     * Edits a specific Item if existing.
+     * 
+     * @param item
+     * @throws XQException 
+     */
     public void edit(Item item) throws XQException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         Date date = item.getDatetime().getTime();
@@ -91,6 +112,12 @@ public class ItemController {
         xml.close();
     }
     
+    /**
+     * Deletes a specific Item.
+     * 
+     * @param item
+     * @throws XQException 
+     */
     public void delete(Item item) throws XQException {
         XQConnection xml = XMLConnection.getConnection();
         XMLConnection.openDb(xml, "items");
@@ -104,6 +131,14 @@ public class ItemController {
         xml.close();
     }
     
+    /**
+     * Item parser, 
+     * takes an element and returns an Item containing parsed information.
+     * 
+     * @param element
+     * @return
+     * @throws XQException 
+     */
     private Item parseItem(Element element) throws XQException {
         Element data = (Element)element.getElementsByTagName("data").item(0);
         Element category = (Element)element.getElementsByTagName("category").item(0);

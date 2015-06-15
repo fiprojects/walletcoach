@@ -15,10 +15,17 @@ import javax.xml.xquery.XQSequence;
 import org.w3c.dom.Element;
 
 /**
- *
+ * This class represents a controller for Categories.
+ * 
  * @author xle
  */
-public class CategoryController {   
+public class CategoryController {
+    /**
+     * Returns a list of all Categories recorded in the application.
+     * 
+     * @return
+     * @throws XQException 
+     */
     public List<Category> getAll() throws XQException {
         List<Category> items = new ArrayList<>();
         
@@ -37,6 +44,13 @@ public class CategoryController {
         return items;
     } 
     
+    /**
+     * Returns the Category of a selected Item, given by its id.
+     * 
+     * @param id
+     * @return Category
+     * @throws XQException 
+     */
     public Category getItem(Long id) throws XQException {
         Category item = null;
         
@@ -57,6 +71,13 @@ public class CategoryController {
         return item;
     }
     
+    /**
+     * Enables editing of a Category by overriding the category.
+     * by the parameter.
+     * 
+     * @param category
+     * @throws XQException 
+     */
     public void edit(Category category) throws XQException {
         String colorString = colorToHex(category.getColor());
         
@@ -80,6 +101,12 @@ public class CategoryController {
         xml.close();
     }
     
+    /**
+     * Deletes a given Category.
+     * 
+     * @param category
+     * @throws XQException 
+     */
     public void delete(Category category) throws XQException {
         XQConnection xml = XMLConnection.getConnection();
         XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("categoryDelete"));
@@ -97,6 +124,13 @@ public class CategoryController {
         xml.close();
     }
     
+    /**
+     * Item parser, returns a Category item filled with attributes.
+     * 
+     * from the input element.
+     * @param element
+     * @return Category
+     */
     public Category parseItem(Element element) {
         DOMTools domTools = new DOMTools(element);
         Category item = new Category();
@@ -107,6 +141,12 @@ public class CategoryController {
         return item;
     }
     
+    /**
+     * Transforms a color into hexadecimal format.
+     * 
+     * @param color
+     * @return String
+     */
     public String colorToHex(Color color) {
         if(color == null) {
             return "ffffff";
