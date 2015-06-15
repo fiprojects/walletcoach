@@ -4,7 +4,8 @@ declare variable $datetime as xs:string external;
 declare variable $categoryId as xs:long external;
 declare variable $subjectId as xs:long external;
 
-let $id := fn:max(//item/@id) + 1
+let $max := fn:max(//item/@id)
+let $id := if($max) then $max + 1 else 1
 
 return (
   insert node (

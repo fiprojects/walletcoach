@@ -5,7 +5,10 @@ declare variable $number as xs:string external;
 declare variable $city as xs:string external;
 declare variable $country as xs:string external;
 declare variable $description as xs:string external;
-let $id := fn:max(//subject/@id) + 1
+
+let $max := fn:max(//subject/@id)
+let $id := if($max) then $max + 1 else 1
+
 return (
   insert node (
     <subject id="{$id}">

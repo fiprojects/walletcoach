@@ -1,34 +1,6 @@
-<categories>
+<categories xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xsd/categories.xsd">
   <category id="1">
-    <name>Jídlo a pití</name>
-    <color>#6666ff</color>
-  </category>
-  <category id="2">
-    <name>Doprava</name>
-    <color>#0abefa</color>
-  </category>
-  <category id="3">
-    <name>Drogerie</name>
-    <color>#339900</color>
-  </category>
-  <category id="4">
-    <name>Kancelarske potreby</name>
-    <color>#ff3366</color>
-  </category>
-  <category id="5">
-    <name>Prijmy</name>
-    <color>#cc0066</color>
-  </category>
-  <category id="6">
-    <name>Sport</name>
-    <color>#ffff33</color>
-  </category>
-  <category id="7">
-    <name>Zábava</name>
-    <color>#00cccc</color>
-  </category>
-  <category id="8">
-    <name>Škola a školka</name>
-    <color>#ff0000</color>
+    <name>Nezařazené</name>
+    <color>#ffffff</color>
   </category>
 </categories>

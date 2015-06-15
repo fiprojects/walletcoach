@@ -18,7 +18,7 @@ import org.w3c.dom.Element;
  * @author fajlo
  */
 public class SubjectController {   
-    public List<Subject> getAll() throws Exception {
+    public List<Subject> getAll() throws XQException {
         List<Subject> subjects = new ArrayList<>();
 
         XQConnection xml = XMLConnection.getConnection();

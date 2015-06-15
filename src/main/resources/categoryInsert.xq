@@ -1,6 +1,8 @@
 declare variable $name as xs:string external;
 declare variable $color as xs:string external;
-let $id := fn:max(//category/@id) + 1
+
+let $max := fn:max(//category/@id)
+let $id := if($max) then $max + 1 else 1
 return (
   insert node (
     <category id="{$id}">
