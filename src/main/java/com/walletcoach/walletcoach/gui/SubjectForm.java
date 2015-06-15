@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.SubjectController;
@@ -10,8 +5,7 @@ import com.walletcoach.walletcoach.entities.Subject;
 import com.walletcoach.walletcoach.models.SubjectTableModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -24,12 +18,17 @@ import javax.xml.xquery.XQException;
  * @author Michael
  */
 public class SubjectForm extends javax.swing.JDialog {
+
+    static void display(SubjectController subjectController) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private final SubjectController subjectController;
     private SubjectTableModel tableModel;
 
     /**
      * Creates new form SubjectForm
      * @param subjectController
+     * @throws javax.xml.xquery.XQException
      */
     public SubjectForm(SubjectController subjectController) throws XQException {
         this.subjectController = subjectController;
@@ -221,7 +220,7 @@ public class SubjectForm extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
-    public static void display(final SubjectController subjectController) throws XQException {
+    public static void display(final ReviewForm parent, final SubjectController subjectController) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
@@ -242,13 +241,13 @@ public class SubjectForm extends javax.swing.JDialog {
                 SubjectForm form = null;
                 try {
                     form = new SubjectForm(subjectController);
+                    form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    form.setLocationRelativeTo(null);
+                    form.setModal(true);
+                    form.setVisible(true);
                 } catch (XQException ex) {
-                    Logger.getLogger(SubjectForm.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(parent, "Failed to retrieve subjects.");
                 }
-                form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                form.setLocationRelativeTo(null);
-                form.setModal(true);
-                form.setVisible(true);
             }
         });
     }

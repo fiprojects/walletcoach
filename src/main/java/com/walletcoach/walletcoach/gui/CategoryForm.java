@@ -5,8 +5,6 @@ import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.models.CategoryTableModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
@@ -222,7 +220,7 @@ public class CategoryForm extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
-    public static void display(final CategoryController categoryController) throws XQException {
+    public static void display(final ReviewForm parent, final CategoryController categoryController) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
@@ -247,7 +245,7 @@ public class CategoryForm extends javax.swing.JDialog {
                     form.setModal(true);
                     form.setVisible(true);
                 } catch (XQException ex) {
-                    Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(parent, "Failed to retrieve categories.");
                 }
             }
         });

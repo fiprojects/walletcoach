@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
 import com.walletcoach.walletcoach.entities.Category;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
@@ -73,6 +69,7 @@ public class CategoryEditForm extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setForeground(new java.awt.Color(0, 102, 204));
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("i18n"); // NOI18N
         jLabel1.setText(bundle.getString("name")); // NOI18N
 
@@ -192,6 +189,10 @@ public class CategoryEditForm extends javax.swing.JDialog {
     }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if(!check()) {
+            return;
+        }
+        
         final Category category;
         if(item == null) {
             category = new Category();
@@ -268,4 +269,13 @@ public class CategoryEditForm extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField nameField;
     // End of variables declaration//GEN-END:variables
+
+    private boolean check() {
+        if(nameField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Name field must be filled.");
+            return false;
+        }
+        
+        return true;
+    }
 }

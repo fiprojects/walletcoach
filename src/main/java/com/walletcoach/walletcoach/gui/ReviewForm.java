@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -56,7 +57,7 @@ public class ReviewForm extends javax.swing.JFrame {
     /**
      * Creates new form ReviewForm
      */
-    public ReviewForm() throws XQException, Exception {
+    public ReviewForm() throws XQException {
         // BaseX Connection
         try {
             xml = XMLConnection.getConnection();
@@ -813,19 +814,11 @@ public class ReviewForm extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void editCategories() {
-        try {
-            CategoryForm.display(categoryController);
-        } catch (XQException ex) {
-            Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        CategoryForm.display(this, categoryController);
     }
 
     private void editSubjects() {
-        try {
-            SubjectForm.display(subjectController);
-        } catch (XQException ex) {
-            Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        SubjectForm.display(this, subjectController);
     }
 
     private void switchToIncomes() {
@@ -879,7 +872,7 @@ public class ReviewForm extends javax.swing.JFrame {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         final Item item = (Item)tableModel.getSelectedObject(table);
         if(item != null) {
-            ItemEditForm.display(itemController, item, displayIncome, new WindowAdapter() {
+            ItemEditForm.display(this, itemController, item, displayIncome, new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
                     refresh();
@@ -893,7 +886,7 @@ public class ReviewForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void newItem() {
-        ItemEditForm.display(itemController, null, displayIncome, new WindowAdapter() {
+        ItemEditForm.display(this, itemController, null, displayIncome, new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
                 refresh();
@@ -996,12 +989,8 @@ public class ReviewForm extends javax.swing.JFrame {
                 String report = null;
                 try {
                     report = reportsController.monthReport(displayMonth, displayYear);
-                } catch (XQException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (URISyntaxException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (XQException | FileNotFoundException | URISyntaxException ex) {
+                    reportError();
                 }
                 
                 return report;
@@ -1012,7 +1001,7 @@ public class ReviewForm extends javax.swing.JFrame {
                 try {
                     Desktop.getDesktop().open(new File("reports/xml"));
                 } catch (IOException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                    reportDisplayError();
                 }
             }
         }.execute();
@@ -1025,12 +1014,8 @@ public class ReviewForm extends javax.swing.JFrame {
                 String report = null;
                 try {
                     report = reportsController.monthReportHtml(displayMonth, displayYear);
-                } catch (XQException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (URISyntaxException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (XQException | FileNotFoundException | URISyntaxException ex) {
+                    reportError();
                 }
                 
                 return report;
@@ -1041,7 +1026,7 @@ public class ReviewForm extends javax.swing.JFrame {
                 try {
                     Desktop.getDesktop().open(new File("reports/html"));
                 } catch (IOException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                    reportDisplayError();
                 }
             }
         }.execute();
@@ -1054,12 +1039,8 @@ public class ReviewForm extends javax.swing.JFrame {
                 String report = null;
                 try {
                     report = reportsController.yearReport(displayYear);
-                } catch (XQException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (URISyntaxException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (XQException | FileNotFoundException | URISyntaxException ex) {
+                    reportError();
                 }
                 
                 return report;
@@ -1070,7 +1051,7 @@ public class ReviewForm extends javax.swing.JFrame {
                 try {
                     Desktop.getDesktop().open(new File("reports/xml"));
                 } catch (IOException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                    reportDisplayError();
                 }
             }
         }.execute();
@@ -1083,12 +1064,8 @@ public class ReviewForm extends javax.swing.JFrame {
                 String report = null;
                 try {
                     report = reportsController.yearReportHtml(displayYear);
-                } catch (XQException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (URISyntaxException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (XQException | FileNotFoundException | URISyntaxException ex) {
+                    reportError();
                 }
                 
                 return report;
@@ -1099,7 +1076,7 @@ public class ReviewForm extends javax.swing.JFrame {
                 try {
                     Desktop.getDesktop().open(new File("reports/html"));
                 } catch (IOException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                    reportDisplayError();
                 }
             }
         }.execute();
@@ -1112,12 +1089,8 @@ public class ReviewForm extends javax.swing.JFrame {
                 String report = null;
                 try {
                     report = reportsController.yearReportLatex(displayYear);
-                } catch (XQException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (URISyntaxException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (XQException | FileNotFoundException | URISyntaxException ex) {
+                    reportError();
                 }
                 
                 return report;
@@ -1128,12 +1101,21 @@ public class ReviewForm extends javax.swing.JFrame {
                 try {
                     Desktop.getDesktop().open(new File("reports/latex"));
                 } catch (IOException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                    reportDisplayError();
                 }
             }
         }.execute();
     }
 
+    private void reportDisplayError() {
+        JOptionPane.showMessageDialog(this, "Cannot open generated reports.");
+    }
+    
+    private void reportError() {
+        JOptionPane.showMessageDialog(this, "Error when generating report.");
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -1155,9 +1137,8 @@ public class ReviewForm extends javax.swing.JFrame {
                     form.setLocationRelativeTo(null);
                     form.setVisible(true);
                 } catch (XQException ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (Exception ex) {
-                    Logger.getLogger(ReviewForm.class.getName()).log(Level.SEVERE, null, ex);
+                    JFrame frame = new JFrame();
+                    JOptionPane.showMessageDialog(frame, "Connection to XML database failed.");
                 }
             }
         });

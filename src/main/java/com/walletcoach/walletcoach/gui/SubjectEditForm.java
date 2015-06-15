@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.SubjectController;
-import com.walletcoach.walletcoach.entities.Category;
 import com.walletcoach.walletcoach.entities.Subject;
 import java.awt.event.WindowAdapter;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.xml.xquery.XQConnection;
@@ -82,6 +74,7 @@ public class SubjectEditForm extends javax.swing.JDialog {
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("i18n"); // NOI18N
         setTitle(bundle.getString("subjects")); // NOI18N
 
+        nameLabel.setForeground(new java.awt.Color(0, 51, 204));
         nameLabel.setLabelFor(nameField);
         nameLabel.setText(bundle.getString("name")); // NOI18N
         nameLabel.setToolTipText("");
@@ -227,6 +220,10 @@ public class SubjectEditForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(!check()) {
+            return;
+        }
+        
         final Subject item;
         if(this.item == null) {
             item = new Subject();
@@ -256,6 +253,15 @@ public class SubjectEditForm extends javax.swing.JDialog {
         }.execute();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private boolean check() {
+        if(nameField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Name field must be filled.");
+            return false;
+        }
+        
+        return true;
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setVisible(false);
         dispose();
@@ -279,12 +285,14 @@ public class SubjectEditForm extends javax.swing.JDialog {
                 try {
                     if(get() == null) {
                         nameField.setText("N/A");
+                        retrieveButton.setEnabled(true);
                         return;
                     }
                     
                     Subject subject = get();
                     if(subject.getName().length() == 0) {
                         nameField.setText("N/A");
+                        retrieveButton.setEnabled(true);
                         return;
                     }
                     
@@ -293,10 +301,10 @@ public class SubjectEditForm extends javax.swing.JDialog {
                     cityField.setText(subject.getCity());
                     numberField.setText(subject.getNumber());
                     countryField.setText("Česká republika");
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(SubjectEditForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ExecutionException ex) {
-                    Logger.getLogger(SubjectEditForm.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException | ExecutionException ex) { 
+                    nameField.setText("N/A");
+                    retrieveButton.setEnabled(true);
+                    return;
                 }
                 
                 retrieveButton.setEnabled(true);

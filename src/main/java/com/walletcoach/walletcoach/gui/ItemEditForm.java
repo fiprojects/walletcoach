@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.walletcoach.walletcoach.gui;
 
 import com.walletcoach.walletcoach.controllers.CategoryController;
@@ -15,8 +10,7 @@ import com.walletcoach.walletcoach.tools.JComboBoxItem;
 import java.awt.event.WindowAdapter;
 import java.math.BigDecimal;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.xml.xquery.XQException;
 
@@ -33,7 +27,7 @@ public class ItemEditForm extends javax.swing.JDialog {
     /**
      * Creates new form ItemEditForm
      */
-    public ItemEditForm(ItemController itemController, Item item, boolean isIncome) throws XQException, Exception {
+    public ItemEditForm(ItemController itemController, Item item, boolean isIncome) throws XQException {
         this.itemController = itemController;
         this.item = item;
         this.isIncome = isIncome;
@@ -92,10 +86,12 @@ public class ItemEditForm extends javax.swing.JDialog {
             }
         });
 
+        jLabel4.setForeground(new java.awt.Color(0, 51, 204));
         jLabel4.setText(bundle.getString("category")); // NOI18N
 
         categoryField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel5.setForeground(new java.awt.Color(0, 102, 204));
         jLabel5.setText(bundle.getString("subject")); // NOI18N
 
         subjectField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -202,9 +198,9 @@ public class ItemEditForm extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveButton)
-                    .addComponent(jButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(saveButton))
                 .addGap(18, 18, 18))
         );
 
@@ -217,6 +213,10 @@ public class ItemEditForm extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        if(!check()) {
+            return;
+        }
+        
         final Item item;
         if(this.item == null) {
             item = new Item();
@@ -253,7 +253,8 @@ public class ItemEditForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_descriptionFieldActionPerformed
 
-    public static void display(final ItemController itemController, final Item item, final boolean isIncome, final WindowAdapter onClose) {
+    public static void display(final ReviewForm parent,  final ItemController itemController,
+            final Item item, final boolean isIncome, final WindowAdapter onClose) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
@@ -274,21 +275,18 @@ public class ItemEditForm extends javax.swing.JDialog {
                 ItemEditForm form = null;
                 try {
                     form = new ItemEditForm(itemController, item, isIncome);
+                    form.setLocationRelativeTo(null);
+                    form.setModal(true);
+                    
+                    form.priceField.requestFocusInWindow();
+                    if(onClose != null) {
+                        form.addWindowListener(onClose);
+                    }
+
+                    form.setVisible(true);
                 } catch (XQException ex) {
-                    Logger.getLogger(ItemEditForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (Exception ex) {
-                    Logger.getLogger(ItemEditForm.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(parent, "Failed to retrieve item.");
                 }
-                form.setLocationRelativeTo(null);
-                form.setModal(true);
-                
-                form.priceField.requestFocusInWindow();
-                
-                if(onClose != null) {
-                    form.addWindowListener(onClose);
-                }
-                
-                form.setVisible(true);
             }
         });
     }
@@ -322,7 +320,7 @@ public class ItemEditForm extends javax.swing.JDialog {
         }
     }
     
-    private void loadSubjects() throws XQException, Exception {
+    private void loadSubjects() throws XQException {
         subjectField.removeAllItems();
         
         SubjectController subjectController = new SubjectController();
@@ -334,5 +332,19 @@ public class ItemEditForm extends javax.swing.JDialog {
                 subjectField.setSelectedItem(comboBoxItem);
             }
         }
+    }
+
+    private boolean check() {
+        if(categoryField.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Category field must be filled.");
+            return false;
+        }
+        
+        if(subjectField.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Subject field must be filled.");
+            return false;
+        }
+            
+        return true;
     }
 }
