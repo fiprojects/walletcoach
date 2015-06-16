@@ -1,5 +1,5 @@
 declare variable $globalYear as xs:integer external;
-<report year="{$globalYear}">
+<report year="{$globalYear}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xsd/yearReport.xsd">
 <summary>
 <income>
 {for $item in doc("items")/items/item

@@ -1,7 +1,7 @@
 declare variable $globalMonth as xs:integer external;
 declare variable $globalYear as xs:integer external;
 
-<report year="{$globalYear}" month="{$globalMonth}">
+<report year="{$globalYear}" month="{$globalMonth}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xsd/monthReport.xsd">
 <summary>
 <income>
 {for $item in doc("items")/items/item

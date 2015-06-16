@@ -43,6 +43,32 @@ public class ReportsController {
     }
     
     /**
+     * Returns a String path for output of a monthly report
+     * based on the choden month of a year in EUR.
+     * 
+     * @param month
+     * @param year
+     * @return String
+     * @throws XQException
+     * @throws FileNotFoundException
+     * @throws URISyntaxException 
+     */
+    public String monthReportEur(int month, int year) throws XQException, FileNotFoundException, URISyntaxException {
+        String output = "reports/xml/month_" + month + "_" + year + "_eur.xml";
+        
+        XQConnection xml = XMLConnection.getConnection();
+        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("monthReportEur"));
+        expression.bindInt(new QName("globalMonth"), month, null);
+        expression.bindObject(new QName("globalYear"), year, null);
+        expression.executeQuery().writeSequence(
+            new FileOutputStream(output), null);
+        
+        xml.close();
+        
+        return output;
+    }
+    
+    /**
      * Returns a String containing the path for a monthly report 
      * based on the chosen month of a year.
      * Transforms the input based on the template to output.
@@ -118,6 +144,44 @@ public class ReportsController {
         String template = "reports/xsl/yearReportLatex.xsl";
         String input = yearReport(year);;
         String output = "reports/latex/year_" + year + ".tex";
+        
+        transform(input, output, template);
+        return output;
+    }
+    
+    /**
+     * Generate data for map subjects
+     * 
+     * @return String
+     * @throws XQException
+     * @throws FileNotFoundException
+     * @throws URISyntaxException 
+     */
+    public String subjectMapData() throws XQException, FileNotFoundException, URISyntaxException {
+        String output = "reports/map/data.xml";
+        
+        XQConnection xml = XMLConnection.getConnection();
+        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("mapData"));
+        expression.executeQuery().writeSequence(
+            new FileOutputStream(output), null);
+        
+        xml.close();
+        
+        return output;
+    }
+    
+    /**
+     * Generate subject map
+     * 
+     * @return String
+     * @throws XQException
+     * @throws FileNotFoundException
+     * @throws URISyntaxException 
+     */
+    public String subjectMap() throws XQException, FileNotFoundException, URISyntaxException {
+        String template = "reports/xsl/subjectMap.xsl";
+        String input = subjectMapData();
+        String output = "reports/map/data.js";
         
         transform(input, output, template);
         return output;
