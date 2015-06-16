@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <info>
+        <title>
+            WalletCoach
+        </title>
+        <author><personname>Samuel Adamik</personname></author>
+    </info>
+    <sect1>
+        <title>Prehľad práce</title>
+        <para>Mojou úlohou bolo viesť časť týmu zodpovednú za XML časť aplikácie, teda návrh práce,
+            spracovanie požiadaviek ostatných kolegov a vyhovenie im</para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <para>Návrh XML štruktúry súborov - dôležitým krokom pre správny návrh XML
+                        schémat a štýlu importu a exportu dát je návrh štruktúry súborov, ktorý bol
+                        postupne prispôsobovaný aktuálnym požiadavkám aplikácie pre zabezpečenie jej
+                        čo najvyššej efektivity</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>Úprava XML súborov - doladenie posledných zmien v štruktúrach XML
+                    súborov</para>
+            </listitem>
+            <listitem>
+                <para>Návrh grafickej podoby zostáv – spracovanie ako by mala vyzerať grafická
+                    zostava XML</para>
+            </listitem>
+            <listitem>
+                <para>XML schéma – vytvorenie XML schémat pre už existujúce navrhnuté XML súbory,
+                    konkrétne návrh subject.xsd a categories.xsd</para>
+            </listitem>
+            <listitem>
+                <para>Prehľad pre zvolený rok – navrhnutie HTML + CSS súborov pre výpis
+                    prehľadov</para>
+            </listitem>
+            <listitem>
+                <para>Prevedenie návrhu vzhľadu zostáv do HTML + CSS – implementácia vopred
+                    pripravenej HTML + CSS šablóny spolu s grafickými doplnkami vo forme
+                    obrázkov</para>
+            </listitem>
+            <listitem>
+                <para>Odstránenie name z items.xml – odstránenie tagu + prispôsobenie v
+                    items.xsd</para>
+            </listitem>
+        </itemizedlist>
+        <itemizedlist>
+            <listitem>
+                <para>Preklad aplikácie – kompletné preloženie aplikácie, to zahŕňa preloženie
+                    výrazov použitých v aplikácii spolu s napárovaním, resp. napojením jednotlivých
+                    tlačidiel a textov na preklady v súbore i18n</para>
+            </listitem>
+        </itemizedlist>
+    </sect1>
+    <sect1>
+        <title>Čo mi projekt dal?</title>
+        <para>
+            Jako úložiště dat byla vybrána XML databáze BaseX s Java rozhraním XQJ ve Standalone modu. Rozvažováno bylo i nad jinými databázemi, resp. i nad pouhým použitím parseru Saxon HE. Tyto alternativy nebyly použity z rozličných důvodů (mj. zastaralost, proprietárnost atp.). Výběr finální technologie bohužel souvisela s netriviálními komplikacemi. Jednalo se především o nekompatibilní závislosti mezi různými verzemi BaseX/XQJ/Connection Pool. I přestože bylo nakonec možné tyto knihovny zprovoznit, za běhu došlo k neočekávaným komplikacím v podobě různých bugů (vč. již ohlášených, týkajících se přehnaného zamykání databází).            
+        </para>
+    </sect1>
+    <sect1>
+        <title>Ľahká časť projektu</title>
+        <para> </para>
+        <para>Najjednoduchšie bolo pre mňa navrhnúť HTML + CSS nakoľko s tvorbou webových stránok už
+            mám skúsenosti aj v jazykoch pokročilejších , využívajúcich serverové dopyty.</para>
+    </sect1>
+    <sect1>
+        <title>Ťažká časť projektu</title>
+        <para> Keďže som ešte s prekladom aplikácie v jave nemal možnosť sa stretnúť, potreboval som
+            poradiť od kolegu Michaela ako napojiť preklady na jednotlivé tlačidlá.</para>
+    </sect1>
+    <sect1>
+        <title>Neúspešné implementácie</title>
+        <para> Aplikáciu sme sa snažili urobiť maximálne efektívnu, tak aby mala využitie aj v
+            budúcnosti, zatiaľ som žiaden nedostatok neobjavil. V prípade, že sa po čase nejaký
+            predsa nájde, určite budeme pracovať na jeho odstránení.</para>
+    </sect1>
+  
+</article>

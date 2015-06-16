@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <info>
+        <title>
+            WalletCoach – Maroš Gašparík
+        </title>
+    </info>
+    <sect1>
+        <title>Úvodní motivace</title>
+        <para>Moja práca na projekte začala návrhom užívateľského rozhrania aplikácie, na ktorú som použil jeden z dostupných online nástrojov určených na tvorbu wireframe.  Aj keď sa konečná podoba aplikácie od pôvodného návrhu líši, určite nám prvotný návrh pomohol lepšie si predstaviť aplikáciu pri jej tvorbe.</para>
+        <para>Pri užívateľskom rozhraní som ostal aj pri ďalšej z mojich činností, ktorou bolo vytvorenie rozhrania priamo vo vývojovom prostredí Netbeans. Pred samotným vložením podoby GUI do Netbeans prebehla tímová diskusia, v ktorej sme brainstormovali nad podobou rozhrania, pričom sme sa snažili pôvodný návrh upraviť tak, aby vyhovoval našej predstave o finálnej podobe programu. Návrh rozhrania, ktorý som vytvoril, bol zameraný na funkčné rozloženie jednotlivých prvkov. Grafickú podobu, ako farby a podobné záležitosti, sme riešili až neskôr. Práca s užívateľským rozhraním nebola náročná a robila sa celkom príjemne. Po návrhu už stačilo jednotlivé prvky „naklikať“ do prostredia Netbeans, kde ich následne Michael prepojil s aplikačnou logikou v Jave.</para>
+    </sect1>
+    <sect1>
+        <title>xQuery – prezentačná forma údajov</title>
+        <para>
+            Mojou treťou, najdôležitejšou a takisto aj najnáročnejšou činnosťou bola práca s xQuery a následne aj XSL Transformáciami. Mojou prvou úlohou bolo pretvorenie xml súboru, v ktorom sú uložené všetky výdajové a príjmové položky, do formátu zrozumiteľného pre užívateľa. Konkrétne sa jednalo o nahradenia informácií o kategórií a firme (ktoré sú v zdrojovom xml súbore reprezentované iba svojim) názvom danej kategórie, respektíve firmy. Táto činnosť bola pre mňa náročná hlavne kvôli práci s viacerými XML súbormi (položky, kategórie, firmy) zároveň, na čo som z predchádzajúcich skúseností s xQuery nebol pripravený. Takisto bol v tomto výstupnom xml súbore prevedený dátum z datetime prevedený do lepšie zrozumiteľného formátu „DD. MM. YYYY“.
+        </para>
+    </sect1>
+    <sect1>
+        <title>xQuery – group by</title>
+        <para>
+            Ďalej som vytvoril xQuery kód, ktorý vypíše sumu výdajov pre jednotlivé dni vo vybranom mesiaci. Na tento účel som použil časť xQuery kódu „group by“. Výsledný kód vyzeral takto:
+        </para>
+        <para>
+            <code>
+                &lt;date day="1" month="1 1 1"&gt;-400 &lt;/date&gt;
+            </code>
+        </para>
+        <para>
+            Keďže boli vo výslednom výdaji za 1.1. sčítané viaceré položky, xQuery za mesiac (fn:month-from-dateTime(datetime)) Nedosadil číslo mesiaca iba jeden krát, ale jeden krát za každú sčítanú položku. Tento problém som odstránil použitím distinct-values(). Tento kód sa dá použiť po malej úprave aj na výpis sumy všetkých príjmov za dané obdobie, respektíve výpis sumy všetkých položiek (príjmy + výdaje).
+        </para>
+    </sect1>
+    <sect1>
+        <title>xQuery a XSLT - reporty</title>
+        <para> Ďalej som pracoval na vytvorení reportu, v ktorom sú zrhnuté najprv celkové príjmy a
+            výdaje za dané obdobie, ktoré sú následne rozdelené podľa kategórií a podľa subjektov.
+            Vytvorenie tohto reportu prebiehalo v dvoch krokoch:  </para>
+        <para>
+            <orderedlist>
+                <listitem>
+                    <para>Vytvorenie xml súboru so štruktúrou reportu</para>
+                    <para><inlinemediaobject>
+                            <imageobject>
+                                <imagedata fileref="file:/C:/Users/Michael/Desktop/img.png"/>
+                            </imageobject>
+                        </inlinemediaobject></para>
+                    <para>xQuery kód na vytvorenie tejto štruktúry bol relatívne komplikovaný, no
+                        vďaka skúsenostiam z predchádzajúcej práce s xQuery, ktoré som počas práce
+                        na projekte nadobudol, som ho zvládol vytvoriť bez ťažkostí.</para>
+                </listitem>
+                <listitem>
+                        <para>XSL Transformácia na HTML súbor, ktorý obsahoval 3 tabuľky, jednu
+                                pre každý z elementov &lt;summary&gt;, &lt;categories&gt; a
+                                &lt;subjects&gt;. Táto úloha bola vďaka kvalite pripraveného XML
+                                súboru v prvom kroku naozaj jednoduchá.</para>
+                </listitem>
+            </orderedlist>
+        </para>
+    </sect1>
+    <sect1>
+        <title>Čo mi projekt dal</title>
+        <para>
+            Práca na projekte bola veľmi zaujímavou skúsenosťou. Jednalo sa o môj prvý projekt riadený pomocou kvalitných nástrojov ako Github, ktorý prácu v tíme naozaj uľahčil a zlepšil. Nezastúpiteľnú úlohu hral v tíme Michael, ktorý sa od začiatku ujal vodcovstva a pripravil návrh aplikácie. Následne vytáral v Githube jednotlivé úlohy, ktoré sme s jeho pomocou a koordináciou spĺňali.    </para>
+    
+        </sect1>
+    <sect1>
+        <title>Aplikácia</title>
+        <para>
+            Myslím si, že sme vytvorili kvalitnú aplikáciu, ktorú budeme minimálne my, členovia tímu, naozaj používať. Umožňuje jednoduchú a prehľadnú evidenciu osobných financií a ponúka rôzne reporty. Myslím si, že by sme mohli vytvoriť ďalšie iné formy reportov, ktoré by prínos aplikácie pre používateľa ešte zvýšili.            
+        </para>
+    </sect1>
+  
+</article>

@@ -1,0 +1,36 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Walletcoach &#8211; z&aacute;vere&#269;n&aacute; spr&aacute;va</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article"><div class="titlepage"><div><div><h1 class="title"><a name="d5e1"></a> Walletcoach &#8211; z&aacute;vere&#269;n&aacute; spr&aacute;va </h1></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl class="toc"><dt><span class="sect1"><a href="#d5e4">Martin Lofaj: Java Backend</a></span></dt></dl></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e4"></a>Martin Lofaj: Java Backend</h2></div></div></div><p>Spolo&#269;ne s troma kolegami, menovite Michal Le, Samuel Ad&aacute;mik a Maro&#353; Ga&#353;par&iacute;k som sa
+            vr&aacute;mci PB138 podie&#318;al na projekte s n&aacute;zvom Walletcoach. Ako cie&#318; sme si stanovili
+            vytvori&#357; aplik&aacute;ciu na spr&aacute;vu osobn&yacute;ch financi&iacute;, &#269;o sa n&aacute;m aj podarilo. V tejto
+            z&aacute;vere&#269;nej spr&aacute;ve popisuje jednotliv&eacute; &#269;asti projektu na ktor&yacute;ch som sa podie&#318;al, &#269;o pre
+            m&#328;a predstavovalo v&yacute;zvu, &#269;o bolo naopak jednoduch&eacute; a ak&eacute; vid&iacute;m &#271;al&#353;ie
+            pokra&#269;ovanie.</p><p>V r&aacute;mci projektu Walletcoach som pracoval na nasleduj&uacute;cich &#269;astiach:</p><p>
+            </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>N&aacute;vrh java backend &#8211; &uacute;prava z&aacute;kladn&yacute;ch ent&iacute;t</p></li><li class="listitem"><p>vytvorenie XML sch&eacute;ma pre entitu Item.xml</p></li><li class="listitem"><p>Pr&iacute;prava xQuery dotazov pre v&yacute;pis d&aacute;t a ich prepojenie do backendu, pre
+                        Category</p></li><li class="listitem"><p>Stiahnutie d&aacute;t z internetu pre subjekt, vytvorenie
+                        SubjectController.java</p></li><li class="listitem"><p>Rozvrhnutie GUI, aplik&aacute;cia sk&uacute;senost&iacute; s vlastnou evidenciou
+                        v&yacute;davkou</p></li><li class="listitem"><p>Vytvorenie formul&aacute;ru vytv&aacute;rania novej polo&#382;ky v aplik&aacute;cii (nov&yacute;
+                        v&yacute;davok)</p></li><li class="listitem"><p>Vytvorenie XSLT pre report do Latexu</p></li><li class="listitem"><p>Vytvorenie funkcie potrebnej na v&yacute;po&#269;et hodn&ocirc;t na report (piechart)</p></li></ol></div><p>
+        </p><p>Na pr&aacute;ci mi pri&#353;lo najjednoduch&#353;ie aplikova&#357; to, &#269;o som u&#382; mal osvojen&eacute;, najm&auml; z
+            predmetu PB138, teda ch&aacute;panie &#353;trukt&uacute;ry XML, XML sch&eacute;ma, XSL Style Sheet. Z predmetov
+            PB162 a PV168 som poznal programovanie v Jave, v&#271;aka &#269;omu som sa neb&aacute;l pusti&#357; do
+            programovania backendu. </p><p>Problematick&eacute; pre m&#328;a bolo pracova&#357; s Latexom, ke&#271;&#382;e som s t&yacute;m &#382;iadnu sk&uacute;senos&#357; nemal.
+            Bolo to v&#353;ak pr&iacute;nosom, preto&#382;e som sa nau&#269;il viac o tomto sp&ocirc;sobe form&aacute;tovania dokumentu
+            a je viac pravdepodobn&eacute; ako predt&yacute;m, &#382;e ho budem aj v praxi pou&#382;&iacute;va&#357;. V&yacute;zvou pre m&#328;a
+            bolo aj zvl&aacute;dnutie XQuery, bolo to v&#353;ak zvl&aacute;dnute&#318;n&eacute; za pomoci kolegov.</p><p>Najzauj&iacute;mavej&#353;ia na projekte v&#353;ak bola t&iacute;mov&aacute; spolupr&aacute;ca. Bolo zauj&iacute;mav&eacute; robi&#357; s
+            kolegami z fakulty na spolo&#269;nej veci, ka&#382;d&yacute; sa na veci pozeral z in&eacute;ho uhla poh&#318;adu,
+            mnoho sme mali spolo&#269;ne, ale boli aj rozdiely. V&#382;dy bolo v&yacute;zvou dohodn&uacute;&#357; sa na spolo&#269;nom
+            postupe a rozdeli&#357; si pr&aacute;cu, v&#382;dy sme to v&#353;ak zvl&aacute;dli a o tom sved&#269;&iacute; aj podoba n&aacute;&#353;ho
+            projektu dnes. Skladba n&aacute;&#353;ho t&iacute;mu bola naozaj vhodn&aacute;, ka&#382;d&yacute; &#269;len do toho vniesol nie&#269;o
+            svoje a bol pr&iacute;nosom.</p><p>&#268;o sa t&yacute;ka &#271;al&#353;ieho pokra&#269;ovania projektu, vid&iacute;m priestor na vytvorenie lep&#353;&iacute;ch
+            reportov, s mo&#382;nos&#357;ou ich archiviz&aacute;cie, bu&#271; v pdf alebo v tla&#269;enej podobe, pr&iacute;padne
+            &#353;trukturovan&eacute; v xml. Takisto vid&iacute;m mo&#382;nos&#357; nastavenia customiz&aacute;cie pre u&#382;&iacute;vate&#318;a, aby si
+            mohol nastavi&#357; pod&#318;a svojich potrieb povinn&eacute; a nepovinn&eacute; polia pri zad&aacute;van&iacute; nov&yacute;ch
+            hodn&ocirc;t. V dne&#353;nej mobilnej dobe je takisto vhodn&eacute;, aby bola aplik&aacute;cia spustite&#318;n&aacute; ako na
+            Androide, tak aj na Windows Phone a aj Mac iOS.</p><p>Ako z&aacute;ver hodnot&iacute;m projekt ve&#318;mi kladne, som r&aacute;d, &#382;e vyu&#269;uj&uacute;ci s&uacute;hlasil s na&#353;im
+            vlastn&yacute;m projektom a dal n&aacute;m vhodn&eacute; vedenie, aby sme ho mohli zrealizova&#357;. Ako som
+            spom&iacute;nal vy&#353;&#353;ie, evidenciu osobn&yacute;ch financi&iacute; si vediem a pl&aacute;nujem na&#271;alej aplik&aacute;ciu
+            nielen roz&#353;&iacute;ri&#357; a upravi&#357; pod&#318;a hore spomenut&yacute;ch bodov, ale ju aj pou&#382;&iacute;va&#357;. Chcem teda
+            po&#271;akova&#357; vyu&#269;uj&uacute;cim PB138 a ostatn&yacute;ch predmetov na FI, v&#271;aka ktor&yacute;m som vyu&#382;il
+            informatick&eacute; znalosti v tomto projekte a takisto aj svojim kolegom za dobr&uacute; atmosf&eacute;ru
+            po&#269;as vytv&aacute;rania projektu a za ich dobre odveden&uacute; pr&aacute;cu.</p></div></div></body></html>

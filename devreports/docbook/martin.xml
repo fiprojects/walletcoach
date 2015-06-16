@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <info>
+        <title> Walletcoach – záverečná správa </title>
+    </info>
+    <sect1>
+        <title>Martin Lofaj: Java Backend</title>
+        <para>Spoločne s troma kolegami, menovite Michal Le, Samuel Adámik a Maroš Gašparík som sa
+            vrámci PB138 podieľal na projekte s názvom Walletcoach. Ako cieľ sme si stanovili
+            vytvoriť aplikáciu na správu osobných financií, čo sa nám aj podarilo. V tejto
+            záverečnej správe popisuje jednotlivé časti projektu na ktorých som sa podieľal, čo pre
+            mňa predstavovalo výzvu, čo bolo naopak jednoduché a aké vidím ďalšie
+            pokračovanie.</para>
+        <para>V rámci projektu Walletcoach som pracoval na nasledujúcich častiach:</para>
+        <para>
+            <orderedlist>
+                <listitem>
+                    <para>Návrh java backend – úprava základných entít</para>
+                </listitem>
+                <listitem>
+                    <para>vytvorenie XML schéma pre entitu Item.xml</para>
+                </listitem>
+                <listitem>
+                    <para>Príprava xQuery dotazov pre výpis dát a ich prepojenie do backendu, pre
+                        Category</para>
+                </listitem>
+                <listitem>
+                    <para>Stiahnutie dát z internetu pre subjekt, vytvorenie
+                        SubjectController.java</para>
+                </listitem>
+                <listitem>
+                    <para>Rozvrhnutie GUI, aplikácia skúseností s vlastnou evidenciou
+                        výdavkou</para>
+                </listitem>
+                <listitem>
+                    <para>Vytvorenie formuláru vytvárania novej položky v aplikácii (nový
+                        výdavok)</para>
+                </listitem>
+                <listitem>
+                    <para>Vytvorenie XSLT pre report do Latexu</para>
+                </listitem>
+                <listitem>
+                    <para>Vytvorenie funkcie potrebnej na výpočet hodnôt na report (piechart)</para>
+                </listitem>
+            </orderedlist>
+        </para>
+        <para>Na práci mi prišlo najjednoduchšie aplikovať to, čo som už mal osvojené, najmä z
+            predmetu PB138, teda chápanie štruktúry XML, XML schéma, XSL Style Sheet. Z predmetov
+            PB162 a PV168 som poznal programovanie v Jave, vďaka čomu som sa nebál pustiť do
+            programovania backendu. </para>
+        <para>Problematické pre mňa bolo pracovať s Latexom, keďže som s tým žiadnu skúsenosť nemal.
+            Bolo to však prínosom, pretože som sa naučil viac o tomto spôsobe formátovania dokumentu
+            a je viac pravdepodobné ako predtým, že ho budem aj v praxi používať. Výzvou pre mňa
+            bolo aj zvládnutie XQuery, bolo to však zvládnuteľné za pomoci kolegov.</para>
+        <para>Najzaujímavejšia na projekte však bola tímová spolupráca. Bolo zaujímavé robiť s
+            kolegami z fakulty na spoločnej veci, každý sa na veci pozeral z iného uhla pohľadu,
+            mnoho sme mali spoločne, ale boli aj rozdiely. Vždy bolo výzvou dohodnúť sa na spoločnom
+            postupe a rozdeliť si prácu, vždy sme to však zvládli a o tom svedčí aj podoba nášho
+            projektu dnes. Skladba nášho tímu bola naozaj vhodná, každý člen do toho vniesol niečo
+            svoje a bol prínosom.</para>
+        <para>Čo sa týka ďalšieho pokračovania projektu, vidím priestor na vytvorenie lepších
+            reportov, s možnosťou ich archivizácie, buď v pdf alebo v tlačenej podobe, prípadne
+            štrukturované v xml. Takisto vidím možnosť nastavenia customizácie pre užívateľa, aby si
+            mohol nastaviť podľa svojich potrieb povinné a nepovinné polia pri zadávaní nových
+            hodnôt. V dnešnej mobilnej dobe je takisto vhodné, aby bola aplikácia spustiteľná ako na
+            Androide, tak aj na Windows Phone a aj Mac iOS.</para>
+        <para>Ako záver hodnotím projekt veľmi kladne, som rád, že vyučujúci súhlasil s našim
+            vlastným projektom a dal nám vhodné vedenie, aby sme ho mohli zrealizovať. Ako som
+            spomínal vyššie, evidenciu osobných financií si vediem a plánujem naďalej aplikáciu
+            nielen rozšíriť a upraviť podľa hore spomenutých bodov, ale ju aj používať. Chcem teda
+            poďakovať vyučujúcim PB138 a ostatných predmetov na FI, vďaka ktorým som využil
+            informatické znalosti v tomto projekte a takisto aj svojim kolegom za dobrú atmosféru
+            počas vytvárania projektu a za ich dobre odvedenú prácu.</para>
+    </sect1>
+</article>
