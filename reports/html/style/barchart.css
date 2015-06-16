@@ -1,0 +1,28 @@
+.barchart {
+    border: 1px black solid;
+}
+
+.barchart .caption {
+    font-size: 22px;
+    font-family: Arial, sans-serif;
+}
+
+.barchart .axis {
+    stroke: black;
+    stroke-width: .8;
+}
+
+.barchart .separator {
+    stroke: black;
+    stroke-width: .8;
+    stroke-dasharray: 10,10;
+}
+
+.barchart .separator-caption {
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+}
+
+.barchart .bar {
+    fill: blue;
+}
