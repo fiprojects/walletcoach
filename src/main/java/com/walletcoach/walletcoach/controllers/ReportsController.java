@@ -39,6 +39,22 @@ public class ReportsController {
         
         xml.close();
         
+        monthReportChart(month, year);
+        
+        return output;
+    }
+    
+    public String monthReportChart(int month, int year) throws XQException, FileNotFoundException, URISyntaxException {
+        String output = "reports/html/month_" + month + "_" + year + "_chart.html";
+        
+        XQConnection xml = XMLConnection.getConnection();
+        XMLConnection.createDbReport(xml, "month_" + month + "_" + year);
+        XQPreparedExpression expression = xml.prepareExpression(XMLConnection.getQuery("barchart"));
+        expression.executeQuery().writeSequence(
+            new FileOutputStream(output), null);
+        XMLConnection.closeDb(xml);
+        xml.close();
+        
         return output;
     }
     

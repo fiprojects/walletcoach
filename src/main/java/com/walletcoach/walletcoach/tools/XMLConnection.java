@@ -52,6 +52,10 @@ public class XMLConnection {
         xml.createExpression().executeCommand("CREATE DB " +  name + " data/" + name + ".xml");
     }
     
+    public static void createDbReport(XQConnection xml, String name) throws XQException {
+        xml.createExpression().executeCommand("CREATE DB month reports/xml/" + name + ".xml");
+    }
+    
     public static void openDb(XQConnection xml, String name) throws XQException {
         xml.createExpression().executeCommand("OPEN " +  name);
     }

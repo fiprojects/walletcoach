@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <info>
+        <title>
+            Závěrečná zpráva k projektu WalletCoach
+        </title>
+        <author><personname>Michael Le</personname></author>
+    </info>
+    <sect1>
+        <title>Úvodní motivace</title>
+        <para>Stimulem ke vzniku projektu WalletCoach byla potřeba autorů evidovat své osobní příjmy a výdaje. Projekt začal návrhem seskládaným z nápadů jednotlivých autorů. Aplikace byla koncipována tedy velice pragmaticky, i vzhledem k předmětu, ke kterému se projekt vztahuje a snaží se využívat maximálně dostupných technologií založených na bázi XML.</para>
+    </sect1>
+    <sect1>
+        <title>Technické informace</title>
+        <para>
+            Jako úložiště dat byla vybrána XML databáze BaseX s Java rozhraním XQJ ve Standalone modu. Rozvažováno bylo i nad jinými databázemi, resp. i nad pouhým použitím parseru Saxon HE. Tyto alternativy nebyly použity z rozličných důvodů (mj. zastaralost, proprietárnost atp.). Výběr finální technologie bohužel souvisela s netriviálními komplikacemi. Jednalo se především o nekompatibilní závislosti mezi různými verzemi BaseX/XQJ/Connection Pool. I přestože bylo nakonec možné tyto knihovny zprovoznit, za běhu došlo k neočekávaným komplikacím v podobě různých bugů (vč. již ohlášených, týkajících se přehnaného zamykání databází).            
+        </para>
+    </sect1>
+    <sect1>
+        <title>Moje role</title>
+        <para>
+            Moje role byla především úprava a syntéza částí systému připravených jinými členy týmu. Jednotlivé úkoly byly dekomponovány do nezávislých částí a členům zadávány pomocí Issue Trackeru na GitHubu. Díky tomu si členové mohli sami rozvrhnout, kdy jakou část udělají (i s ohledem na zkouškové období a pracovní povinnosti), a mohli si i vyzkoušet pracovat na rozličných částech systému. Vrcholem naší práce byla několika denní akce zvaná „velká syntéza“, při které se členové střetli osobně, aby dokončili projekt.            
+        </para>
+    </sect1>
+    <sect1>
+        <title>Týmová spolupráce</title>
+        <para>
+            S prací členů svého týmu jsem spokojen. Všichni si samostatně nastudovali související materiály ke své části a svou část vypracovali. Jako podpůrný materiál byla členům dostupná  FIkipedia na bázi MediaWiki (http://fikipedia.michael-le.net/walletcoach). 
+        </para>
+    </sect1>
+    <sect1>
+        <title>Závěr</title>
+        <para>
+            S vypracovanou aplikací jsem spokojen, přestože jsme si vědomi některých nedostatků. Myslím, že slouží dobře jako přehled „síly“ technologie XML. A s trochou dalšího vývoje by bylo možné aplikaci použít i prakticky. 
+        </para>
+    </sect1>
+    <sect1>
+        <title>Technické infomrace</title>
+        <para>
+            Jako úložiště dat byla vybrána XML databáze BaseX s Java rozhraním XQJ ve Standalone modu. Rozvažováno bylo i nad jinými databázemi, resp. i nad pouhým použitím parseru Saxon HE. Tyto alternativy nebyly použity z rozličných důvodů (mj. zastaralost, proprietárnost atp.). Výběr finální technologie bohužel souvisela s netriviálními komplikacemi. Jednalo se především o nekompatibilní závislosti mezi různými verzemi BaseX/XQJ/Connection Pool. I přestože bylo nakonec možné tyto knihovny zprovoznit, za běhu došlo k neočekávaným komplikacím v podobě různých bugů (vč. již ohlášených, týkajících se přehnaného zamykání databází).            
+        </para>
+    </sect1>
+  
+</article>
