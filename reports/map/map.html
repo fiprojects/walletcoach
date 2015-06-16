@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Subject Map</title>
+        <style type="text/css">
+            html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+        </style>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+        <script type="text/javascript" src="data.js"></script>
+        <script type="text/javascript">
+            function initialize() {
+                var mapOptions = {
+                    center: {lat: 50.0878, lng: 14.4204},
+                    zoom: 8
+                };
+                var locations = getMapData();
+                var map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+
+                for (i = 0; i < locations.length; i++) {
+                    new google.maps.Marker({
+                        title: locations[i][0],
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        map: map
+                    });
+                }
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+    </head>
+    
+    <body>
+        <div id="map-canvas"></div>
+    </body>
+</html>
